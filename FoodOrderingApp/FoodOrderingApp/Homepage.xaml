@@ -38,12 +38,14 @@
                 </CarouselView.ItemTemplate>
             </CarouselView>
 
-             <StackLayout Orientation="Horizontal">
-                <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
-                <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
-                <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
-                <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
-            </StackLayout>
+            <ScrollView Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
+                    <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
+                    <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
+                    <ImageButton  HorizontalOptions="Center"  Source="https://a.cdn-hotels.com/gdcs/production76/d1116/1e97b4de-e17e-4f10-adac-e83383ce020d.jpg" HeightRequest="70"  CornerRadius="10"/>
+                </StackLayout>
+            </ScrollView>
 
             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
             <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
