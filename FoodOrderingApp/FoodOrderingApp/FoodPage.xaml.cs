@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FoodOrderingApp.Classes;
 
 namespace FoodOrderingApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Homepage : ContentPage
+    public partial class FoodPage : ContentPage
     {
-        public Homepage()
+        public FoodPage()
         {
             InitializeComponent();
-        }
-
-        private void foodBtn_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new FoodPage());
+            Title = "Onigiri";
+            foodLO.BindingContext = food.getData();
         }
     }
 }

@@ -48,28 +48,29 @@
             </ScrollView>
 
             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                <StackLayout Margin="5" WidthRequest="100">
-                        <ImageButton  HorizontalOptions="Center"  Source="https://i.pinimg.com/originals/c7/91/87/c79187bcf1d857e396874fffce5713d6.png" HeightRequest="50" />
-                    <Label HorizontalOptions="Center" Text="Kayak" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <StackLayout Margin="5" WidthRequest="100">
+                        <ImageButton x:Name="foodBtn" Clicked="foodBtn_Clicked"
+                            HorizontalOptions="Center"  Source="https://i.pinimg.com/originals/c7/91/87/c79187bcf1d857e396874fffce5713d6.png" HeightRequest="50" />
+                        <Label HorizontalOptions="Center" Text="Onigiri" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
 
-                </StackLayout>
-                <StackLayout  Margin="5" WidthRequest="100">
+                    </StackLayout>
+                    <StackLayout  Margin="5" WidthRequest="100">
                         <ImageButton  HorizontalOptions="Center"  Source="https://i.pinimg.com/originals/c7/91/87/c79187bcf1d857e396874fffce5713d6.png" HeightRequest="50" />
-                    <Label HorizontalOptions="Center" Text="Baloon" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
+                        <Label HorizontalOptions="Center" Text="Baloon" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
 
-                </StackLayout>
-                <StackLayout  Margin="5" WidthRequest="100">
+                    </StackLayout>
+                    <StackLayout  Margin="5" WidthRequest="100">
                         <ImageButton  HorizontalOptions="Center"  Source="https://i.pinimg.com/originals/c7/91/87/c79187bcf1d857e396874fffce5713d6.png" HeightRequest="50" />
-                    <Label HorizontalOptions="Center" Text="Hiking" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
+                        <Label HorizontalOptions="Center" Text="Hiking" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
 
-                </StackLayout>
-                <StackLayout  Margin="5" WidthRequest="100">
+                    </StackLayout>
+                    <StackLayout  Margin="5" WidthRequest="100">
                         <ImageButton  HorizontalOptions="Center"  Source="https://i.pinimg.com/originals/c7/91/87/c79187bcf1d857e396874fffce5713d6.png" HeightRequest="50" />
-                    <Label HorizontalOptions="Center" Text="Running" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
+                        <Label HorizontalOptions="Center" Text="Running" TextColor="Gray" FontSize="18" FontAttributes="None" VerticalTextAlignment="Center" Margin="10"/>
 
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
                     <StackLayout Margin="5" WidthRequest="100">

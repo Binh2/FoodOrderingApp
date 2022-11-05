@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.FoodPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="https://eatsjapan.com/wp-content/uploads/2020/12/thumnail-1.jpg.webp"></Image>
+            <Line HeightRequest="2"></Line>
+            <Label Text="Onigiri là món ăn đặc sản ở Nhật Bản..." TextColor="Black"></Label>
+            <StackLayout Orientation="Horizontal" Spacing="5" Padding="5,0">
+                <Button Text="Sort by v" CornerRadius="100" BorderColor="Gray"></Button>
+                <Label Text="Filter by:" TextColor="Black" VerticalOptions="Center"></Label>
+                <Button Text="Categories v" CornerRadius="100" BorderColor="Gray"></Button>
+                <Button Text="Promotion" CornerRadius="100" BorderColor="Gray"></Button>
+            </StackLayout>
+            <StackLayout x:Name="foodLO">
+                <!--<ContentView>
+                    <ContentView.Content>
+                        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                            <Image Source="{Binding image}"></Image>
+                            <Label Text="{Binding name}" Grid.Column="1"></Label>
+                            <Label Text="{Binding kind}" Grid.Row="1" Grid.Column="1"></Label>
+                            <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="star.png"></Image>
+                                    <Label Text="{Binding starScore}"></Label>
+                                </StackLayout>
+                                <Label Text="{Binding stars, StringFormat='({0:0})'}"></Label>
+                                <Label Text="{Binding distrance,StringFormat='- {0:0}km'}"></Label>
+                            </StackLayout>
+                        </Grid>
+                    </ContentView.Content>
+                </ContentView>-->
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                    <Image Source="https://eatsjapan.com/wp-content/uploads/2020/12/thumnail-1.jpg.webp" Grid.RowSpan="3"></Image>
+                    <Label Text="Yamada's Onigiri" Grid.Column="1" TextColor="Black"></Label>
+                    <Label Text="Onigiri" Grid.Row="1" Grid.Column="1" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="star.png" HeightRequest="16" VerticalOptions="Start"></Image>
+                            <Label Text="4.5" TextColor="Black"></Label>
+                        </StackLayout>
+                        <Label Text="(100+)" TextColor="Gray"></Label>
+                        <Label Text="0.2km" TextColor="Black"></Label>
+                    </StackLayout>
+                </Grid>
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                    <Image Source="https://eatsjapan.com/wp-content/uploads/2020/12/thumnail-1.jpg.webp" Grid.RowSpan="3"></Image>
+                    <Label Text="Yamada's Onigiri" Grid.Column="1" TextColor="Black"></Label>
+                    <Label Text="Onigiri" Grid.Row="1" Grid.Column="1" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="star.png" HeightRequest="16" VerticalOptions="Start"></Image>
+                            <Label Text="4.5" TextColor="Black"></Label>
+                        </StackLayout>
+                        <Label Text="(100+)" TextColor="Gray"></Label>
+                        <Label Text="0.2km" TextColor="Black"></Label>
+                    </StackLayout>
+                </Grid>
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                    <Image Source="https://eatsjapan.com/wp-content/uploads/2020/12/thumnail-1.jpg.webp" Grid.RowSpan="3"></Image>
+                    <Label Text="Yamada's Onigiri" Grid.Column="1" TextColor="Black"></Label>
+                    <Label Text="Onigiri" Grid.Row="1" Grid.Column="1" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="star.png" HeightRequest="16" VerticalOptions="Start"></Image>
+                            <Label Text="4.5" TextColor="Black"></Label>
+                        </StackLayout>
+                        <Label Text="(100+)" TextColor="Gray"></Label>
+                        <Label Text="0.2km" TextColor="Black"></Label>
+                    </StackLayout>
+                </Grid>
+                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                    <Image Source="https://eatsjapan.com/wp-content/uploads/2020/12/thumnail-1.jpg.webp" Grid.RowSpan="3"></Image>
+                    <Label Text="Yamada's Onigiri" Grid.Column="1" TextColor="Black"></Label>
+                    <Label Text="Onigiri" Grid.Row="1" Grid.Column="1" TextColor="Black"></Label>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="star.png" HeightRequest="16" VerticalOptions="Start"></Image>
+                            <Label Text="4.5" TextColor="Black"></Label>
+                        </StackLayout>
+                        <Label Text="(100+)" TextColor="Gray"></Label>
+                        <Label Text="0.2km" TextColor="Black"></Label>
+                    </StackLayout>
+                </Grid>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
