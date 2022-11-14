@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using FoodOrderingApp.Classes;
+using FoodOrderingApp.Data;
 
 namespace FoodOrderingApp
 {
