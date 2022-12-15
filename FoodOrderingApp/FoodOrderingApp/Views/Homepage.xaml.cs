@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FoodOrderingApp
+namespace FoodOrderingApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Homepage : ContentPage
@@ -15,11 +15,6 @@ namespace FoodOrderingApp
         public Homepage()
         {
             InitializeComponent();
-        }
-
-        private void foodBtn_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new FoodPage());
         }
     }
 }

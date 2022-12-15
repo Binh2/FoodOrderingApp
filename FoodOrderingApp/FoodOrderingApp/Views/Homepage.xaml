@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Views.Homepage">
+    <ContentPage.Content>
+        <StackLayout Margin="15,25,25,0">
+            <!--    Search button  -->
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Frame
+                        Padding="0"
+                        BackgroundColor="#F7F7F7"
+                        CornerRadius="45"
+                        HasShadow="False"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal">
+                        <Image
+                                Margin="20,10,0,10"
+                                Aspect="AspectFit"
+                                HeightRequest="18"
+                                Source="search_button.png"
+                                WidthRequest="18" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <StackLayout>
+
+                    <!--  Categories  -->
+                    <StackLayout>
+                        <StackLayout Margin="0,5,0,5">
+                            <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Categories"
+                                    TextColor="Black">
+                            </Label>
+
+                            <!-- Kinds Categories  -->
+                            <StackLayout Margin="0,20,0,20"
+                                         HeightRequest="90"
+                                         Orientation="Horizontal">
+                                <CollectionView x:Name="Catelogies" >
+
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Frame
+                                                    Margin="1,5,10,5"
+                                                    Padding="0"
+                                                    CornerRadius="30"
+                                                    HasShadow="True"
+                                                    HeightRequest="60"
+                                                    IsClippedToBounds="False"
+                                                    WidthRequest="60">
+                                                    <Image Margin="15"
+                                                           Aspect="AspectFit"
+                                                           HorizontalOptions="CenterAndExpand"
+                                                           Source="{Binding CatelogyImages}"
+                                                           VerticalOptions="CenterAndExpand"/>
+                                                </Frame>
+                                                <Label
+                                                        FontSize="12"
+                                                        HorizontalOptions="Center"
+                                                        Text="{Binding CatelogyName}"
+                                                        TextColor="Black">
+                                                </Label>
+                                                <!---<StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference mainView}, Path=BindingContext.CatTapCommand}" CommandParameter="{Binding .}" />
+                                                </StackLayout.GestureRecognizers> -->
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <!--  Best Seeling  -->
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
