@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Views.AddResourcesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Category" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category ID: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category name: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category image: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category link: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Food" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Food ID: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Food  name: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Food image: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category ID: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center"></Entry>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

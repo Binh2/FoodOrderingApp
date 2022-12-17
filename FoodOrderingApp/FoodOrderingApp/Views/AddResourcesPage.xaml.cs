@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace FoodOrderingApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddResources : ContentPage
+    public partial class AddResourcesPage : ContentPage
     {
-        public AddResources()
+        public AddResourcesPage()
         {
             InitializeComponent();
         }

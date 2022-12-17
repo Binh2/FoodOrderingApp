@@ -23,10 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddResourcesPage.xaml.cs">
+      <DependentUpon>AddResourcesPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="AppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddResources.xaml">
+    <EmbeddedResource Update="Views\AddResourcesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FoodPage.xaml">
