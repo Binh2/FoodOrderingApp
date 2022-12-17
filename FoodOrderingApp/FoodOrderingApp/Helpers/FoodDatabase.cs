@@ -14,7 +14,7 @@ namespace FoodOrderingApp.Helpers
         {
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             _connection = new SQLiteConnection(System.IO.Path.Combine(folder,"FoodDatabase.db3"));
-            _connection.CreateTable<Catelogy>();
+            _connection.CreateTable<Category>();
         }
             
     }
