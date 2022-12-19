@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Views.ResourcesPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <Frame>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Category" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category ID: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Picker VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="categoryIDPicker"
+                            SelectedIndexChanged="categoryIDPicker_SelectedIndexChanged" Title="Category ID"></Picker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category name: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="categoryNameEntry"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category image: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="categoryImagesEntry"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category link: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="categoryLinkEntry"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Delete" HorizontalOptions="EndAndExpand"
+                            x:Name="categoryDelete" Clicked="categoryDelete_Clicked"></Button>
+                    <Button Text="Add/Update" HorizontalOptions="StartAndExpand"
+                            x:Name="categoryAddUpdate" Clicked="categoryAddUpdate_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Food" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Food ID: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Picker VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="foodIDPicker"
+                            SelectedIndexChanged="foodIDPicker_SelectedIndexChanged" Title="Food ID"></Picker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Food  name: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="foodNameEntry"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Food image: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="foodImagesEntry"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category ID: " VerticalOptions="Center" TextColor="Black"></Label>
+                    <Picker VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="foodCategoryIDPicker"
+                            SelectedIndexChanged="foodCategoryIDPicker_SelectedIndexChanged" Title="Category ID"></Picker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Delete" HorizontalOptions="EndAndExpand"
+                            x:Name="foodDelete" Clicked="foodDelete_Clicked"></Button>
+                    <Button Text="Add/Update" HorizontalOptions="StartAndExpand"
+                            x:Name="foodAddUpdate" Clicked="foodAddUpdate_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

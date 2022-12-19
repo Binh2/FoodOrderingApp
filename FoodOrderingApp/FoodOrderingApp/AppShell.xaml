@@ -8,9 +8,9 @@
                       Title="Home" ContentTemplate="{DataTemplate views:Homepage}"/>
 
         <ShellContent Icon="search_button.png" 
-                      Title="Home" ContentTemplate="{DataTemplate views:FoodPage}"/>
+                      Title="Food" ContentTemplate="{DataTemplate views:FoodPage}"/>
 
         <ShellContent Icon="search_button.png" 
-                      Title="Home" ContentTemplate="{DataTemplate views:AddResourcesPage}"/>
+                      Title="Resources" ContentTemplate="{DataTemplate views:ResourcesPage}"/>
     </TabBar>
 </Shell>

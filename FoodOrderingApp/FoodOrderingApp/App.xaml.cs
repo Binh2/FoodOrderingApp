@@ -1,7 +1,9 @@
 ﻿using FoodOrderingApp.Helpers;
 using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FoodOrderingApp.Model;
 
 namespace FoodOrderingApp
 {
@@ -12,6 +14,11 @@ namespace FoodOrderingApp
         {
             InitializeComponent();
             MainPage = new AppShell();
+
+
+            //Database.deleteDatabase(); //Uncomment this line to renew database every run
+            if (!File.Exists(Database.dbFile))
+                Database.createDatabase();
         }
 
         protected override void OnStart()

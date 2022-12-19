@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\AddResourcesPage.xaml.cs">
-      <DependentUpon>AddResourcesPage.xaml</DependentUpon>
+    <Compile Update="Views\ResourcesPage.xaml.cs">
+      <DependentUpon>ResourcesPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -32,7 +32,7 @@
     <EmbeddedResource Update="AppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AddResourcesPage.xaml">
+    <EmbeddedResource Update="Views\ResourcesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FoodPage.xaml">

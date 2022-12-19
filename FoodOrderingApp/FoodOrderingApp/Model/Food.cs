@@ -9,7 +9,7 @@ namespace FoodOrderingApp.Model
         [PrimaryKey,AutoIncrement]
         public int FoodID { get; set; }
         public string FoodName { get; set; }
-        public string FoodImage { get; set; }
-        public int CatelogyID { get; set; }
+        public string FoodImages { get; set; }
+        public int CategoryID { get; set; }
     }
 }
