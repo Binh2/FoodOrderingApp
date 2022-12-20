@@ -113,12 +113,13 @@ namespace FoodOrderingApp.Model
             }
         }
 
-        public static List<Food> selectFoodByCategory(Category category)
+        public static List<Food> selectAllFoods()
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                return connection.Query<Food>("select * from Food where CategoryID=" + category.CategoryID.ToString());
+                return connection.Table<Food>().ToList();
+
             }
             catch (SQLiteException)
             {
@@ -140,17 +141,17 @@ namespace FoodOrderingApp.Model
             {
                 return new Food { FoodID = -1 };
             }
-            catch { 
-                return null; 
+            catch
+            {
+                return null;
             }
         }
-        public static List<Food> selectAllFoods()
+        public static List<Food> selectFoodByCategory(Category category)
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                return connection.Table<Food>().ToList();
-
+                return connection.Query<Food>("select * from Food where CategoryID=" + category.CategoryID.ToString());
             }
             catch (SQLiteException)
             {
