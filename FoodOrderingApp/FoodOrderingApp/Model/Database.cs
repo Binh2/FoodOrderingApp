@@ -137,14 +137,6 @@ namespace FoodOrderingApp.Model
             {
                 return null;
             }
-            catch (ArgumentOutOfRangeException)
-            {
-                return new Food { FoodID = -1 };
-            }
-            catch
-            {
-                return null;
-            }
         }
         public static List<Food> selectFoodByCategory(Category category)
         {
@@ -191,6 +183,72 @@ namespace FoodOrderingApp.Model
             {
                 var connection = new SQLiteConnection(dbFile);
                 connection.Delete(food);
+                return true;
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+        }
+
+        public static List<User> selectAllUsers()
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                return connection.Table<User>().ToList();
+
+            }
+            catch (SQLiteException)
+            {
+                return null;
+            }
+        }
+        public static User selectUserByIndex(User user)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                return connection.Query<User>("select * from User where UserID=" + user.UserID.ToString())[0];
+            }
+            catch (SQLiteException)
+            {
+                return null;
+            }
+        }
+        public static bool insertUser(User user)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                connection.Insert(user);
+                return true;
+
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+        }
+        public static bool updateUser(User user)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                connection.Update(user);
+                return true;
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+        }
+        public static bool deleteUser(User user)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                connection.Delete(user);
                 return true;
             }
             catch (SQLiteException)

@@ -2,15 +2,22 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:FoodOrderingApp.Views"
-             x:Class="FoodOrderingApp.AppShell">
-    <TabBar>
-        <ShellContent Icon="search_button.png" 
+             x:Class="FoodOrderingApp.AppShell"
+       FlyoutBehavior="Disabled">
+
+    <ShellContent Icon="search_button.png" Route="signin" FlyoutItemIsVisible="False"
+                  Title="Signin" ContentTemplate="{DataTemplate views:SigninPage}"></ShellContent>
+    <ShellContent Icon="search_button.png" Route="signup" FlyoutItemIsVisible="False"
+                  Title="Signup" ContentTemplate="{DataTemplate views:SignupPage}"></ShellContent>
+
+    <TabBar Route="tabbar">
+        <ShellContent Icon="search_button.png" Route="homepage"
                       Title="Home" ContentTemplate="{DataTemplate views:Homepage}"/>
 
-        <ShellContent Icon="search_button.png" 
+        <ShellContent Icon="search_button.png" Route="foodpage"
                       Title="Food" ContentTemplate="{DataTemplate views:FoodPage}"/>
 
-        <ShellContent Icon="search_button.png" 
+        <ShellContent Icon="search_button.png" Route="resourcespage"
                       Title="Resources" ContentTemplate="{DataTemplate views:ResourcesPage}"/>
     </TabBar>
 </Shell>

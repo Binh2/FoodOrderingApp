@@ -9,13 +9,28 @@
                 <Label></Label>
                 <Label></Label>
             </StackLayout>
-            <StackLayout></StackLayout>
-            <StackLayout></StackLayout>
-            <StackLayout></StackLayout>
-            <StackLayout></StackLayout>
-            <StackLayout></StackLayout>
-            <StackLayout></StackLayout>
-            <StackLayout></StackLayout>
+
+            <StackLayout>
+                <Label Text="Edit Profile"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Shipping Address"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Wishlist"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Order HIstory"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Track Order"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Cards"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Notification"></Label>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
