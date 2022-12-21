@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Views.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Image></Image>
+                <Label></Label>
+                <Label></Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Edit Profile"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Shipping Address"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Wishlist"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Order HIstory"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Track Order"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Cards"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Notification"></Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Signout"></Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="signoutBtn" Tapped="signoutBtn_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Delete account" TextColor="Red" FontAttributes="Bold"></Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="deleteAccountBtn" Tapped="deleteAccountBtn_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

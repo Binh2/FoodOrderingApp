@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Views.SignupPage">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label Text="Food Ordering App" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Image:  " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userImage" 
+                       ReturnType="Next"
+                       IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name: " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userName" 
+                       ReturnType="Next"
+                       IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Email: " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry Keyboard="Email" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                       ReturnType="Next"
+                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Password: " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry IsPassword="True" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                       ReturnType="Next"
+                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Confirm password: " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry IsPassword="True" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userConfirmPassword" 
+                       ReturnType="Done"
+                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
+
+            <Button Text="Sign up" x:Name="signupBtn" Clicked="signupBtn_Clicked" IsTabStop="False"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

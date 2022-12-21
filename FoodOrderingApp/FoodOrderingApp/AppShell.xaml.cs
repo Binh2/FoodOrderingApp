@@ -14,6 +14,7 @@ namespace FoodOrderingApp
         public AppShell()
         {
             InitializeComponent();
+
         }
     }
 }

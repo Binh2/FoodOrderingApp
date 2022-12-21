@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Views.SigninPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Food Ordering App" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Email: " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry Keyboard="Email" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                       ReturnType="Next"
+                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Password: " VerticalOptions="Center" TextColor="Black"></Label>
+                <Entry IsPassword="True" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                       ReturnType="Done"
+                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False" Completed="Signin"></Entry>
+            </StackLayout>
+            
+            <Label FontSize="20" Padding="5">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don't have an account? "
+                              TextColor="Black"></Span>
+                        <Span Text="Sign up" TextColor="Blue" TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding TapCommand}">
+                                </TapGestureRecognizer>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Text="Sign in" x:Name="signinBtn" Clicked="Signin" IsTabStop="False"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
