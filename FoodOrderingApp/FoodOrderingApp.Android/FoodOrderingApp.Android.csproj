@@ -89,7 +89,9 @@
       <Name>FoodOrderingApp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Hatch_Green_Chile_Hamburger.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\search_button.png" />
   </ItemGroup>
