@@ -5,19 +5,19 @@
              x:Class="FoodOrderingApp.AppShell"
        FlyoutBehavior="Disabled">
 
-    <ShellContent Icon="search_button.png" Route="signin" FlyoutItemIsVisible="False"
+    <ShellContent Icon="search_button.png" Route="signinPage" FlyoutItemIsVisible="False"
                   Title="Signin" ContentTemplate="{DataTemplate views:SigninPage}"></ShellContent>
-    <ShellContent Icon="search_button.png" Route="signup" FlyoutItemIsVisible="False"
+    <ShellContent Icon="search_button.png" Route="signupPage" FlyoutItemIsVisible="False"
                   Title="Signup" ContentTemplate="{DataTemplate views:SignupPage}"></ShellContent>
 
-    <TabBar Route="tabbar">
+    <TabBar Route="tabBar">
         <ShellContent Icon="search_button.png" Route="homepage"
                       Title="Home" ContentTemplate="{DataTemplate views:Homepage}"/>
-
-        <ShellContent Icon="search_button.png" Route="foodpage"
+        <ShellContent Icon="search_button.png" Route="foodPage"
                       Title="Food" ContentTemplate="{DataTemplate views:FoodPage}"/>
-
-        <ShellContent Icon="search_button.png" Route="resourcespage"
+        <ShellContent Icon="search_button.png" Route="profilePage"
+                      Title="Profile" ContentTemplate="{DataTemplate views:ProfilePage}"/>
+        <ShellContent Icon="search_button.png" Route="resourcesPage"
                       Title="Resources" ContentTemplate="{DataTemplate views:ResourcesPage}"/>
     </TabBar>
 </Shell>

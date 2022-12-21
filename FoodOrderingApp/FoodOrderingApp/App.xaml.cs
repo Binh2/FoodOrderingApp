@@ -16,9 +16,13 @@ namespace FoodOrderingApp
             MainPage = new AppShell();
 
 
-            //Database.deleteDatabase(); //Uncomment this line to renew database every run
+            
             if (!File.Exists(Database.dbFile))
+            {
+                //Database.deleteDatabase(); //Uncomment this line to renew database every run
+                File.Delete(Database.dbFile); //Uncomment this line to renew database every run
                 Database.createDatabase();
+            }
         }
 
         protected override void OnStart()

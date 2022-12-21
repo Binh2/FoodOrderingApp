@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodOrderingApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,17 @@ namespace FoodOrderingApp.Views
         public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        private void deleteAccountBtn_Tapped(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//signinPage");
+            Database.deleteUser(UserProvider.user);
+        }
+
+        private void signoutBtn_Tapped(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//signinPage");
         }
     }
 }

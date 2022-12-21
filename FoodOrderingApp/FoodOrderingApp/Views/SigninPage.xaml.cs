@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodOrderingApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,32 @@ namespace FoodOrderingApp.Views
         {
             InitializeComponent();
             BindingContext = this;
+            signinBtn.IsTabStop = false;
         }
 
-        private async void signin_Clicked(object sender, EventArgs e)
+        private async void Signin(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//tabbar/homepage");
+            string email = userEmail.Text,
+                password = userPassword.Text;
+
+            User user = new User
+            {
+                UserEmail = email,
+                UserPassword = password
+            };
+
+            User returnUser = Database.selectUserByEmail(user);
+            if (returnUser == null)
+            {
+                await DisplayAlert("Email or password is not correct", "", "Close");
+                return;
+            }
+
+            if (returnUser.UserPassword == user.UserPassword)
+            {
+                await Shell.Current.GoToAsync("//tabBar/homepage");
+                UserProvider.user = returnUser;
+            }
         }
     }
 }

@@ -31,6 +31,19 @@
             <StackLayout>
                 <Label Text="Notification"></Label>
             </StackLayout>
+
+            <StackLayout>
+                <Label Text="Signout"></Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="signoutBtn" Tapped="signoutBtn_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Delete account" TextColor="Red" FontAttributes="Bold"></Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="deleteAccountBtn" Tapped="deleteAccountBtn_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
