@@ -18,7 +18,7 @@ namespace FoodOrderingApp.Views
             InitializeComponent();
         }
 
-        private async void signupBtn_Clicked(object sender, EventArgs e)
+        private async void Signup(object sender, EventArgs e)
         { 
             string image = userImage.Text,
                 name = userName.Text,

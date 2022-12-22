@@ -67,9 +67,13 @@ namespace FoodOrderingApp.Model
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                List<Category> categories = connection.Query<Category>("select * from Category where CategoryID=" + category.CategoryID.ToString());
-                if (categories.Count == 0) return null;
-                return categories[0];
+                var categoriesNull = connection.Query<Category>("select * from Category where CategoryID=" + category.CategoryID.ToString());
+                if (categoriesNull != null) { 
+                    List<Category> categories = new List<Category>(categoriesNull);
+                    if (categories.Count == 0) return null;
+                    return categories[0];
+                }
+                return null;
             }
             catch (SQLiteException)
             {
@@ -135,9 +139,14 @@ namespace FoodOrderingApp.Model
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                List<Food> foods = connection.Query<Food>("select * from Food where FoodID=" + food.FoodID.ToString());
-                if (foods.Count == 0) return null;
-                return foods[0];
+                var foodsNull = connection.Query<Food>("select * from Food where FoodID=" + food.FoodID.ToString());
+                if (foodsNull != null)
+                {
+                    List<Food> foods = new List<Food>(foodsNull);
+                    if (foods.Count == 0) return null;
+                    return foods[0];
+                }
+                return null;
             }
             catch (SQLiteException)
             {
@@ -215,9 +224,14 @@ namespace FoodOrderingApp.Model
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                List<User> users = connection.Query<User>("select * from User where UserID=" + user.UserID.ToString());
-                if (users.Count == 0) return null;
-                return users[0];
+                var usersNull = connection.Query<User>("select * from User where UserID=" + user.UserID.ToString());
+                if (usersNull != null)
+                {
+                    List<User> users = new List<User>(usersNull);
+                    if (users.Count == 0) return null;
+                    return users[0];
+                }
+                return null;
             }
             catch (SQLiteException)
             {
@@ -229,9 +243,14 @@ namespace FoodOrderingApp.Model
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                List<User> users = connection.Query<User>("select * from User where UserEmail='" + user.UserEmail.ToString() + "'");
-                if (users.Count == 0) return null;
-                return users[0];
+                var usersNull = connection.Query<User>("select * from User where UserEmail='" + user.UserEmail.ToString() + "'");
+                if (usersNull != null)
+                {
+                    List<User> users = new List<User>(usersNull);
+                    if (users.Count == 0) return null;
+                    return users[0];
+                }
+                return null;
             }
             catch (SQLiteException)
             {

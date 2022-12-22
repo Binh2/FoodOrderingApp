@@ -3,37 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.Views.SigninPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Food Ordering App" FontAttributes="Bold" FontSize="Large" TextColor="Black"></Label>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Email: " VerticalOptions="Center" TextColor="Black"></Label>
-                <Entry Keyboard="Email" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
-                       ReturnType="Next"
-                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Password: " VerticalOptions="Center" TextColor="Black"></Label>
-                <Entry IsPassword="True" VerticalOptions="Center" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
-                       ReturnType="Done"
-                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False" Completed="Signin"></Entry>
-            </StackLayout>
-            
-            <Label FontSize="20" Padding="5">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Don't have an account? "
-                              TextColor="Black"></Span>
-                        <Span Text="Sign up" TextColor="Blue" TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Command="{Binding TapCommand}">
-                                </TapGestureRecognizer>
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Button Text="Sign in" x:Name="signinBtn" Clicked="Signin" IsTabStop="False"></Button>
-        </StackLayout>
+        <ScrollView>
+            <Frame Padding="10">
+                <StackLayout Spacing="0">
+                    <Image Source="app_icon.png" VerticalOptions="End" WidthRequest="200"></Image>
+                    <Label Text="Food Ordering App" FontAttributes="Bold" FontSize="40" TextColor="Black"
+                           HorizontalOptions="CenterAndExpand"></Label>
+
+                    <BoxView HeightRequest="15"></BoxView>
+                    <StackLayout Spacing="15">
+
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Email " VerticalOptions="End" TextColor="Black" 
+                                   FontSize="20"></Label>
+                            <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                                   ReturnType="Next" Margin="0"
+                                   IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Password " VerticalOptions="End" TextColor="Black"
+                                   FontSize="20"></Label>
+                            <Entry IsPassword="True" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                                   ReturnType="Done"
+                                   IsTextPredictionEnabled="False" IsSpellCheckEnabled="False" Completed="Signin"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                    <Label FontSize="15" Padding="5">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Don't have an account? "
+                                          TextColor="Black"></Span>
+                                <Span Text="Sign up" TextColor="Blue" TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                                Command="{Binding TapCommand}">
+                                        </TapGestureRecognizer>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button Text="Sign in" x:Name="signinBtn" Clicked="Signin" IsTabStop="False"></Button>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
