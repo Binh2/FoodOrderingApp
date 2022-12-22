@@ -4,46 +4,91 @@
              x:Class="FoodOrderingApp.Views.ProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <Image></Image>
-                <Label></Label>
-                <Label></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10">
+                <Frame CornerRadius="500" Padding="0,0,15,0">
+                    <Image Source="{Binding UserImage}"></Image>
+                </Frame>
+                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                    <Label Text="{Binding UserName}" FontAttributes="Bold"
+                           FontSize="20"></Label>
+                    <Label Text="{Binding UserEmail}"></Label>
+                </StackLayout>
             </StackLayout>
 
-            <StackLayout>
-                <Label Text="Edit Profile"></Label>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Shipping Address"></Label>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Wishlist"></Label>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Order HIstory"></Label>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Track Order"></Label>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Cards"></Label>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Notification"></Label>
-            </StackLayout>
-
-            <StackLayout>
-                <Label Text="Signout"></Label>
-                <StackLayout.GestureRecognizers>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="edit_profile.png"></Image>
+                    <Label Text="Edit Profile" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="shipping_address.png"></Image>
+                    <Label Text="Shipping Address" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="wishlist.png"></Image>
+                    <Label Text="Wishlist" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="order_history.png"></Image>
+                    <Label Text="Order HIstory" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="track_order.png"></Image>
+                    <Label Text="Track Order" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="cards.png"></Image>
+                    <Label Text="Cards" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="notification.png"></Image>
+                    <Label Text="Notification" VerticalOptions="Center"></Label>
+                    <Label Text=">" FontSize="20" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                </StackLayout>
+            </Frame>
+            
+            <Frame Padding="10,0">
+                <StackLayout>
+                    <Label Text="Signout"></Label>
+                </StackLayout>
+                <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="signoutBtn" Tapped="signoutBtn_Tapped"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-            <StackLayout>
-                <Label Text="Delete account" TextColor="Red" FontAttributes="Bold"></Label>
-                <StackLayout.GestureRecognizers>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Frame Padding="10,0">
+                <StackLayout>
+                    <Label Text="Delete account" TextColor="Red" FontAttributes="Bold">
+                        </Label>
+                </StackLayout>
+                <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="deleteAccountBtn" Tapped="deleteAccountBtn_Tapped"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
+                </Frame.GestureRecognizers>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

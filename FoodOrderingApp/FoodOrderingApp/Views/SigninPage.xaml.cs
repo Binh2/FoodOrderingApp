@@ -34,7 +34,7 @@ namespace FoodOrderingApp.Views
             };
 
             User returnUser = Database.selectUserByEmail(user);
-            if (returnUser == null)
+            if (returnUser == null || returnUser.UserPassword != user.UserPassword)
             {
                 await DisplayAlert("Email or password is not correct", "", "Close");
                 return;

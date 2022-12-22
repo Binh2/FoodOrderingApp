@@ -16,17 +16,21 @@ namespace FoodOrderingApp.Views
         public ProfilePage()
         {
             InitializeComponent();
+            BindingContext = UserProvider.user;
         }
 
-        private void deleteAccountBtn_Tapped(object sender, EventArgs e)
+        private async void deleteAccountBtn_Tapped(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//signinPage");
-            Database.deleteUser(UserProvider.user);
+            bool answer = await DisplayAlert("Are you sure you want to delete this account?", "", "Yes", "No");
+            if (answer) { 
+                await Shell.Current.GoToAsync("//signinPage");
+                Database.deleteUser(UserProvider.user);
+            }
         }
 
-        private void signoutBtn_Tapped(object sender, EventArgs e)
+        private async void signoutBtn_Tapped(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//signinPage");
+            await Shell.Current.GoToAsync("//signinPage");
         }
     }
 }
