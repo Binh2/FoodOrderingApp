@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Firebase.Database;
 using FoodOrderingApp.Model;
 using SQLite;
 
@@ -8,6 +10,7 @@ namespace FoodOrderingApp.Model
 {
     static class Database
     {
+        static public FirebaseClient firebase = new FirebaseClient("https://foodorderingapp-748ba-default-rtdb.firebaseio.com/");
         // Use Database.createDatabase() to create database
         static public string folder = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         static public string dbFile = System.IO.Path.Combine(
@@ -23,6 +26,7 @@ namespace FoodOrderingApp.Model
                     connection.CreateTable<Category>();
                     connection.CreateTable<Food>();
                     connection.CreateTable<User>();
+                    connection.CreateTable<Restaurant>();
                     return true;
                 }
             }
@@ -35,13 +39,81 @@ namespace FoodOrderingApp.Model
         {
             try
             {
-                using (var connection = new SQLiteConnection(dbFile))
+                File.Delete(dbFile);
+                return true;
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+        }
+
+        public static List<Restaurant> selectAllRestaurants()
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                return connection.Table<Restaurant>().ToList();
+
+            }
+            catch (SQLiteException)
+            {
+                return null;
+            }
+        }
+        public static Restaurant selectRestaurantByIndex(Restaurant restaurant)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                var restaurantsNull = connection.Query<Restaurant>("select * from Restaurant where RestaurantID=" + restaurant.RestaurantID.ToString());
+                if (restaurantsNull != null)
                 {
-                    connection.DeleteAll<Category>();
-                    connection.DeleteAll<Food>();
-                    connection.DeleteAll<User>();
-                    return true;
+                    List<Restaurant> restaurants = new List<Restaurant>(restaurantsNull);
+                    if (restaurants.Count == 0) return null;
+                    return restaurants[0];
                 }
+                return null;
+            }
+            catch (SQLiteException)
+            {
+                return null;
+            }
+        }
+        public static bool insertRestaurant(Restaurant restaurant)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                connection.Insert(restaurant);
+                return true;
+
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+        }
+        public static bool updateRestaurant(Restaurant restaurant)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                connection.Update(restaurant);
+                return true;
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+        }
+        public static bool deleteRestaurant(Restaurant restaurant)
+        {
+            try
+            {
+                var connection = new SQLiteConnection(dbFile);
+                connection.Delete(restaurant);
+                return true;
             }
             catch (SQLiteException)
             {

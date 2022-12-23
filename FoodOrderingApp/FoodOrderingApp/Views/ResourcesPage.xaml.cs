@@ -19,6 +19,7 @@ namespace FoodOrderingApp.Views
             UpdateCategoryIDPicker();
             UpdateFoodIDPicker();
             UpdateFoodCategoryIDPicker();
+            UpdateRestaurantIDPicker();
         }
 
         private void UpdateCategoryIDPicker()
@@ -139,7 +140,67 @@ namespace FoodOrderingApp.Views
         }
         private void foodCategoryIDPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            Picker picker = (Picker)sender;
+            int id = picker.SelectedItem == null ? -1 : (int)picker.SelectedItem;
+            if (id == -1)
+            {
+                foodNameEntry.Text = "";
+                foodImagesEntry.Text = "";
+            }
+            else
+            {
+                Food food = Database.selectFoodByIndex(new Food { FoodID = id });
+                foodNameEntry.Text = food.FoodName;
+                foodImagesEntry.Text = food.FoodImages;
+            }
+        }
+
+        private void UpdateRestaurantIDPicker()
+        {
+            List<int> restaurantIDs = Database.selectAllRestaurants().Select(restaurant => restaurant.RestaurantID).ToList();
+            restaurantIDs.Add(-1);
+            restaurantIDPicker.ItemsSource = restaurantIDs;
+            restaurantIDPicker.SelectedItem = -1;
+        }
+
+        private void restaurantIDPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = restaurantIDPicker.SelectedItem == null ? -1 : (int)restaurantIDPicker.SelectedItem;
+            if (id == -1)
+            {
+                restaurantNameEntry.Text = "";
+            }
+            else
+            {
+                Restaurant restaurant = Database.selectRestaurantByIndex(new Restaurant { RestaurantID = id });
+                restaurantNameEntry.Text = restaurant.RestaurantName;
+            }
+        }
+
+        private void restaurantDelete_Clicked(object sender, EventArgs e)
+        {
+            int id = (int)restaurantIDPicker.SelectedItem;
+            Database.deleteRestaurant(new Restaurant { RestaurantID = id });
+            UpdateRestaurantIDPicker();
+            //restaurantIDPicker.SelectedIndex = -1;
+            restaurantNameEntry.Text = "";
+        }
+
+        private void restaurantAddUpdate_Clicked(object sender, EventArgs e)
+        {
+            int id = (int)restaurantIDPicker.SelectedItem;
+            string name = restaurantNameEntry.Text;
+            if (id == -1)
+            {
+                Database.insertRestaurant(new Restaurant { RestaurantName = name });
+                UpdateRestaurantIDPicker();
+            }
+            else
+            {
+                Database.updateRestaurant(new Restaurant { RestaurantID = id, RestaurantName = name });
+                //restaurantIDPicker.SelectedIndex = -1;
+            }
+            restaurantNameEntry.Text = "";
         }
     }
 }
