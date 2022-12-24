@@ -10,7 +10,6 @@ namespace FoodOrderingApp.Model
 {
     static class Database
     {
-        static public FirebaseClient firebase = new FirebaseClient("https://foodorderingapp-748ba-default-rtdb.firebaseio.com/");
         // Use Database.createDatabase() to create database
         static public string folder = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         static public string dbFile = System.IO.Path.Combine(
