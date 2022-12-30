@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
+             x:Class="FoodOrderingApp.Views.CartPage">
+    <ContentPage.Resources>
+        <converters:IntToStringConverter x:Key="IntToStringConverter"></converters:IntToStringConverter>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <CollectionView x:Name="collectionView" BindingContextChanged="collectionView_BindingContextChanged" Margin="10">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"></LinearItemsLayout>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItem Text="Delete" BackgroundColor="#ff4200" x:Name="deleteSwipe" Invoked="deleteSwipe_Invoked"
+                                               CommandParameter="{Binding .}"></SwipeItem>
+                                </SwipeView.RightItems>
+                                <SwipeView.LeftItems>
+                                    <SwipeItem Text="Favourite" BackgroundColor="#fec107" x:Name="favouriteSwipe" Invoked="favouriteSwipe_Invoked"
+                                               CommandParameter="{Binding .}"></SwipeItem>
+                                </SwipeView.LeftItems>
+                                <StackLayout Orientation="Horizontal" Spacing="15">
+                                    <Image Source="{Binding FoodImages}" WidthRequest="200"
+                                           ></Image>
+                                    <StackLayout>
+                                        <Label Text="{Binding FoodName}" FontSize="20" FontAttributes="Bold" TextColor="Black"></Label>
+                                        <Label FontSize="18" VerticalOptions="Start" TextColor="#00c569">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="$"></Span>
+                                                        <Span Text="{Binding FoodPrice}"></Span>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Button Text="-" x:Name="decrementBtn" Clicked="decrementBtn_Clicked" CommandParameter="{Binding .}"
+                                                    WidthRequest="50" Margin="0,0,10,0" CornerRadius="10"
+                                                    FontAttributes="Bold" FontSize="20"></Button>
+                                            <Label Text="{Binding FoodQuantity}" x:Name="foodQuantityLabel"
+                                                   FontAttributes="Bold" FontSize="18" TextColor="Black"
+                                                   VerticalOptions="Center"></Label>
+                                            <Button Text="+" x:Name="incrementBtn" Clicked="incrementBtn_Clicked" CommandParameter="{Binding .}"
+                                                    WidthRequest="50" Margin="10,0,0,0" CornerRadius="10"
+                                                    FontAttributes="Bold" FontSize="20"></Button>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal" Margin="30,5">
+                <StackLayout>
+                    <Label Text="Price:" FontSize="12" TextTransform="Uppercase" FontAttributes="Bold"></Label>
+                    <Label FontSize="18" VerticalOptions="Start" TextColor="#00c569">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="$"></Span>
+                                    <Span x:Name="priceSumLabel"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <Button Text="Checkout" x:Name="checkoutBtn" Clicked="checkoutBtn_Clicked"
+                        HorizontalOptions="EndAndExpand" BackgroundColor="#00c569" TextColor="White"
+                        CornerRadius="5" Padding="40,0"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

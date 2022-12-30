@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
+             x:Class="FoodOrderingApp.ProfilePages.TrackOrderPage">
+    <ContentPage.Resources>
+        <converters:OrderStateToStringConverter x:Key="OrderStateToStringConverter"></converters:OrderStateToStringConverter>
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="collectionView">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Path=OrderDate,
+                                Converter={StaticResource DateTimeToStringConverter}}"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="{Binding OrderID}"></Label>
+                                    <Label FontSize="18" VerticalOptions="Start" TextColor="#00c569">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="$"></Span>
+                                                    <Span Text="{Binding OrderPrice}"></Span>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding Path=OrderState,
+                                        Converter={StaticResource OrderStateToStringConverter}}"></Label>
+                                </StackLayout>
+                                <Image Source="{Binding OrderImages}"></Image>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--<views:CommentView></views:CommentView>-->
+            <!--<views:TextOnImageView></views:TextOnImageView>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

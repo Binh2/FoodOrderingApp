@@ -1,4 +1,5 @@
 ﻿using FoodOrderingApp.Model;
+using FoodOrderingApp.ProfilePages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FoodOrderingApp.Views
+namespace FoodOrderingApp.ProfilePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
@@ -31,6 +32,16 @@ namespace FoodOrderingApp.Views
         private async void signoutBtn_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//signinPage");
+        }
+
+        private async void trackOrderBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new TrackOrderPage());
+        }
+
+        private async void wishlistBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new WishlistPage());
         }
     }
 }

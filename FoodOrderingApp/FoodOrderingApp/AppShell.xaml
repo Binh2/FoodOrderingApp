@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:FoodOrderingApp.Views"
+             xmlns:profilePages="clr-namespace:FoodOrderingApp.ProfilePages"
              x:Class="FoodOrderingApp.AppShell"
        FlyoutBehavior="Disabled">
 
@@ -15,8 +16,14 @@
                       Title="Home" ContentTemplate="{DataTemplate views:Homepage}"/>
         <ShellContent Icon="search_button.png" Route="foodPage"
                       Title="Food" ContentTemplate="{DataTemplate views:FoodPage}"/>
+        <!--<ShellContent Icon="search_button.png" Route="foodDetailPage"
+                      Title="Food details" ContentTemplate="{DataTemplate views:FoodDetailPage}"/>-->
+        <ShellContent Icon="search_button.png" Route="cartPage"
+                      Title="Cart" ContentTemplate="{DataTemplate views:CartPage}"/>
+        <!--<ShellContent Icon="search_button.png" Route="wishlistPage"
+                      Title="Wishlist" ContentTemplate="{DataTemplate profilePages:WishlistPage}"/>-->
         <ShellContent Icon="search_button.png" Route="profilePage"
-                      Title="Profile" ContentTemplate="{DataTemplate views:ProfilePage}"/>
+                      Title="Profile" ContentTemplate="{DataTemplate profilePages:ProfilePage}"/>
         <ShellContent Icon="search_button.png" Route="resourcesPage"
                       Title="Resources" ContentTemplate="{DataTemplate views:ResourcesPage}"/>
     </TabBar>
