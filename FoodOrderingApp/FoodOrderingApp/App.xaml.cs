@@ -4,6 +4,7 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FoodOrderingApp.Model;
+using FoodOrderingApp.Views;
 
 namespace FoodOrderingApp
 {
@@ -13,7 +14,7 @@ namespace FoodOrderingApp
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            MainPage = new Homepage();
 
 
             
