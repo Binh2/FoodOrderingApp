@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
@@ -62,12 +63,15 @@
     <EmbeddedResource Update="Views\FoodDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ImagesView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\PriceView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+	  <EmbeddedResource Update="Views\ImagesView.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\PriceView.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\ListFood.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
     <EmbeddedResource Update="Views\SigninPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

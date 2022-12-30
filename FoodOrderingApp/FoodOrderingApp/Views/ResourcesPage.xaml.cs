@@ -51,13 +51,13 @@ namespace FoodOrderingApp.Views
                 link = categoryLinkEntry.Text;
             if (id == -1)
             {
-                Database.insertCategory(new Category { CategoryName = name, CategoryImages = images, CategoryLink = link });
+                Database.insertCategory(new Category { CategoryName = name, CategoryImages = images,  });
                 UpdateCategoryIDPicker();
                 UpdateFoodCategoryIDPicker();
             }
             else
             {
-                Database.updateCategory(new Category { CategoryID = id, CategoryName = name, CategoryImages = images, CategoryLink = link });
+                Database.updateCategory(new Category { CategoryID = id, CategoryName = name, CategoryImages = images,});
                 categoryIDPicker.SelectedItem = -1;
             }
             categoryNameEntry.Text = "";
@@ -90,7 +90,6 @@ namespace FoodOrderingApp.Views
                 Category category = Database.selectCategoryByIndex(new Category { CategoryID = id });
                 categoryNameEntry.Text = category.CategoryName;
                 categoryImagesEntry.Text = category.CategoryImages;
-                categoryLinkEntry.Text = category.CategoryLink;
             }
         }
 

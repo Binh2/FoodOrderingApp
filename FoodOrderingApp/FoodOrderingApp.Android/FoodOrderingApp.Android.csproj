@@ -132,20 +132,35 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\app_icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hamburger_and_chips.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\fruits.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hot_dog.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\pizza.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\white.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\shishi.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\coca.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\milktea.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\noodle.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\rice.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\hamburger_and_chips.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\fruits.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\hot_dog.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\pizza.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<AndroidResource Include="Resources\drawable\white.png" />
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
