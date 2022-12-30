@@ -8,7 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FoodOrderingApp.Model;
 
-namespace FoodOrderingApp.Views
+namespace FoodOrderingApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResourcesPage : ContentPage

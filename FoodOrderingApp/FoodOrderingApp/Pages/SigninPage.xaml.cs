@@ -9,7 +9,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FoodOrderingApp.Views
+namespace FoodOrderingApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SigninPage : ContentPage

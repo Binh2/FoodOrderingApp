@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FoodOrderingApp.Views
+namespace FoodOrderingApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Homepage : ContentPage

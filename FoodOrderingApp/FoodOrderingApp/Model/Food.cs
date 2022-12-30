@@ -11,12 +11,11 @@ namespace FoodOrderingApp.Model
         public string FoodName { get; set; }
         public string FoodImages { get; set; }
         public string FoodDecription { get; set; }
-        public decimal FoodPrice { get; set; }
+        public double FoodPrice { get; set; }
         public string Rating { get; set; }
         public string Favourite { get; set; }
         public int FoodQuantity { get; set; }
         public int FoodState { get; set; }
-        public string FoodQuantity { get; set; }
         public int CategoryID { get; set; }
         public int RestaurantID { get; set; }
     }

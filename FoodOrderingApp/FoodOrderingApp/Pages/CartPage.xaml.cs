@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FoodOrderingApp.Views
+namespace FoodOrderingApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
@@ -26,14 +26,14 @@ namespace FoodOrderingApp.Views
                 new Food() { FoodID = 4, FoodImages = "hamburger_and_chips.png", FoodName = "Hamburger and chips", FoodPrice = 3, FoodQuantity = 1}
             };
             collectionView.ItemsSource = cart;
-            priceSumLabel.Text = cart.Aggregate(0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
+            priceSumLabel.Text = cart.Aggregate(0.0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
         }
 
         private void RefreshCollectionView()
         {
             collectionView.ItemsSource = null;
             collectionView.ItemsSource = cart;
-            priceSumLabel.Text= cart.Aggregate(0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
+            priceSumLabel.Text= cart.Aggregate(0.0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
         }
 
         private void ChangeFoodQuantity(object sender, EventArgs e, int value)

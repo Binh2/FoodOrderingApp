@@ -6,7 +6,7 @@
         <CollectionView x:Name="collectionView">
             <CollectionView.ItemsLayout>
                 <!--<LinearItemsLayout Orientation="Vertical"></LinearItemsLayout>-->
-                <GridItemsLayout Grid.Row="2" Grid.Column="2"></GridItemsLayout>
+                <GridItemsLayout Grid.Row="2" Grid.Column="2" Orientation="Horizontal"></GridItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>

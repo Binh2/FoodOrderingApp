@@ -2,29 +2,30 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:FoodOrderingApp.Views"
+             xmlns:pages="clr-namespace:FoodOrderingApp.Pages"
              xmlns:profilePages="clr-namespace:FoodOrderingApp.ProfilePages"
              x:Class="FoodOrderingApp.AppShell"
        FlyoutBehavior="Disabled">
 
     <ShellContent Icon="search_button.png" Route="signinPage" FlyoutItemIsVisible="False"
-                  Title="Signin" ContentTemplate="{DataTemplate views:SigninPage}"></ShellContent>
+                  Title="Signin" ContentTemplate="{DataTemplate pages:SigninPage}"></ShellContent>
     <ShellContent Icon="search_button.png" Route="signupPage" FlyoutItemIsVisible="False"
-                  Title="Signup" ContentTemplate="{DataTemplate views:SignupPage}"></ShellContent>
+                  Title="Signup" ContentTemplate="{DataTemplate pages:SignupPage}"></ShellContent>
 
     <TabBar Route="tabBar">
         <ShellContent Icon="search_button.png" Route="homepage"
-                      Title="Home" ContentTemplate="{DataTemplate views:Homepage}"/>
+                      Title="Home" ContentTemplate="{DataTemplate pages:Homepage}"/>
         <ShellContent Icon="search_button.png" Route="foodPage"
-                      Title="Food" ContentTemplate="{DataTemplate views:FoodPage}"/>
+                      Title="Food" ContentTemplate="{DataTemplate pages:FoodPage}"/>
         <!--<ShellContent Icon="search_button.png" Route="foodDetailPage"
-                      Title="Food details" ContentTemplate="{DataTemplate views:FoodDetailPage}"/>-->
+                      Title="Food details" ContentTemplate="{DataTemplate pages:FoodDetailPage}"/>-->
         <ShellContent Icon="search_button.png" Route="cartPage"
-                      Title="Cart" ContentTemplate="{DataTemplate views:CartPage}"/>
+                      Title="Cart" ContentTemplate="{DataTemplate pages:CartPage}"/>
         <!--<ShellContent Icon="search_button.png" Route="wishlistPage"
                       Title="Wishlist" ContentTemplate="{DataTemplate profilePages:WishlistPage}"/>-->
         <ShellContent Icon="search_button.png" Route="profilePage"
                       Title="Profile" ContentTemplate="{DataTemplate profilePages:ProfilePage}"/>
         <ShellContent Icon="search_button.png" Route="resourcesPage"
-                      Title="Resources" ContentTemplate="{DataTemplate views:ResourcesPage}"/>
+                      Title="Resources" ContentTemplate="{DataTemplate pages:ResourcesPage}"/>
     </TabBar>
 </Shell>
