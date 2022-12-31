@@ -19,7 +19,7 @@
                         <StackLayout>
                             <Label Text="{Binding FoodName}"></Label>
                             <views:PriceView Price="{Binding FoodPrice}"></views:PriceView>
-                            <views:StateView StateDescription="{Binding Path=FoodState, Converter={StaticResource FoodStateToStringConverter}}"></views:StateView>
+                            <!--<views:StateView StateDescription="{Binding Path=FoodState, Converter={StaticResource FoodStateToStringConverter}}"></views:StateView>-->
                         </StackLayout>
                     </StackLayout>
                 </DataTemplate>

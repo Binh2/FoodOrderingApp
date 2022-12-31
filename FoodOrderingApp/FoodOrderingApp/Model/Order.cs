@@ -11,6 +11,7 @@ namespace FoodOrderingApp.Model
         public int OrderPrice { get; set; }
         public string OrderImages { get; set; }
         public int OrderState { get; set; }
+        public DateTime OrderDate { get; set; }
     }
     static public class ORDER_STATE
     {

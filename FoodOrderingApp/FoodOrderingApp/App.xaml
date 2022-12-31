@@ -7,10 +7,16 @@
         <Color x:Key="OrangeColor">#fec107</Color>
         <Color x:Key="RedColor">#ff4200</Color>
         <ResourceDictionary>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackground" Value="Black"></Setter>
-                <Setter Property="BarTextColor" Value="White"></Setter>
+            <Style TargetType="Shell">
+                <Setter Property="Shell.BackgroundColor" Value="Black"></Setter>
+                <Setter Property="Shell.ForegroundColor" Value="White"></Setter>
+                <!--<Setter Property="BarTextColor" Value="White"></Setter>-->
             </Style>
+            <!--<Style x:Key="StateStyle" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="{DynamicResource GreenColor}"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="Padding" Value="20,10"></Setter>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

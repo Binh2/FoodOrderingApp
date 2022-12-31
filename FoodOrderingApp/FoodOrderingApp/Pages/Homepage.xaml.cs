@@ -23,9 +23,9 @@ namespace FoodOrderingApp.Pages
         }
         async void ListViewInit()
         {
-            HttpClient httpClient = new HttpClient();
-            var categoryList = await httpClient.GetStringAsync("http://192.168.2.13/WEBAPI/api/FoodController/GetAllCategory");
-            var categoryListConverted = JsonConvert.DeserializeObject<List<Category>>(categoryList);
+            //HttpClient httpClient = new HttpClient();
+            //var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategory");
+            //var categoryListConverted = JsonConvert.DeserializeObject<List<Category>>(categoryList);
             //LstSubject.ItemsSource = ListConverted;
         }
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
