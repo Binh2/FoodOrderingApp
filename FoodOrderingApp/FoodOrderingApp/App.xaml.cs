@@ -15,7 +15,7 @@ namespace FoodOrderingApp
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            MainPage = new TestPage();
 
             //Database.deleteDatabase(); //Uncomment this line to renew database every run
             if (!File.Exists(Database.dbFile))
