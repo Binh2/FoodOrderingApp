@@ -22,6 +22,9 @@
                     <Label Text=">" FontSize="20" FontAttributes="Bold"
                            HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="editProfileBtn" Tapped="editProfileBtn_Tapped"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Padding="10,0">
                 <StackLayout Orientation="Horizontal">
@@ -30,6 +33,9 @@
                     <Label Text=">" FontSize="20" FontAttributes="Bold"
                            HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="shippingAddressBtn" Tapped="shippingAddressBtn_Tapped"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Padding="10,0">
                 <StackLayout Orientation="Horizontal">
@@ -49,6 +55,9 @@
                     <Label Text=">" FontSize="20" FontAttributes="Bold"
                            HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="orderHistoryBtn" Tapped="orderHistoryBtn_Tapped"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Padding="10,0">
                 <StackLayout Orientation="Horizontal">
@@ -68,14 +77,20 @@
                     <Label Text=">" FontSize="20" FontAttributes="Bold"
                            HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="cardsBtn" Tapped="cardsBtn_Tapped"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Padding="10,0">
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="notification.png"></Image>
-                    <Label Text="Notification" VerticalOptions="Center"></Label>
+                    <Image Source="notifications.png"></Image>
+                    <Label Text="Notifications" VerticalOptions="Center"></Label>
                     <Label Text=">" FontSize="20" FontAttributes="Bold"
                            HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="notificationsBtn" Tapped="notificationsBtn_Tapped"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
             </Frame>
             
             <Frame Padding="10,0">

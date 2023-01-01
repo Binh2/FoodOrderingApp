@@ -34,14 +34,40 @@ namespace FoodOrderingApp.ProfilePages
             await Shell.Current.GoToAsync("//signinPage");
         }
 
-        private async void trackOrderBtn_Tapped(object sender, EventArgs e)
+
+        private async void editProfileBtn_Tapped(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushAsync(new TrackOrderPage());
+            await Shell.Current.Navigation.PushAsync(new EditProfilePage());
+        }
+
+        private async void shippingAddressBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new ShippingAddressPage());
         }
 
         private async void wishlistBtn_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.Navigation.PushAsync(new WishlistPage());
+        }
+
+        private async void orderHistoryBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new OrderHistoryPage());
+        }
+
+        private async void trackOrderBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new TrackOrderPage());
+        }
+
+        private async void cardsBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new CardsPage());
+        }
+
+        private async void notificationsBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new NotificationsPage());
         }
     }
 }

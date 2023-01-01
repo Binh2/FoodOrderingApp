@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
+             x:Class="FoodOrderingApp.ProfilePages.CardsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
+            <converters:CardNumberToListConverter x:Key="CardNumberToListConverter"></converters:CardNumberToListConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <CollectionView ItemsLayout="VerticalList" x:Name="collectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <StackLayout>
+                            <CollectionView ItemsLayout="HorizontalList" 
+                                            ItemsSource="{Binding CardNumber, Converter={StaticResource CardNumberToListConverter}}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding .}"></Label>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="Credit holder"></Label>
+                                    <Label Text="{Binding CardHolderName}"></Label>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="Expiry"></Label>
+                                    <Label Text="{Binding CardExpiryDate, Converter={StaticResource DateTimeToStringConverter}}"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="cardLayout" Tapped="cardLayout_Tapped"
+                                                  CommandParameter="{Binding .}"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

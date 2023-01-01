@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.ProfilePages.EditProfilePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Frame Padding="10">
+                <StackLayout>
+                    <Image Source="app_icon.png" WidthRequest="200"></Image>
+                    <Label Text="Food Ordering App" FontAttributes="Bold" FontSize="40" TextColor="Black"
+                           HorizontalOptions="CenterAndExpand"></Label>
+
+                    <StackLayout Spacing="15">
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label Text="Image  " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
+                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userImage" 
+                                   ReturnType="Next"
+                                   IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label Text="Name " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
+                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userName" 
+                                   ReturnType="Next"
+                                   IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label Text="Email " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
+                            <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                                   ReturnType="Next"
+                                   IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label Text="Password " VerticalOptions="Start" TextColor="Black" FontSize="20"></Label>
+                            <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                                   ReturnType="Next"
+                                   IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label Text="Confirm password " VerticalOptions="Start" TextColor="Black" FontSize="20"></Label>
+                            <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userConfirmPassword" 
+                                   ReturnType="Done" Completed="Signup"
+                                   IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                    <Button Text="Edit" x:Name="signupBtn" Clicked="Signup" IsTabStop="False"></Button>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

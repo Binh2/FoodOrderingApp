@@ -12,6 +12,7 @@ namespace FoodOrderingApp.Model
         public string OrderImages { get; set; }
         public int OrderState { get; set; }
         public DateTime OrderDate { get; set; }
+        public string OrderLocation { get; set; }
     }
     static public class ORDER_STATE
     {

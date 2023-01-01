@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters" xmlns:views="clr-namespace:FoodOrderingApp.Views"
              x:Class="FoodOrderingApp.ProfilePages.TrackOrderPage">
     <ContentPage.Resources>
-        <converters:OrderStateToStringConverter x:Key="OrderStateToStringConverter"></converters:OrderStateToStringConverter>
+        <converters:OrderStateConverter x:Key="OrderStateConverter"></converters:OrderStateConverter>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
         <converters:ImagesStringToListConverter x:Key="ImagesStringToListConverter"></converters:ImagesStringToListConverter>
     </ContentPage.Resources>
@@ -20,7 +20,7 @@
                                 Converter={StaticResource DateTimeToStringConverter}}"
                                    TextColor="Black" FontSize="18"></Label>
                             <Frame HasShadow="True" Padding="30,10,30,20" Margin="0,5,0,20" CornerRadius="3" 
-                                   BackgroundColor="White">
+                                   >
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
                                     <StackLayout>
                                         <Label Text="{Binding OrderID}" FontSize="20" FontAttributes="Bold"
@@ -35,10 +35,11 @@
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
-                                        <Frame CornerRadius="5" BackgroundColor="{StaticResource GreenColor}"
+                                        <Frame CornerRadius="5" BackgroundColor="{Binding Path=OrderState,
+                                            Converter={StaticResource OrderStateConverter}}"
                                            Padding="20,8" Margin="0,20,0,0">
                                             <Label Text="{Binding Path=OrderState,
-                                            Converter={StaticResource OrderStateToStringConverter}}"
+                                            Converter={StaticResource OrderStateConverter}}"
                                                TextColor="White" FontSize="18"></Label>
                                         </Frame>
                                         <!--<views:StateView StateDescription="{Binding Path=OrderState,

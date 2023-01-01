@@ -7,30 +7,37 @@ using Xamarin.Forms;
 
 namespace FoodOrderingApp.Converters
 {
-    class OrderStateToStringConverter : IValueConverter
+    class OrderStateConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((int)value)
+            if (targetType == typeof(string))
             {
-                case ORDER_STATE.IN_RESTAURANT:
-                    return "Still in restaurant";
-                case ORDER_STATE.IN_CART:
-                    return "Still in cart";
-                case ORDER_STATE.SIGNING:
-                    return "Signing...";
-                case ORDER_STATE.SIGNED:
-                    return "Signed";
-                case ORDER_STATE.PROCESSING:
-                    return "Processing...";
-                case ORDER_STATE.PROCESSED:
-                    return "Processed";
-                case ORDER_STATE.SHIPPING:
-                    return "Shipping...";
-                case ORDER_STATE.SHIPPED:
-                    return "SHIPPED";
-                case ORDER_STATE.RECEIVED:
-                    return "Received";
+                switch ((int)value)
+                {
+                    case ORDER_STATE.IN_RESTAURANT:
+                        return "Still in restaurant";
+                    case ORDER_STATE.IN_CART:
+                        return "Still in cart";
+                    case ORDER_STATE.SIGNING:
+                        return "Signing...";
+                    case ORDER_STATE.SIGNED:
+                        return "Signed";
+                    case ORDER_STATE.PROCESSING:
+                        return "Processing...";
+                    case ORDER_STATE.PROCESSED:
+                        return "Processed";
+                    case ORDER_STATE.SHIPPING:
+                        return "Shipping...";
+                    case ORDER_STATE.SHIPPED:
+                        return "SHIPPED";
+                    case ORDER_STATE.RECEIVED:
+                        return "Received";
+                }
+            } else if (targetType == typeof(Color))
+            {
+                if ((int)value == ORDER_STATE.RECEIVED) return (Color)Application.Current.Resources["GreenColor"];
+                else return (Color)Application.Current.Resources["OrangeColor"];
             }
             return "Still in restaurant";
         }

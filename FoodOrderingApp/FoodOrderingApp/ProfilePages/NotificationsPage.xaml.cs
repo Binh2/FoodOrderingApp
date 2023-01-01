@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodOrderingApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace FoodOrderingApp.ProfilePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderHistory : ContentPage
+    public partial class NotificationsPage : ContentPage
     {
-        public OrderHistory()
+        public NotificationsPage()
         {
             InitializeComponent();
+            
         }
     }
 }
