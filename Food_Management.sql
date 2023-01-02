@@ -130,33 +130,33 @@ CREATE TABLE Roles ( -- this table will be removed in the future because already
 	RoleName	nvarchar(MAX) not null
 );
 
-ALTER TABLE Food ADD CONSTRAINT Food_CategoryID_FK FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID);
-ALTER TABLE Food ADD CONSTRAINT Food_RestaurantID_FK FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID);
+ALTER TABLE Foods ADD CONSTRAINT Food_CategoryID_FK FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID);
+ALTER TABLE Foods ADD CONSTRAINT Food_RestaurantID_FK FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID);
 
 
-INSERT INTO Category (CategoryName,CategoryImage) VALUES ('Hamburger','http://192.168.2.13/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg')
-INSERT INTO Category (CategoryName,CategoryImage) VALUES ('Shusi','http://192.168.2.13/WEBAPI/Images/shishi.jpg')
-INSERT INTO Category (CategoryName,CategoryImage) VALUES ('Noodles','http://192.168.2.13/WEBAPI/Images/noodle.jpg')
-INSERT INTO Category (CategoryName,CategoryImage) VALUES ('Drinks','http://192.168.2.13/WEBAPI/Images/coca.jpg')
-INSERT INTO Category (CategoryName,CategoryImage) VALUES ('Milktea','http://192.168.2.13/WEBAPI/Images/milktea.jpg')
-INSERT INTO Category (CategoryName,CategoryImage) VALUES ('Rice','http://192.168.2.13/WEBAPI/Images/rice.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Hamburger','http://192.168.2.13/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Shusi','http://192.168.2.13/WEBAPI/Images/shishi.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Noodles','http://192.168.2.13/WEBAPI/Images/noodle.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Drinks','http://192.168.2.13/WEBAPI/Images/coca.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Milktea','http://192.168.2.13/WEBAPI/Images/milktea.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Rice','http://192.168.2.13/WEBAPI/Images/rice.jpg')
 
 INSERT INTO Restaurant  (RestaurantName) VALUES ('Đặng Văn Hai')
 
 
-INSERT INTO Food(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
 'http://192.168.2.13/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon','15000','4,5','YES',1,1)
-INSERT INTO Food(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cocacola',
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cocacola',
 'http://192.168.2.13/WEBAPI/Images/coca.jpg','Cocacola ngon','15000','4,5','YES',4,1)
-INSERT INTO Food(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mì xào',
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mì xào',
 'http://192.168.2.13/WEBAPI/Images/noodle.jpg','Mì xào ngon','15000','4,6','YES',3,1)
-INSERT INTO Food(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm',
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm',
 'http://192.168.2.13/WEBAPI/Images/rice.jpg','Cơm ngon','15000','3,0','YES',6,1)
-INSERT INTO Food(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm tấm',
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm tấm',
 'http://192.168.2.13/WEBAPI/Images/comtam.jpg','Cơm tấm ngon','15000','3,7','YES',6,1)
 --TÌM SỐ LƯỢNG --
 SELECT CategoryID, COUNT(CategoryID) AS "So luong"
-  FROM Food
+  FROM Foods
   GROUP BY CategoryID;
 --LẤY TẤT CẢ LOẠI HÀNG--
 SET ANSI_NULLS ON
@@ -165,7 +165,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [Proc_GetAllCategory]
 as
-select * from Category
+select * from Categories
 GO
 
 --LẤY TẤT CẢ LOẠI HÀNG--
@@ -175,26 +175,17 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [Proc_GetAllFood]
 as
-select * from Food
+select * from Foods
 GO
 
--- LIST THỨC ĂN THEO LOẠI--
+-- LIST THỨC ĂN THEO LOẠI chính--
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE proc [dbo].[Proc_GetFoodByCategoryID](@categoryid int)
+CREATE proc [dbo].[Proc_GetFoodBycategoryID](@categoryid int)
 as
-select * from Food where CategoryID=@categoryid
-GO
-/******GET FOOD BY CATEID ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE proc [dbo].[Proc_GetBooksBySubjectID](@macd int)
-as
-select * from SACH where Mcd=@macd
+select * from Foods where CategoryID=@categoryid
 GO
 --TOP 4 SỐ LƯỢNG ĐỒ ĂN TRONG LOẠI
 SET ANSI_NULLS ON

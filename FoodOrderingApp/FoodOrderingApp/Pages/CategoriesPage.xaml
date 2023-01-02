@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.Pages.CategoriesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Categories" FontSize="30" FontAttributes="Bold" TextColor="Black">
+                
+            </Label>
+
+            <CollectionView x:Name="Lstcategories" SelectionMode="Single" SelectionChanged="Lstcategories_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HeightRequest="60">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding CategoryImage}" Grid.Column="0" WidthRequest="90" HeightRequest="90"/>
+                            <Label Text="{Binding CategoryName}" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 using FoodOrderingApp.Model;
 using FoodOrderingApp.Views;
 using FoodOrderingApp.ProfilePages;
-
+using FoodOrderingApp.Pages;
 namespace FoodOrderingApp
 {
     public partial class App : Application
@@ -15,7 +15,7 @@ namespace FoodOrderingApp
         public App()
         {
             InitializeComponent();
-            MainPage = new TestPage();
+            MainPage = new CategoriesPage();
 
             //Database.deleteDatabase(); //Uncomment this line to renew database every run
             if (!File.Exists(Database.dbFile))

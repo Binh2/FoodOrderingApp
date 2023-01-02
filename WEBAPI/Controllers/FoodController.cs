@@ -48,5 +48,40 @@ namespace WEBAPI.Controllers
             }
         }
 
+
+
+        [Route("api/FoodController/GetFoodBycategoryID")]
+        [HttpGet]
+        public IHttpActionResult GetFoodBycategoryID(int CategoryId)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("CategoryID", CategoryId);
+                DataTable result = Database.Database.ReadTable("Proc_GetFoodBycategoryID", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/FoodController/GetFoodByID")]
+        [HttpGet]
+        public IHttpActionResult GetFoodByID(int foodid)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("FoodID", foodid);
+                DataTable result = Database.Database.ReadTable("Proc_GetFoodByID", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
     }
 }

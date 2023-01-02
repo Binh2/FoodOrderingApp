@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Text;
 namespace FoodOrderingApp.Model
 {
-    public class Food
+    public class Foods
     {
         [PrimaryKey, AutoIncrement]
         public int FoodID { get; set; }
         public string FoodName { get; set; }
         public string FoodImages { get; set; }
-        public string FoodDecription { get; set; }
+        public string FoodDetail { get; set; }
         public double FoodPrice { get; set; }
-        public string Rating { get; set; }
-        public string Favourite { get; set; }
+        public string FoodRating { get; set; }
+        public string FoodFavourite { get; set; }
         public int FoodQuantity { get; set; }
         public int FoodState { get; set; }
         public int CategoryID { get; set; }

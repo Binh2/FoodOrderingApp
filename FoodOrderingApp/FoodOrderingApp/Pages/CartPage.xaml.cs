@@ -14,16 +14,16 @@ namespace FoodOrderingApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
     {
-        ObservableCollection<Food> cart;
+        ObservableCollection<Foods> cart;
         public CartPage()
         {
             InitializeComponent();
-            cart = new ObservableCollection<Food>
+            cart = new ObservableCollection<Foods>
             {
-                new Food() { FoodID = 1, FoodImages = "pizza.png", FoodName = "Pizza", FoodPrice = 3, FoodQuantity = 1},
-                new Food() { FoodID = 2, FoodImages = "fruits.png", FoodName = "Fruits", FoodPrice = 2, FoodQuantity = 2},
-                new Food() { FoodID = 3, FoodImages = "hot_dog.png", FoodName = "Hot dog", FoodPrice = 1, FoodQuantity = 1},
-                new Food() { FoodID = 4, FoodImages = "hamburger_and_chips.png", FoodName = "Hamburger and chips", FoodPrice = 3, FoodQuantity = 1}
+                new Foods() { FoodID = 1, FoodImages = "pizza.png", FoodName = "Pizza", FoodPrice = 3, FoodQuantity = 1},
+                new Foods() { FoodID = 2, FoodImages = "fruits.png", FoodName = "Fruits", FoodPrice = 2, FoodQuantity = 2},
+                new Foods() { FoodID = 3, FoodImages = "hot_dog.png", FoodName = "Hot dog", FoodPrice = 1, FoodQuantity = 1},
+                new Foods() { FoodID = 4, FoodImages = "hamburger_and_chips.png", FoodName = "Hamburger and chips", FoodPrice = 3, FoodQuantity = 1}
             };
             collectionView.ItemsSource = cart;
             priceSumLabel.Text = cart.Aggregate(0.0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
@@ -39,8 +39,8 @@ namespace FoodOrderingApp.Pages
         private void ChangeFoodQuantity(object sender, EventArgs e, int value)
         {
             Button button = sender as Button;
-            Food food = button.CommandParameter as Food;
-            cart.Where<Food>(f => f.FoodID == food.FoodID).First().FoodQuantity += value;
+            Foods food = button.CommandParameter as Foods;
+            cart.Where<Foods>(f => f.FoodID == food.FoodID).First().FoodQuantity += value;
             RefreshCollectionView();
         }
 
@@ -69,7 +69,7 @@ namespace FoodOrderingApp.Pages
         private void deleteSwipe_Invoked(object sender, EventArgs e)
         {
             SwipeItem swipeItem = sender as SwipeItem;
-            Food removedFood = swipeItem.CommandParameter as Food;
+            Foods removedFood = swipeItem.CommandParameter as Foods;
             cart.Remove(removedFood);
             RefreshCollectionView();
         }
