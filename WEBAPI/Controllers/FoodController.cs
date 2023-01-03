@@ -18,13 +18,13 @@ namespace WEBAPI.Controllers
             return Ok("Chào mừng bạn đến với Web API!");
         }
 
-        [Route("api/FoodController/GetAllCategory")]
+        [Route("api/FoodController/GetAllCategories")]
         [HttpGet]
-        public IHttpActionResult GetAllCategory()
+        public IHttpActionResult GetAllCategories()
         {
             try
             {
-                DataTable result = Database.Database.ReadTable("Proc_GetAllCategory");
+                DataTable result = Database.Database.ReadTable("Proc_GetAllCategories");
                 return Ok(result);
             }
             catch
@@ -33,13 +33,13 @@ namespace WEBAPI.Controllers
             }
         }
 
-        [Route("api/FoodController/GetAllFood")]
+        [Route("api/FoodController/GetAllFoods")]
         [HttpGet]
-        public IHttpActionResult GetAllFood()
+        public IHttpActionResult GetAllFoods()
         {
             try
             {
-                DataTable result = Database.Database.ReadTable("Proc_GetAllFood");
+                DataTable result = Database.Database.ReadTable("Proc_GetAllFoods");
                 return Ok(result);
             }
             catch

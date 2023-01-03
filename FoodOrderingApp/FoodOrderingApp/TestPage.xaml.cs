@@ -37,5 +37,15 @@ namespace FoodOrderingApp
             listView.ItemsSource = categoryListConverted;
             label.Text = categoryListConverted[0].CategoryName;
         }
+
+        private async void insertCardBtn_Clicked(object sender, EventArgs e)
+        {
+            HttpClient http = new HttpClient();
+            string json = JsonConvert.SerializeObject("");
+            StringContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage result = await http.PostAsync("http://" + Constants.IP + "/webapi/api/CardsController/InsertCard", httpContent);
+            var resultConverted = result.Content.ReadAsStringAsync();
+            label.Text = await resultConverted as string;
+        }
     }
 }
