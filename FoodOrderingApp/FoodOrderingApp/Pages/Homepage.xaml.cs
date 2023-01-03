@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +16,11 @@ namespace FoodOrderingApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Homepage : ContentPage
     {
+        public ICommand MyCommand => new Command(OnForgotPassword);
+        private void OnForgotPassword()
+        {
+            Navigation.PushModalAsync(new NavigationPage(new CategoriesPage()));
+        }
         public Homepage()
         {
             InitializeComponent();
@@ -43,7 +48,8 @@ namespace FoodOrderingApp.Pages
 
         private void Lstcategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var current = (e.CurrentSelection.FirstOrDefault() as Categories);
+            Navigation.PushModalAsync(new FoodPage(current));
         }
     }
 }

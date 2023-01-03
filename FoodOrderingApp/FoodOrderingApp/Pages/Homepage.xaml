@@ -41,7 +41,11 @@
                                         FontSize="16"
                                         HorizontalOptions="EndAndExpand"
                                         Text="See All"
-                                        TextColor="Black">
+                                        TextColor="Black"
+                                        x:Name="Seeall">
+                                    <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding MyCommand}"/>
+                                    </Label.GestureRecognizers>
                                 </Label>
                             </StackLayout>
                         </StackLayout>

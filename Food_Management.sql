@@ -197,3 +197,13 @@ as
 SELECT TOP 4 CategoryID, COUNT(CategoryID) AS "So luong"
   FROM Food
   GROUP BY CategoryID;
+
+--Lấy thông tin thức ăn
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[Proc_GetFoodByID](@foodid int)
+as
+select * from Foods where FoodID=@foodid
+GO
