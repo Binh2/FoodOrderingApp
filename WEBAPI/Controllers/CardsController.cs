@@ -47,18 +47,21 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/CardsController/InsertFakeCard")]
+        [Route("api/CardsController/DeleteCard")]
         [HttpPost]
-        public IHttpActionResult InsertFakeCard()
+        public IHttpActionResult DeleteCard(int CardID)
         {
             try
             {
-                var result = Database.Database.Exec_Command("Proc_InsertFakeCard");
-                return Ok(result);
+                var result = Database.Database.Exec_Command("Proc_InsertCard", new Dictionary<string, object>()
+                {
+                    { "CardID", CardID }
+                });
+                return Ok(int.Parse(result.ToString()));
             }
             catch (Exception e)
             {
-                return Ok("hello2");
+                return Ok(e.Message);
             }
         }
     }

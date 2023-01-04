@@ -22,8 +22,8 @@ namespace FoodOrderingApp.Model
             {
                 using (var connection = new SQLiteConnection(dbFile))
                 {
-                    connection.CreateTable<Category>();
-                    connection.CreateTable<Food>();
+                    connection.CreateTable<Categories>();
+                    connection.CreateTable<Foods>();
                     connection.CreateTable<User>();
                     connection.CreateTable<Restaurant>();
                     return true;
@@ -120,12 +120,12 @@ namespace FoodOrderingApp.Model
             }
         }
 
-        public static List<Category> selectAllCategories()
+        public static List<Categories> selectAllCategories()
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                return connection.Table<Category>().ToList();
+                return connection.Table<Categories>().ToList();
 
             }
             catch (SQLiteException)
@@ -133,14 +133,14 @@ namespace FoodOrderingApp.Model
                 return null;
             }
         }
-        public static Category selectCategoryByIndex(Category category)
+        public static Categories selectCategoryByIndex(Categories category)
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                var categoriesNull = connection.Query<Category>("select * from Category where CategoryID=" + category.CategoryID.ToString());
+                var categoriesNull = connection.Query<Categories>("select * from Category where CategoryID=" + category.CategoryID.ToString());
                 if (categoriesNull != null) { 
-                    List<Category> categories = new List<Category>(categoriesNull);
+                    List<Categories> categories = new List<Categories>(categoriesNull);
                     if (categories.Count == 0) return null;
                     return categories[0];
                 }
@@ -151,7 +151,7 @@ namespace FoodOrderingApp.Model
                 return null;
             }
         }
-        public static bool insertCategory(Category category)
+        public static bool insertCategory(Categories category)
         {
             try
             {
@@ -165,7 +165,7 @@ namespace FoodOrderingApp.Model
                 return false;
             }
         }
-        public static bool updateCategory(Category category)
+        public static bool updateCategory(Categories category)
         {
             try
             {
@@ -178,7 +178,7 @@ namespace FoodOrderingApp.Model
                 return false;
             }
         }
-        public static bool deleteCategory(Category category)
+        public static bool deleteCategory(Categories category)
         {
             try
             {
@@ -192,12 +192,12 @@ namespace FoodOrderingApp.Model
             }
         }
 
-        public static List<Food> selectAllFoods()
+        public static List<Foods> selectAllFoods()
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                return connection.Table<Food>().ToList();
+                return connection.Table<Foods>().ToList();
 
             }
             catch (SQLiteException)
@@ -205,15 +205,15 @@ namespace FoodOrderingApp.Model
                 return null;
             }
         }
-        public static Food selectFoodByIndex(Food food)
+        public static Foods selectFoodByIndex(Foods food)
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                var foodsNull = connection.Query<Food>("select * from Food where FoodID=" + food.FoodID.ToString());
+                var foodsNull = connection.Query<Foods>("select * from Food where FoodID=" + food.FoodID.ToString());
                 if (foodsNull != null)
                 {
-                    List<Food> foods = new List<Food>(foodsNull);
+                    List<Foods> foods = new List<Foods>(foodsNull);
                     if (foods.Count == 0) return null;
                     return foods[0];
                 }
@@ -224,19 +224,19 @@ namespace FoodOrderingApp.Model
                 return null;
             }
         }
-        public static List<Food> selectFoodByCategory(Category category)
+        public static List<Foods> selectFoodByCategory(Categories category)
         {
             try
             {
                 var connection = new SQLiteConnection(dbFile);
-                return connection.Query<Food>("select * from Food where CategoryID=" + category.CategoryID.ToString());
+                return connection.Query<Foods>("select * from Food where CategoryID=" + category.CategoryID.ToString());
             }
             catch (SQLiteException)
             {
                 return null;
             }
         }
-        public static bool insertFood(Food food)
+        public static bool insertFood(Foods food)
         {
             try
             {
@@ -250,7 +250,7 @@ namespace FoodOrderingApp.Model
                 return false;
             }
         }
-        public static bool updateFood(Food food)
+        public static bool updateFood(Foods food)
         {
             try
             {
@@ -263,7 +263,7 @@ namespace FoodOrderingApp.Model
                 return false;
             }
         }
-        public static bool deleteFood(Food food)
+        public static bool deleteFood(Foods food)
         {
             try
             {

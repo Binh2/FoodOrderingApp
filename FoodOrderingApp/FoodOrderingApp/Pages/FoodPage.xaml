@@ -1,12 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodOrderingApp.Pages.FoodPage">
+             x:Class="FoodOrderingApp.Pages.FoodPage"
+             Padding="14,6"
+             Title="{Binding CategoryName}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="LstFood" 
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      ItemSelected="LstFood_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="1"
+                                  VerticalOptions="Center">
+                                <Grid Grid.Row="0"
+                                      Grid.Column="0"
+                                      RowSpacing="10"
+                                      Padding="14">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <!--IMAGE-->
+                                    <Image Grid.Row="0"
+                                           Grid.RowSpan="3"
+                                           Source="{Binding FoodImages}"
+                                           Aspect="AspectFit"
+                                           HeightRequest="100"/>
+                                    
+                                    <!--ProductName-->
+                                    <Label Grid.Row="0"
+                                           Grid.Column="1"
+                                           Text="{Binding FoodName}"
+                                           VerticalTextAlignment="Center"/>
+                                    <!--Decription-->
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           Text="{Binding FoodDetail}"
+                                           HorizontalOptions="Fill"/>
+
+                                    <StackLayout Grid.Row="2"
+                                                 Grid.Column="1"
+                                                 Orientation="Horizontal">
+                                        <!--Star-->
+                                        
+                                        
+                                        <!--Prices-->
+                                        <Label
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding FoodPrice}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

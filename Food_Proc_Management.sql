@@ -1,4 +1,5 @@
-﻿-------------------- Delete all procedures -------------------------
+﻿USE FOOD_MANAGEMENT;
+-------------------- Delete all procedures -------------------------
 declare @procName varchar(500)
 declare cur cursor 
 for select [name] from sys.objects where type = 'p'
@@ -68,7 +69,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC Proc_GetNCategories(@n INT)
+CREATE PROC dbo.Proc_GetNCategories(@n INT)
 AS
 SELECT TOP (@n) * FROM Categories;
 GO
@@ -88,7 +89,45 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC Proc_InsertCard(@CardNumber nvarchar(max), @CardImage nvarchar(max), @CardTypeID int, @ConsumerID int)
-AS
-INSERT INTO Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES (@CardNumber, @CardImage, @CardTypeID, @ConsumerID);
+CREATE PROC dbo.Proc_InsertCard(
+	@CardNumber nvarchar(max), 
+	@CardImage nvarchar(max), 
+	@CardTypeID int, 
+	@ConsumerID int, 
+	@CurrentID int output)
+as
+begin try
+ if(exists(select * from Cards where CardNumber=@CardNumber))
+  begin
+   set @CurrentID=0
+   return
+  end
+ insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES (@CardNumber, @CardImage, @CardTypeID, @ConsumerID);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
 GO
+
+-- Insert a fake card
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC dbo.Proc_InsertFakeCard(
+	@CurrentID int output)
+as
+begin try
+ insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES ('123456789', 'image.png', 5, 5);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+--exec Proc_InsertCard @CardNumber = '123', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
+insert into Cards 
+select * from Cards;
+select * from Cards;

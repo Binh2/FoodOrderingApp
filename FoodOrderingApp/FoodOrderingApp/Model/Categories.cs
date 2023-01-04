@@ -5,12 +5,12 @@ using System.Text;
 
 namespace FoodOrderingApp.Model
 {
-    public class Category
+    public class Categories
     {
         [PrimaryKey, AutoIncrement]
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
-        public string CategoryImages { get; set; }
+        public string CategoryImage { get; set; }
 
     }
 }

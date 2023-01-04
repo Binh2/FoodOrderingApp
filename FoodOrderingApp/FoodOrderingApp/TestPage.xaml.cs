@@ -33,7 +33,7 @@ namespace FoodOrderingApp
         {
             HttpClient httpClient = new HttpClient();
             var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategory");
-            var categoryListConverted = JsonConvert.DeserializeObject<List<Category>>(categoryList);
+            var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
             listView.ItemsSource = categoryListConverted;
             label.Text = categoryListConverted[0].CategoryName;
         }

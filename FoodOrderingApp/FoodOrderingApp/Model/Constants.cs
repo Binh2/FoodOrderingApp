@@ -6,6 +6,6 @@ namespace FoodOrderingApp.Model
 {
     static public class Constants
     {
-        public const string IP = "192.168.1.47";
+        public const string IP = "192.168.2.13";
     }
 }

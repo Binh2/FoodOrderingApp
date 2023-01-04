@@ -42,39 +42,6 @@ namespace WEBAPI.Database
             catch (Exception) { return null; }
         }
 
-        //public static object Exec_Command(string StoredProcedureName, Dictionary<string, object> dic_param = null)
-        //{
-        //    string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
-        //    object result = null;
-        //    SqlConnection conn = new SqlConnection(SQLconnectionString);
-
-        //    conn.Open();
-        //    SqlCommand cmd = new SqlCommand(StoredProcedureName, conn);
-        //    cmd.CommandType = CommandType.StoredProcedure;
-
-        //    if (dic_param != null)
-        //    {
-        //        foreach (KeyValuePair<string, object> data in dic_param)
-        //        {
-        //            if (data.Value == null)
-        //            {
-        //                cmd.Parameters.AddWithValue("@" + data.Key, DBNull.Value);
-        //            }
-        //            else
-        //            {
-        //                cmd.Parameters.AddWithValue("@" + data.Key, data.Value);
-        //            }
-        //        }
-        //    }
-        //    cmd.Parameters.Add("@CurrentID", SqlDbType.Int).Direction = ParameterDirection.Output;
-        //    try
-        //    {
-        //        cmd.ExecuteNonQuery();
-        //        result = cmd.Parameters;
-        //        return result;
-        //    }
-        //    catch (Exception e) { return "hello"; }
-        //}
         public static object Exec_Command(string StoredProcedureName, Dictionary<string, object> dic_param = null)
         {
             string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
@@ -110,6 +77,48 @@ namespace WEBAPI.Database
                     cmd.ExecuteNonQuery();
                     result = cmd.Parameters["@CurrentID"].Value;
                     // Attempt to commit the transaction.
+
+                }
+                catch (Exception ex)
+                {
+
+                    result = null;
+                }
+
+            }
+            return result;
+        }
+        public static object Exec_MyCommand(Dictionary<string, object> dic_param = null)
+        {
+            string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
+            object result = null;
+            using (SqlConnection conn = new SqlConnection(SQLconnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES ('123456789', 'image.png', 5, 5);",
+                    conn);
+
+                if (dic_param != null)
+                {
+                    foreach (KeyValuePair<string, object> data in dic_param)
+                    {
+                        if (data.Value == null)
+                        {
+                            cmd.Parameters.AddWithValue("@" + data.Key, DBNull.Value);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@" + data.Key, data.Value);
+                        }
+                    }
+                }
+                //cmd.Parameters.Add("@CurrentID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    //result = cmd.Parameters["@CurrentID"].Value;
+                    // Attempt to commit the transaction.
+                    result = 1;
 
                 }
                 catch (Exception ex)

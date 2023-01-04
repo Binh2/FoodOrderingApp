@@ -51,13 +51,13 @@ namespace FoodOrderingApp.Pages
                 link = categoryLinkEntry.Text;
             if (id == -1)
             {
-                Database.insertCategory(new Category { CategoryName = name, CategoryImages = images,  });
+                Database.insertCategory(new Categories { CategoryName = name, CategoryImage = images,  });
                 UpdateCategoryIDPicker();
                 UpdateFoodCategoryIDPicker();
             }
             else
             {
-                Database.updateCategory(new Category { CategoryID = id, CategoryName = name, CategoryImages = images,});
+                Database.updateCategory(new Categories { CategoryID = id, CategoryName = name, CategoryImage = images,});
                 categoryIDPicker.SelectedItem = -1;
             }
             categoryNameEntry.Text = "";
@@ -67,7 +67,7 @@ namespace FoodOrderingApp.Pages
         private void categoryDelete_Clicked(object sender, EventArgs e)
         {
             int id = (int)categoryIDPicker.SelectedItem;
-            Database.deleteCategory(new Category { CategoryID = id });
+            Database.deleteCategory(new Categories { CategoryID = id });
             UpdateCategoryIDPicker();
             UpdateFoodCategoryIDPicker();
             categoryNameEntry.Text = "";
@@ -87,9 +87,9 @@ namespace FoodOrderingApp.Pages
             }
             else
             {
-                Category category = Database.selectCategoryByIndex(new Category { CategoryID = id });
+                Categories category = Database.selectCategoryByIndex(new Categories { CategoryID = id });
                 categoryNameEntry.Text = category.CategoryName;
-                categoryImagesEntry.Text = category.CategoryImages;
+                categoryImagesEntry.Text = category.CategoryImage;
             }
         }
 
@@ -101,12 +101,12 @@ namespace FoodOrderingApp.Pages
             int categoryID = (int)foodCategoryIDPicker.SelectedItem;
             if (id == -1)
             {
-                Database.insertFood(new Food { FoodName = name, FoodImages = images });
+                Database.insertFood(new Foods { FoodName = name, FoodImages = images });
                 UpdateFoodIDPicker();
             }
             else
             {
-                Database.updateFood(new Food { FoodID = id, FoodName = name, FoodImages = images, CategoryID = categoryID });
+                Database.updateFood(new Foods { FoodID = id, FoodName = name, FoodImages = images, CategoryID = categoryID });
                 foodIDPicker.SelectedIndex = -1;
             }
             foodNameEntry.Text = "";
@@ -115,7 +115,7 @@ namespace FoodOrderingApp.Pages
         private void foodDelete_Clicked(object sender, EventArgs e)
         {
             int id = (int)foodIDPicker.SelectedItem;
-            Database.deleteFood(new Food { FoodID = id });
+            Database.deleteFood(new Foods { FoodID = id });
             UpdateFoodIDPicker();
             foodIDPicker.SelectedIndex = -1;
             foodNameEntry.Text = "";
@@ -131,7 +131,7 @@ namespace FoodOrderingApp.Pages
             }
             else
             {
-                Food food = Database.selectFoodByIndex(new Food { FoodID = id });
+                Foods food = Database.selectFoodByIndex(new Foods { FoodID = id });
                 foodNameEntry.Text = food.FoodName;
                 foodImagesEntry.Text = food.FoodImages;
                 foodCategoryIDPicker.SelectedItem = food.CategoryID;
@@ -148,7 +148,7 @@ namespace FoodOrderingApp.Pages
             }
             else
             {
-                Food food = Database.selectFoodByIndex(new Food { FoodID = id });
+                Foods food = Database.selectFoodByIndex(new Foods { FoodID = id });
                 foodNameEntry.Text = food.FoodName;
                 foodImagesEntry.Text = food.FoodImages;
             }
