@@ -17,20 +17,6 @@ EXEC sp_MSforeachtable 'DROP TABLE ?'
 GO
 --//---------------- Delete all tables --------------------------//--
 
--------------------- To drop database that is currently in use ----------------------
-DECLARE @DatabaseName nvarchar(50)
-SET @DatabaseName = N'FOOD_MANAGEMENT'
-DECLARE @SQL varchar(max)
-SELECT @SQL = COALESCE(@SQL,'') + 'Kill ' + Convert(varchar, SPId) + ';'
-FROM MASTER..SysProcesses
-WHERE DBId = DB_ID(@DatabaseName) AND SPId <> @@SPId
---SELECT @SQL 
-EXEC(@SQL)
---//---------------- To drop database that is currently in use ------------------//--
-
-use FOOD_MANAGEMENT;
-drop DATABASE FOOD_MANAGEMENT;
-
 
 CREATE DATABASE FOOD_MANAGEMENT
 use FOOD_MANAGEMENT;
@@ -146,25 +132,25 @@ ALTER TABLE Foods ADD CONSTRAINT Foods_CategoryID_FK FOREIGN KEY (CategoryID) RE
 ALTER TABLE Foods ADD CONSTRAINT Foods_RestaurantID_FK FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID);
 
 
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Hamburger','http://192.168.2.13/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Shusi','http://192.168.2.13/WEBAPI/Images/shishi.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Noodles','http://192.168.2.13/WEBAPI/Images/noodle.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Drinks','http://192.168.2.13/WEBAPI/Images/coca.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Milktea','http://192.168.2.13/WEBAPI/Images/milktea.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Rice','http://192.168.2.13/WEBAPI/Images/rice.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Hamburger','/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Shusi','/WEBAPI/Images/shishi.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Noodles','/WEBAPI/Images/noodle.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Drinks','/WEBAPI/Images/coca.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Milktea','/WEBAPI/Images/milktea.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Rice','/WEBAPI/Images/rice.jpg')
 
 INSERT INTO Restaurants(RestaurantName) VALUES ('Đặng Văn Hải')
 
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
-'http://192.168.2.13/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon','15000','4,5','YES',1,1)
+'/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon','15000','4,5','YES',1,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cocacola',
-'http://192.168.2.13/WEBAPI/Images/coca.jpg','Cocacola ngon','15000','4,5','YES',4,1)
+'/WEBAPI/Images/coca.jpg','Cocacola ngon','15000','4,5','YES',4,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mì xào',
-'http://192.168.2.13/WEBAPI/Images/noodle.jpg','Mì xào ngon','15000','4,6','YES',3,1)
+'/WEBAPI/Images/noodle.jpg','Mì xào ngon','15000','4,6','YES',3,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm',
-'http://192.168.2.13/WEBAPI/Images/rice.jpg','Cơm ngon','15000','3,0','YES',6,1)
+'/WEBAPI/Images/rice.jpg','Cơm ngon','15000','3,0','YES',6,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm tấm',
-'http://192.168.2.13/WEBAPI/Images/comtam.jpg','Cơm tấm ngon','15000','3,7','YES',6,1)
+'/WEBAPI/Images/comtam.jpg','Cơm tấm ngon','15000','3,7','YES',6,1)
 --TÌM SỐ LƯỢNG --
 SELECT CategoryID, COUNT(CategoryID) AS "So luong"
   FROM Foods

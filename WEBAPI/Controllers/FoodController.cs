@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WEBAPI.Database;
+using WEBAPI.Models;
 
 namespace WEBAPI.Controllers
 {
@@ -24,6 +25,8 @@ namespace WEBAPI.Controllers
         {
             try
             {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
                 DataTable result = Database.Database.ReadTable("Proc_GetAllCategories");
                 return Ok(result);
             }
@@ -39,6 +42,8 @@ namespace WEBAPI.Controllers
         {
             try
             {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
                 DataTable result = Database.Database.ReadTable("Proc_GetAllFoods");
                 return Ok(result);
             }
@@ -58,6 +63,7 @@ namespace WEBAPI.Controllers
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("CategoryID", CategoryId);
+                param.Add("IP", Constants.IP);
                 DataTable result = Database.Database.ReadTable("Proc_GetFoodBycategoryID", param);
                 return Ok(result);
             }
@@ -75,6 +81,7 @@ namespace WEBAPI.Controllers
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("FoodID", foodid);
+                param.Add("IP", Constants.IP);
                 DataTable result = Database.Database.ReadTable("Proc_GetFoodByID", param);
                 return Ok(result);
             }

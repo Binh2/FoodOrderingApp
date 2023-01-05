@@ -9,9 +9,9 @@ using System.Web.Http;
 
 namespace WEBAPI.Controllers
 {
-    public class CardsController : ApiController
+    public class CardController : ApiController
     {
-        [Route("api/CardsController/GetAllCards")]
+        [Route("api/CardController/GetAllCards")]
         [HttpGet]
         public IHttpActionResult GetAllCards()
         {
@@ -26,7 +26,7 @@ namespace WEBAPI.Controllers
             }
         }
 
-        [Route("api/CardsController/InsertCard")]
+        [Route("api/CardController/InsertCard")]
         [HttpPost]
         public IHttpActionResult InsertCard()
         {
@@ -47,7 +47,7 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/CardsController/DeleteCard")]
+        [Route("api/CardController/DeleteCard")]
         [HttpPost]
         public IHttpActionResult DeleteCard(int CardID)
         {

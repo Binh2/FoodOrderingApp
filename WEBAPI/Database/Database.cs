@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
+using WEBAPI.Models;
 
 namespace WEBAPI.Database
 {
@@ -14,7 +15,7 @@ namespace WEBAPI.Database
         public static DataTable ReadTable(string StoredProcedureName,
             Dictionary<string, object> dic_param = null)
         {
-            string SQLconnectionString = ConfigurationManager.ConnectionStrings["QLBConnectionstring"].ConnectionString;
+            string SQLconnectionString = ConfigurationManager.ConnectionStrings[Constants.CONNECTION_STRING_NAME].ConnectionString;
             DataTable result = new DataTable();
             SqlConnection conn = new SqlConnection(SQLconnectionString);
 
@@ -44,7 +45,7 @@ namespace WEBAPI.Database
 
         public static object Exec_Command(string StoredProcedureName, Dictionary<string, object> dic_param = null)
         {
-            string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
+            string SQLconnectionString = ConfigurationManager.ConnectionStrings[Constants.CONNECTION_STRING_NAME].ConnectionString;
             object result = null;
             using (SqlConnection conn = new SqlConnection(SQLconnectionString))
             {
@@ -90,7 +91,7 @@ namespace WEBAPI.Database
         }
         public static object Exec_MyCommand(Dictionary<string, object> dic_param = null)
         {
-            string SQLconnectionString = ConfigurationManager.ConnectionStrings["Connectionstring"].ConnectionString;
+            string SQLconnectionString = ConfigurationManager.ConnectionStrings[Constants.CONNECTION_STRING_NAME].ConnectionString;
             object result = null;
             using (SqlConnection conn = new SqlConnection(SQLconnectionString))
             {
