@@ -53,10 +53,9 @@ namespace WEBAPI.Controllers
         {
             try
             {
-                var result = Database.Database.Exec_Command("Proc_InsertCard", new Dictionary<string, object>()
-                {
-                    { "CardID", CardID }
-                });
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("CardID", CardID);
+                var result = Database.Database.Exec_Command("Proc_DeleteCard", param);
                 return Ok(int.Parse(result.ToString()));
             }
             catch (Exception e)

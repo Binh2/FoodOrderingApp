@@ -19,9 +19,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE proc [Proc_GetAllCategories]
+CREATE proc [Proc_GetAllCategories](@IP nvarchar(max))
 as
-select * from Categories
+select CategoryID, CategoryName, 'http://'+@IP+CategoryImage CategoryImage from Categories;
 GO
 
 --LẤY TẤT CẢ LOẠI HÀNG--
@@ -29,9 +29,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE proc [Proc_GetAllFoods]
+CREATE proc [Proc_GetAllFoods](@IP nvarchar(max))
 as
-select * from Foods
+select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
+	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods;
 GO
 
 -- LIST THỨC ĂN THEO LOẠI--
@@ -39,9 +40,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE proc [dbo].[Proc_GetFoodsByCategoryID](@categoryid int)
+CREATE proc [dbo].[Proc_GetFoodsByCategoryID](@IP nvarchar(max), @categoryid int)
 as
-select * from Foods where CategoryID=@categoryid
+select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
+	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods where CategoryID=@categoryid
 GO
 /******GET Foods BY CATEID ******/
 SET ANSI_NULLS ON
@@ -64,15 +66,17 @@ SELECT TOP 4 CategoryID, COUNT(CategoryID) AS "So luong"
   GROUP BY CategoryID;
 GO
 
--- Get top n categories
+--Lấy thông tin thức ăn
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC dbo.Proc_GetNCategories(@n INT)
-AS
-SELECT TOP (@n) * FROM Categories;
+CREATE proc [dbo].[Proc_GetFoodByID](@IP nvarchar(max), @foodid int)
+as
+select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
+	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID  from Foods where FoodID=@foodid
 GO
+
 
 -- Get all cards
 SET ANSI_NULLS ON
@@ -81,7 +85,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROC Proc_GetAllCards
 AS
-SELECT * FROM Cards;
+SELECT CardID, CardNumber, CardImage, CardTypeID, ConsumerID FROM Cards;
 GO
 
 -- Insert a card
@@ -127,7 +131,38 @@ begin catch
  end catch
 GO
 
---exec Proc_InsertCard @CardNumber = '123', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
-insert into Cards 
+-- Delete a card
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROC [dbo].Proc_DeleteCard(@CardID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from Cards where CardID=@CardID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete Cards where CardID=@CardID;
+  set @CurrentID=@CardID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+
+exec Proc_InsertCard @CardNumber = '123', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
+exec Proc_InsertCard @CardNumber = '1234', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
+exec Proc_InsertCard @CardNumber = '12345', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
+exec Proc_InsertCard @CardNumber = '123456', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
 select * from Cards;
+insert into Cards select * from Cards;
+
+exec Proc_DeleteCard @CardID = 3, @CurrentID = 0;
 select * from Cards;
+
+delete from Cards where CardID=2;
+select * from Cards;
+select * from Foods

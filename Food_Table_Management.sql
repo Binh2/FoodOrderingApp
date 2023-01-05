@@ -102,13 +102,13 @@ create table Admins(
 );
 
 create table Comments (
-	CommentID			INT IDENTITY (1,1) PRIMARY KEY,
+	CommentID			INT IDENTITY (1, 1) PRIMARY KEY,
 	CommentDetail		NVARCHAR(MAX),
 	FoodID				int not null,
 	ConsumerID			int not null
 );
 create table Restaurants (
-	RestaurantID		INT IDENTITY (1 , 1) PRIMARY KEY,
+	RestaurantID		INT IDENTITY (1, 1) PRIMARY KEY,
 	RestaurantName		NVARCHAR(MAX) not null,
 	RestaurantImage		NVARCHAR(MAX)
 );

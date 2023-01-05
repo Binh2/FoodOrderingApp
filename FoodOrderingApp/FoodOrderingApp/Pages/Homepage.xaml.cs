@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reactive.Subjects;
@@ -30,14 +31,14 @@ namespace FoodOrderingApp.Pages
         {
             base.OnAppearing();
             HttpClient httpClient = new HttpClient();
-            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategory");
+            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategories");
             var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
             Lstcategories.ItemsSource = categoryListConverted;
         }
         async void ListViewInit()
         {
             HttpClient httpClient = new HttpClient();
-            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategory");
+            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategories");
             var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
             Lstcategories.ItemsSource = categoryListConverted;
         }

@@ -27,7 +27,7 @@ namespace WEBAPI.Controllers
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("IP", Constants.IP);
-                DataTable result = Database.Database.ReadTable("Proc_GetAllCategories");
+                DataTable result = Database.Database.ReadTable("Proc_GetAllCategories", param);
                 return Ok(result);
             }
             catch
@@ -44,7 +44,7 @@ namespace WEBAPI.Controllers
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("IP", Constants.IP);
-                DataTable result = Database.Database.ReadTable("Proc_GetAllFoods");
+                DataTable result = Database.Database.ReadTable("Proc_GetAllFoods", param);
                 return Ok(result);
             }
             catch
@@ -55,16 +55,16 @@ namespace WEBAPI.Controllers
 
 
 
-        [Route("api/FoodController/GetFoodBycategoryID")]
+        [Route("api/FoodController/GetFoodsBycategoryID")]
         [HttpGet]
-        public IHttpActionResult GetFoodBycategoryID(int CategoryId)
+        public IHttpActionResult GetFoodsBycategoryID(int CategoryId)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("CategoryID", CategoryId);
                 param.Add("IP", Constants.IP);
-                DataTable result = Database.Database.ReadTable("Proc_GetFoodBycategoryID", param);
+                param.Add("CategoryID", CategoryId);
+                DataTable result = Database.Database.ReadTable("Proc_GetFoodsBycategoryID", param);
                 return Ok(result);
             }
             catch

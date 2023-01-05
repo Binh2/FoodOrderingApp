@@ -13,6 +13,6 @@ namespace WEBAPI.Models
 
         // Thien
         //public static readonly string IP = "192.168.2.13";
-        //public static readonly string CONNECTION_STRING_NAME = "QLBConnectionstring";
+        //public static readonly string CONNECTION_STRING_NAME = "QLBConnectionstringThien";
     }
 }

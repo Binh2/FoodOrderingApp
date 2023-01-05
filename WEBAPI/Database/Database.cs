@@ -73,53 +73,12 @@ namespace WEBAPI.Database
                     }
                 }
                 cmd.Parameters.Add("@CurrentID", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters["@CurrentID"].Value = 0;
                 try
                 {
                     cmd.ExecuteNonQuery();
                     result = cmd.Parameters["@CurrentID"].Value;
                     // Attempt to commit the transaction.
-
-                }
-                catch (Exception ex)
-                {
-
-                    result = null;
-                }
-
-            }
-            return result;
-        }
-        public static object Exec_MyCommand(Dictionary<string, object> dic_param = null)
-        {
-            string SQLconnectionString = ConfigurationManager.ConnectionStrings[Constants.CONNECTION_STRING_NAME].ConnectionString;
-            object result = null;
-            using (SqlConnection conn = new SqlConnection(SQLconnectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES ('123456789', 'image.png', 5, 5);",
-                    conn);
-
-                if (dic_param != null)
-                {
-                    foreach (KeyValuePair<string, object> data in dic_param)
-                    {
-                        if (data.Value == null)
-                        {
-                            cmd.Parameters.AddWithValue("@" + data.Key, DBNull.Value);
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@" + data.Key, data.Value);
-                        }
-                    }
-                }
-                //cmd.Parameters.Add("@CurrentID", SqlDbType.Int).Direction = ParameterDirection.Output;
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    //result = cmd.Parameters["@CurrentID"].Value;
-                    // Attempt to commit the transaction.
-                    result = 1;
 
                 }
                 catch (Exception ex)
