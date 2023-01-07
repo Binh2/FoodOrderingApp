@@ -2,15 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.Pages.VerificationPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="VerificationStyle" TargetType="Entry">
+                <Setter Property="Keyboard" Value="Numeric"></Setter>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="MaxLength" Value="1"></Setter>
+                <Setter Property="IsTextPredictionEnabled" Value="False"></Setter>
+                <Setter Property="IsSpellCheckEnabled" Value="False"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Verification" Style="{StaticResource TitleStyle}"></Label>
-            <Label Text="A 6-digit PIN has been sent to your email adddress, enter it below to continue" Style="{StaticResource SubtitleStyle}"></Label>
-            <StackLayout Orientation="Horizontal">
-                <Entry Keyboard="Numeric" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
-                       ReturnType="Next" Margin="0" MaxLength="1"
-                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
-            </StackLayout>
-        </StackLayout>
+        
+            <Frame Padding="15,20,15,0">
+                <Frame>
+                    <StackLayout VerticalOptions="Start">
+                        <Label Text="Verification" Style="{StaticResource TitleStyle}"></Label>
+                        <Label Text="A 6-digit PIN has been sent to your email adddress, enter it below to continue" Style="{StaticResource SubtitleStyle}"></Label>
+                        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,60,0,0">
+                            <Entry x:Name="verificationEntry1" TextChanged="verificationEntry1_TextChanged" 
+                               Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
+                            <Entry x:Name="verificationEntry2" TextChanged="verificationEntry2_TextChanged"
+                               Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
+                            <Entry x:Name="verificationEntry3" TextChanged="verificationEntry3_TextChanged"
+                               Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
+                            <Entry x:Name="verificationEntry4" TextChanged="verificationEntry4_TextChanged"
+                               Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
+                            <Entry x:Name="verificationEntry5" TextChanged="verificationEntry5_TextChanged"
+                               Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
+                            <Entry x:Name="verificationEntry6" TextChanged="verificationEntry6_TextChanged"
+                               Style="{StaticResource VerificationStyle}" ReturnType="Done"></Entry>
+                        </StackLayout>
+                        <Label Text="Resend PIN" FontSize="16" TextColor="Black"
+                               VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,0,50">
+                            <!--<Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ResendVerificationCommand}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>-->
+                        </Label>
+                        <Button Text="Continue" Style="{StaticResource ButtonStyle}"></Button>
+                    </StackLayout>
+                </Frame>
+            </Frame>
     </ContentPage.Content>
 </ContentPage>

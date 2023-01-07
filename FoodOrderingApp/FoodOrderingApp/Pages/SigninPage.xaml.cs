@@ -14,7 +14,8 @@ namespace FoodOrderingApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SigninPage : ContentPage
     {
-        public ICommand TapCommand { get; } = new Command<String>(async (_) => await Shell.Current.Navigation.PushAsync(new SignupPage()));
+        public ICommand ForgotPasswordCommand { get; } = new Command<String>(async (_) => await Shell.Current.Navigation.PushAsync(new ForgotPasswordPage()));
+        public ICommand SignupCommand { get; } = new Command<String>(async (_) => await Shell.Current.Navigation.PushAsync(new SignupPage()));
         public SigninPage()
         {
             InitializeComponent();
