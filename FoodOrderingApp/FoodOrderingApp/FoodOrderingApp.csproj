@@ -54,6 +54,9 @@
     <EmbeddedResource Update="Pages\CategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\VerificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ProfilePages\CardsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -89,6 +92,9 @@
     </EmbeddedResource>
 	  <EmbeddedResource Update="Views\ImagesView.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Views\LabelImageView.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Views\PriceView.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

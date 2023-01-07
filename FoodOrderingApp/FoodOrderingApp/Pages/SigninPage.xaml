@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:FoodOrderingApp.Views"
              x:Class="FoodOrderingApp.Pages.SigninPage" Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <ScrollView>
@@ -10,8 +10,8 @@
                         <StackLayout Spacing="0">
                             <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
                                 <StackLayout Spacing="5">
-                                    <Label Text="Welcome, " TextColor="Black" FontSize="35" FontAttributes="Bold"></Label>
-                                    <Label Text="Sign in to Continue" VerticalOptions="End" TextColor="#666" FontSize="16"></Label>
+                                    <Label Text="Welcome, " Style="{StaticResource TitleStyle}"></Label>
+                                    <Label Text="Sign in to Continue" VerticalOptions="End" Style="{StaticResource SubtitleStyle}"></Label>
                                 </StackLayout>
                                 <Label Text="Sign Up" FontSize="20" TextColor="{StaticResource GreenColor}" FontAttributes="Bold"
                                VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
@@ -39,13 +39,13 @@
                                 </Label.GestureRecognizers>
                             </Label>
                             <Button Text="Sign in" x:Name="signinBtn" Clicked="Signin" IsTabStop="False"
-                            BackgroundColor="{StaticResource GreenColor}" TextColor="White" FontAttributes="None"
-                            CornerRadius="5" Padding="0,12" Margin="7,20"></Button>
+                                    Style="{StaticResource ButtonStyle}" Margin="7,20"></Button>
                         </StackLayout>
                     </Frame>
                     <StackLayout>
                         <Label Text="-OR-" TextColor="Black" FontSize="20" HorizontalOptions="Center"
                            ></Label>
+                        <views:LabelImageView Source="facebook_icon" MyText="Facebook"></views:LabelImageView>
                         <Frame Padding="15" Margin="0,10" CornerRadius="5">
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="facebook_icon.png" WidthRequest="30"></Image>

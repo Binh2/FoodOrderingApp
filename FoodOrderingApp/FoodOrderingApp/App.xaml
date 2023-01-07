@@ -17,19 +17,30 @@
                 <Setter Property="Shell.TabBarForegroundColor" Value="Black"></Setter>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95000000"></Setter>
                 <Setter Property="Shell.TabBarTitleColor" Value="Black"></Setter>
+                <Setter Property="NavigationPage.BarBackgroundColor" Value="Red"></Setter>
             </Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar"></Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem"></Style>
-            <!--<Style TargetType="FlyoutItem">
-                <Setter Property="Shell.BackgroundColor" Value="Black"></Setter>
-                <Setter Property="Shell.ForegroundColor" Value="White"></Setter>
-                --><!--<Setter Property="BarTextColor" Value="White"></Setter>--><!--
-            </Style>-->
-            <!--<Style x:Key="StateStyle" TargetType="Label">
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="NavigationPage"></Style>
+            <Style x:Key="EntryLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#555"></Setter>
+                <Setter Property="FontSize" Value="18"></Setter>
+            </Style>
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#666"></Setter>
+                <Setter Property="FontSize" Value="16"></Setter>
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource GreenColor}"></Setter>
                 <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="Padding" Value="20,10"></Setter>
-            </Style>-->
+                <Setter Property="Padding" Value="0,12"></Setter>
+                <Setter Property="CornerRadius" Value="5"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

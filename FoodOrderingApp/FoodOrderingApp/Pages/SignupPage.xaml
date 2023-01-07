@@ -4,45 +4,45 @@
              x:Class="FoodOrderingApp.Pages.SignupPage">
     <ContentPage.Content>
         <ScrollView>
-            <Frame Padding="10">
-                <StackLayout>
-                    <Image Source="app_icon.png" WidthRequest="200"></Image>
-                    <Label Text="Food Ordering App" FontAttributes="Bold" FontSize="40" TextColor="Black"
-                           HorizontalOptions="CenterAndExpand"></Label>
+            <Frame Padding="15,10">
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Sign Up" Style="{StaticResource TitleStyle}" Margin="0,0,0,30"></Label>
 
-                    <StackLayout Spacing="15">
-                        <StackLayout Orientation="Vertical" Spacing="0">
-                            <Label Text="Image  " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userImage" ReturnType="Next"
+                        <StackLayout Spacing="30">
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Image  " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userImage" ReturnType="Next"
                                    IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" Spacing="0">
-                            <Label Text="Name " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userName" 
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Name " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userName" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" Spacing="0">
-                            <Label Text="Email " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                            <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Email " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" Spacing="0">
-                            <Label Text="Password " VerticalOptions="Start" TextColor="Black" FontSize="20"></Label>
-                            <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Password " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical" Spacing="0">
-                            <Label Text="Confirm password " VerticalOptions="Start" TextColor="Black" FontSize="20"></Label>
-                            <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userConfirmPassword" 
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Confirm password " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userConfirmPassword" 
                                    ReturnType="Done" Completed="Signup"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                            </StackLayout>
                         </StackLayout>
+                        <Button Text="Sign up" x:Name="signupBtn" Clicked="Signup" IsTabStop="False" Style="{StaticResource ButtonStyle}" Margin="7,20"></Button>
                     </StackLayout>
-                    <Button Text="Sign up" x:Name="signupBtn" Clicked="Signup" IsTabStop="False"></Button>
-                </StackLayout>
+                </Frame>
             </Frame>
         </ScrollView>
     </ContentPage.Content>
