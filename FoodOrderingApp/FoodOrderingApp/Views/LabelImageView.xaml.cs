@@ -12,48 +12,43 @@ namespace FoodOrderingApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LabelImageView : ContentView
     {
-        public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(LabelImageView), new Command(()=> { }));
+        public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(LabelImageView));
         public ICommand TapCommand
         {
             get => (ICommand)GetValue(LabelImageView.TapCommandProperty);
             set => SetValue(LabelImageView.TapCommandProperty, value);
         }
-
-        public static readonly new BindableProperty WidthRequestProperty = BindableProperty.Create(nameof(WidthRequest), typeof(int), typeof(LabelImageView), 0);
-        public new int WidthRequest
+        public static readonly BindableProperty TapCommandParameterProperty = BindableProperty.Create(nameof(TapCommandParameter), typeof(string), typeof(LabelImageView));
+        public string TapCommandParameter
         {
-            get => (int)GetValue(LabelImageView.WidthRequestProperty);
-            set => SetValue(LabelImageView.WidthRequestProperty, value);
+            get => (string)GetValue(LabelImageView.TapCommandParameterProperty);
+            set => SetValue(LabelImageView.TapCommandParameterProperty, value);
         }
 
-        public static readonly BindableProperty SourceProperty = BindableProperty.Create(nameof(Source), typeof(string), typeof(LabelImageView), String.Empty);
-        public string Source
+        public static readonly BindableProperty ImageWidthRequestProperty = BindableProperty.Create(nameof(ImageWidthRequest), typeof(int), typeof(LabelImageView), 30);
+        public int ImageWidthRequest
         {
-            get => (string)GetValue(LabelImageView.SourceProperty);
-            set => SetValue(LabelImageView.SourceProperty, value);
+            get => (int)GetValue(LabelImageView.ImageWidthRequestProperty);
+            set => SetValue(LabelImageView.ImageWidthRequestProperty, value);
         }
 
-        //public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(LabelImageView), string.Empty);
-        //public string Text
-        //{
-        //    get => (string)GetValue(LabelImageView.TextProperty);
-        //    set => SetValue(LabelImageView.TextProperty, value);
-        //}
-        public static readonly BindableProperty MyTextProperty = BindableProperty.Create(nameof(MyText), typeof(string), typeof(LabelImageView), string.Empty);
-        public string MyText
+        public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(string), typeof(LabelImageView));
+        public string ImageSource
         {
-            get => (string)GetValue(LabelImageView.MyTextProperty);
-            set => SetValue(LabelImageView.MyTextProperty, value);
+            get => (string)GetValue(LabelImageView.ImageSourceProperty);
+            set => SetValue(LabelImageView.ImageSourceProperty, value);
+        }
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(LabelImageView));
+        public string Text
+        {
+            get => (string)GetValue(LabelImageView.TextProperty);
+            set => SetValue(LabelImageView.TextProperty, value);
         }
         public LabelImageView()
         {
             InitializeComponent();
             BindingContext = this;
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
         }
     }
 }

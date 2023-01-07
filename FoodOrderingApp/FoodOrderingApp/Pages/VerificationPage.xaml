@@ -4,9 +4,13 @@
              x:Class="FoodOrderingApp.Pages.VerificationPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Verification" Style="{StaticResource TitleStyle}"></Label>
+            <Label Text="A 6-digit PIN has been sent to your email adddress, enter it below to continue" Style="{StaticResource SubtitleStyle}"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Entry Keyboard="Numeric" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                       ReturnType="Next" Margin="0" MaxLength="1"
+                       IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

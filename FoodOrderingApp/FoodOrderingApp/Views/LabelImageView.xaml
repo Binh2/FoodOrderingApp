@@ -5,13 +5,14 @@
   <ContentView.Content>
         <Frame Padding="15" CornerRadius="5">
             <StackLayout Orientation="Horizontal">
-                <Image Source="{Binding Source}" WidthRequest="{Binding WidthRequest, FallbackValue=30}"></Image>
-                <Label Text="{Binding MyText}" TextColor="Black" FontSize="14" VerticalTextAlignment="Center"
+                <Image x:Name="image" Source="{Binding ImageSource}" WidthRequest="{Binding ImageWidthRequest}"></Image>
+                
+                <Label Text="{Binding Text}" TextColor="Black" FontSize="14" VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
-                <BoxView WidthRequest="{Binding WidthRequest, FallbackValue=30}"></BoxView>
+                <BoxView WidthRequest="{Binding ImageWidthRequest}"></BoxView>
             </StackLayout>
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding TapCommand}"></TapGestureRecognizer>
+                <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="{Binding TapCommandParameter}"></TapGestureRecognizer>
             </Frame.GestureRecognizers>
         </Frame>
     </ContentView.Content>
