@@ -34,8 +34,8 @@ namespace FoodOrderingApp.Pages
         async void ListViewbestrating()
         {
             HttpClient httpClient = new HttpClient();
-            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetTOP4RATING");
-            var FoodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
+            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/Proc_GetTOP4FoodByRATES");
+            var FoodListConverted = JsonConvert.DeserializeObject<List<Categories>>(FoodList);
             listView1.ItemsSource = FoodListConverted;
         }
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)

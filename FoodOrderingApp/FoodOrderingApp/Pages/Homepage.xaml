@@ -53,11 +53,9 @@
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
                                         </CollectionView.ItemsLayout>
-
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout>
-
                                                     <Frame
                                                         Margin="1,5,10,5"
                                                         Padding="0"
@@ -135,7 +133,7 @@
                                                         <Image
                                                             Aspect="AspectFit"
                                                             HeightRequest="240"
-                                                            Source="{Binding FoodImage}"
+                                                            Source="{Binding FoodImages}"
                                                             WidthRequest="165" />
                                                     </Frame>
                                                 </StackLayout>
