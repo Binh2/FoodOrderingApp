@@ -16,24 +16,12 @@ namespace FoodOrderingApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Homepage : ContentPage
-    {
-        public ICommand MyCommand => new Command(OnForgotPassword);
-        private void OnForgotPassword()
-        {
-            Navigation.PushModalAsync(new NavigationPage(new CategoriesPage()));
-        }
+    {     
         public Homepage()
         {
             InitializeComponent();
             ListViewInit();
-        }
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-            HttpClient httpClient = new HttpClient();
-            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategories");
-            var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
-            Lstcategories.ItemsSource = categoryListConverted;
+            ListViewbestrating();
         }
         async void ListViewInit()
         {
@@ -41,6 +29,14 @@ namespace FoodOrderingApp.Pages
             var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategories");
             var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
             Lstcategories.ItemsSource = categoryListConverted;
+        }
+
+        async void ListViewbestrating()
+        {
+            HttpClient httpClient = new HttpClient();
+            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetTOP4RATING");
+            var FoodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
+            listView1.ItemsSource = FoodListConverted;
         }
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -51,6 +47,25 @@ namespace FoodOrderingApp.Pages
         {
             var current = (e.CurrentSelection.FirstOrDefault() as Categories);
             Navigation.PushModalAsync(new FoodPage(current));
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new CategoriesPage());
+        }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            Frame frame = sender as Frame;
+            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
+            Categories cate = tapGestureRecognizer.CommandParameter as Categories;
+            await Shell.Current.Navigation.PushAsync(new FoodPage(cate));
+
+        }
+
+        private void listView1_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
         }
     }
 }

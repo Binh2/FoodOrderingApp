@@ -12,276 +12,29 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
-                                <!--  header  -->
-                                <StackLayout
-                                    Margin="15"
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal"
-                                    VerticalOptions="StartAndExpand">
-                                    <Frame
-                                        Padding="0"
-                                        BackgroundColor="Transparent"
-                                        CornerRadius="45"
-                                        HasShadow="False"
-                                        HeightRequest="40"
-                                        HorizontalOptions="StartAndExpand"
-                                        WidthRequest="40">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label
-                                                    Margin="0,10"
-                                                    FontFamily="MaterialFontFamily"
-                                                    FontSize="26"
-                                                    HorizontalOptions="StartAndExpand"
-                                                    Text="&#xf141;"
-                                                    TextColor="Black" />
-
-                                        </StackLayout>
-                                        <!--  
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
-                                        </Frame.GestureRecognizers>
-                                        -->
+                            <Grid RowDefinitions="300,Auto,Auto,Auto,Auto,Auto" Padding="20">
+                                    <Frame Grid.Row="0" CornerRadius="20" HasShadow="True">
+                                        <Image Margin="-20" Source="{Binding FoodImages}" Aspect="Fill"></Image>
                                     </Frame>
-
-                                    <StackLayout>
-                                        <Frame
-                                          Padding="0"
-                                          BackgroundColor="White"
-                                          CornerRadius="20"
-                                          HasShadow="False"
-                                          HeightRequest="40"
-                                          WidthRequest="40">
-                                            <Label
-                                                FontFamily="MaterialFontFamily"
-                                                FontSize="28"
-                                                HorizontalOptions="Center"
-                                                HorizontalTextAlignment="Center"
-                                                Text="&#xf4d2;"
-                                                TextColor="Black"
-                                                VerticalOptions="Center"
-                                                VerticalTextAlignment="Center" />
-                                        </Frame>
+                                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                        <Label Text="{Binding FoodName}" FontAttributes="Bold" TextColor="#202020" FontSize="20"></Label>
+                                        <Label x:Name="lblStar" TextColor="#202020" 
+                                               FontSize="20"></Label>
                                     </StackLayout>
-                                </StackLayout>
-                                <!--  Body  -->
-                                <StackLayout IsClippedToBounds="True">
-                                    <Image
-                                         x:Name="imageMain"
-                                         Aspect="AspectFill"
-                                         HeightRequest="200"
-                                         Source="{Binding FoodImages}" />
-                                    <ScrollView Scrolled="ScrollView_Scrolled">
-                                        <StackLayout>
-                                            <StackLayout Margin="15">
-
-                                                <StackLayout>
-                                                    <Label
-                                                         FontAttributes="Bold"
-                                                         FontSize="26"
-                                                         HorizontalOptions="StartAndExpand"
-                                                         Text="{Binding FoodName}"
-                                                         TextColor="Black"
-                                                         VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                </StackLayout>
-
-                                                <StackLayout Margin="0,15,0,15" Orientation="Horizontal">
-                                                    <StackLayout>
-                                                        <Frame  Padding="0"
-                                                                BorderColor="#EBEBEB"
-                                                                CornerRadius="20"
-                                                                HasShadow="False"
-                                                                HorizontalOptions="FillAndExpand">
-                                                            <StackLayout HorizontalOptions="FillAndExpand"
-                                                                         Orientation="Horizontal"
-                                                                         VerticalOptions="CenterAndExpand">
-                                                                <Label
-                                                                         Margin="20,15,35,15"
-                                                                         FontSize="12"
-                                                                         HorizontalOptions="StartAndExpand"
-                                                                         Text="Amount"
-                                                                         TextColor="Black"
-                                                                         VerticalTextAlignment="Center">
-                                                                </Label>
-                                                                <Frame
-                                                                    Margin="0"
-                                                                    Padding="0"
-                                                                    BackgroundColor="Transparent"
-                                                                    HasShadow="False">
-                                                                    <Label
-                                                                        x:Name="amount"
-                                                                        Margin="35,15,20,15"
-                                                                        FontSize="14"
-                                                                        HorizontalOptions="StartAndExpand"
-                                                                        Text="1"
-                                                                        TextColor="Black"
-                                                                        VerticalTextAlignment="Center">
-                                                                    </Label>
-                                                                    <Frame.GestureRecognizers>
-                                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                                                    </Frame.GestureRecognizers>
-                                                                </Frame>
-                                                            </StackLayout>
-                                                        </Frame>
-                                                    </StackLayout>
-
-
-                                                    <StackLayout HorizontalOptions="EndAndExpand">
-                                                        <Frame
-                                                             Padding="0"
-                                                             BorderColor="#EBEBEB"
-                                                             CornerRadius="20"
-                                                             HasShadow="False"
-                                                             HorizontalOptions="FillAndExpand">
-                                                            <StackLayout
-                                                                 HorizontalOptions="FillAndExpand"
-                                                                 Orientation="Horizontal"
-                                                                 VerticalOptions="CenterAndExpand">
-                                                                <Label
-                                                                       Margin="19,15,35,15"
-                                                                       FontSize="12"
-                                                                       HorizontalOptions="StartAndExpand"
-                                                                       Text="Add Cart"
-                                                                       TextColor="Black"
-                                                                       VerticalTextAlignment="Center">
-                                                                </Label>
-                                                                <Image
-                                                                     Margin="35,15,20,15"
-                                                                     Source="cards.png"                                                                                                                                        
-                                                                     HeightRequest="22"
-                                                                     WidthRequest="22" />
-                                                            </StackLayout>
-                                                        </Frame>
-                                                    </StackLayout>
-                                                </StackLayout>
-
-                                                <StackLayout>
-                                                    <Label
-                                                        FontAttributes="Bold"
-                                                        FontSize="18"
-                                                        HorizontalOptions="StartAndExpand"
-                                                        Text="Details"
-                                                        TextColor="Black"
-                                                        VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                    <Label
-                                                        FontSize="14"
-                                                        HorizontalOptions="StartAndExpand"
-                                                        Text="{Binding FoodDetail}"
-                                                        TextColor="Black"
-                                                        VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                    <Label
-                                                         FontAttributes="Bold"
-                                                         FontSize="14"
-                                                         HorizontalOptions="StartAndExpand"
-                                                         Text="Read More"
-                                                         TextColor="#00C569"
-                                                         VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                    <Label
-                                                          Margin="0,30,0,0"
-                                                          FontAttributes="Bold"
-                                                          FontSize="18"
-                                                          HorizontalOptions="StartAndExpand"
-                                                          Text="Reviews"
-                                                          TextColor="Black"
-                                                          VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                    <Label
-                                                           Margin="0,5,0,0"
-                                                           FontAttributes="Bold"
-                                                           FontSize="14"
-                                                           HorizontalOptions="StartAndExpand"
-                                                           Text="Write your review"
-                                                           TextColor="#00C569"
-                                                           VerticalTextAlignment="Center">
-                                                    </Label>
-                                                </StackLayout>
-
-                                            </StackLayout>
-
-                                        </StackLayout>
-                                    </ScrollView>
-
-
-                                    <!--  Footer  -->
-                                    <StackLayout
-                                        x:Name="footer"
-                                        Margin="0,-5,0,0"
-                                       BackgroundColor="White"
-                                       HeightRequest="80"
-                                       HorizontalOptions="FillAndExpand"
-                                       VerticalOptions="EndAndExpand">
-                                        <BoxView
-                                          Margin="0"
-                                          BackgroundColor="#F7F7F7"
-                                          HeightRequest="1"
-                                           HorizontalOptions="FillAndExpand"
-                                           VerticalOptions="StartAndExpand" />
-                                        <Frame
-                                            Padding="0"
-                                            BackgroundColor="Transparent"
-                                            HasShadow="True"
-                                            HorizontalOptions="FillAndExpand"
-                                            VerticalOptions="CenterAndExpand">
-                                            <StackLayout
-                                             Margin="0,0,0,10"
-                                             Orientation="Horizontal"
-                                             VerticalOptions="CenterAndExpand">
-                                                <StackLayout>
-                                                    <Label
-                                                            Margin="30,0,35,0"
-                                                            FontSize="12"
-                                                            HorizontalOptions="Center"
-                                                            Text="PRICE"
-                                                            TextColor="#929292"
-                                                            VerticalOptions="CenterAndExpand"
-                                                              VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                    <Label
-                                                      Margin="30,0,35,0"
-                                                      FontSize="18"
-                                                      HorizontalOptions="Center"
-                                                      Text="{Binding FoodPrice}"
-                                                      TextColor="#00C569"
-                                                      VerticalOptions="CenterAndExpand"
-                                                      VerticalTextAlignment="Center">
-                                                    </Label>
-
-                                                </StackLayout>
-
-
-                                                <Frame
-                                                      Margin="0,0,30,0"
-                                                      Padding="0"
-                                                      BackgroundColor="#00C569"
-                                                      CornerRadius="5"
-                                                      HasShadow="False"
-                                                      HorizontalOptions="EndAndExpand"
-                                                      VerticalOptions="CenterAndExpand">
-                                                    <Label
-                                                      Margin="54,15,54,15"
-                                                      FontSize="14"
-                                                      HorizontalOptions="Center"
-                                                      Text="BUY"
-                                                      TextColor="White"
-                                                      VerticalTextAlignment="Center">
-                                                    </Label>
-                                                </Frame>
-                                            </StackLayout>
-                                        </Frame>
+                                    <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                        <Label TextColor="Navy"
+                                               FontSize="20"></Label>
+                                        <Label Text="Charlottetown, Canada" TextColor="#202020"></Label>
                                     </StackLayout>
-
-                                </StackLayout>
-                            </Grid>
+                                    <Label Grid.Row="3" Text="Details" FontSize="15" Margin="0,20,0,0" TextColor="#202020" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="4" Text="{Binding FoodDetail}" TextColor="#202020"></Label>                                    
+                                    <Label Text="Comment"
+                                          Grid.Row="6" TextColor="Gray"></Label>
+                                    <StackLayout Grid.Row="7" VerticalOptions="EndAndExpand" HeightRequest="60" Orientation="Horizontal" BackgroundColor="White" Margin="-20" Padding="20,10">
+                                        <Label Text="{Binding FoodPrice}" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
+                                        <Button Text="Add to cart" CornerRadius="20" HorizontalOptions="EndAndExpand" WidthRequest="180" BackgroundColor="#202020" TextColor="White"></Button>
+                                    </StackLayout>
+                                </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

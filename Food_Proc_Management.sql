@@ -23,7 +23,6 @@ CREATE proc [Proc_GetAllCategories](@IP nvarchar(max))
 as
 select CategoryID, CategoryName, 'http://'+@IP+CategoryImage CategoryImage from Categories;
 GO
-
 --LẤY TẤT CẢ LOẠI HÀNG--
 SET ANSI_NULLS ON
 GO
@@ -45,15 +44,6 @@ as
 select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods where CategoryID=@categoryid
 GO
-/******GET Foods BY CATEID ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE proc [dbo].[Proc_GetBooksBySubjectID](@macd int)
-as
-select * from SACH where Mcd=@macd
-GO
 --TOP 4 SỐ LƯỢNG ĐỒ ĂN TRONG LOẠI
 SET ANSI_NULLS ON
 GO
@@ -61,9 +51,32 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[Proc_GetTOP3CategoryBySL]
 as
-SELECT TOP 4 CategoryID, COUNT(CategoryID) AS "So luong"
+SELECT TOP 4 COUNT(CategoryID) AS "So luong",CategoryID, COUNT(CategoryID) AS "So luong"
   FROM Foods
   GROUP BY CategoryID;
+GO
+
+
+--TOP 4 RATING
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [Proc_GetTOP4FoodByRATES](@IP nvarchar(max))
+as
+select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+FoodImages FoodImages, 
+	FoodDetail, FoodPrice,FoodFavourite, CategoryID, RestaurantID from Foods
+	ORDER BY FoodRating DESC	
+GO
+--TOP 4 FoodName
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[Proc_GetTOP4NAME](@IP nvarchar(max))
+as
+SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
+  FROM Foods
 GO
 
 --Lấy thông tin thức ăn
@@ -121,7 +134,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROC dbo.Proc_InsertFakeCard(
 	@CurrentID int output)
-as
+as	
 begin try
  insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES ('123456789', 'image.png', 5, 5);
  set @CurrentID=@@IDENTITY
@@ -166,3 +179,12 @@ select * from Cards;
 delete from Cards where CardID=2;
 select * from Cards;
 select * from Foods
+-- Get all food
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC Proc_GetFoods
+AS
+SELECT TOP 4 FoodRating,* FROM Foods;
+GO

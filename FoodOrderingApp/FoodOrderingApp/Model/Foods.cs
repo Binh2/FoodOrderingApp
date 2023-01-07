@@ -6,7 +6,6 @@ namespace FoodOrderingApp.Model
 {
     public class Foods
     {
-        [PrimaryKey, AutoIncrement]
         public int FoodID { get; set; }
         public string FoodName { get; set; }
         public string FoodImages { get; set; }
