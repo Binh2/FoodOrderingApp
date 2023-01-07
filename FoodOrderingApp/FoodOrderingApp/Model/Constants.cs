@@ -8,9 +8,16 @@ namespace FoodOrderingApp.Model
     static public class Constants
     {
         // Binh
-        public static readonly string IP = "192.168.1.47";
+        public static readonly string IP = "192.168.1.48";
 
         // Thien
         //public static readonly string IP = "192.168.2.13";
+
+        public static class ProcURL
+        {
+            public static readonly string GET_ALL_CARDS = "http://" + IP + "/webapi/api/CardController/GetAllCards";
+            public static readonly string INSERT_CARD = "http://" + IP + "/webapi/api/CardController/InsertCard";
+            public static readonly string DELETE_CARD = "http://" + IP + "/webapi/api/CardController/DeleteCard";
+        }
     }
 }

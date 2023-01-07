@@ -17,19 +17,18 @@ namespace FoodOrderingApp.ProfilePages
         public CardsPage()
         {
             InitializeComponent();
-            cards = new List<Card>
-            {
-                new Card() { CardHolderName = UserProvider.user.UserName, CardExpiryDate = DateTime.Now,
-                CardNumber = "4560 5674 3224 4543", CardType = "Visa" },
-                new Card() { CardHolderName = UserProvider.user.UserName, CardExpiryDate = DateTime.Now,
-                CardNumber = "4560 5674 3224 4543", CardType = "MasterCard" },
-            };
+        }
+        protected async override void OnAppearing()
+        {
+            cards = await WebAPI.Get<List<Card>>(Constants.ProcURL.GET_ALL_CARDS);
             collectionView.ItemsSource = cards;
         }
-
         private async void cardLayout_Tapped(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushAsync(new EditCardPage());
+            Frame frame = sender as Frame;
+            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
+            Card card = tapGestureRecognizer.CommandParameter as Card;
+            await Shell.Current.Navigation.PushAsync(new TestPage());
         }
     }
 }

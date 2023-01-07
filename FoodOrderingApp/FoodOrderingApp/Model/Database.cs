@@ -8,7 +8,7 @@ using SQLite;
 
 namespace FoodOrderingApp.Model
 {
-    static class Database
+    static class Database // SQLite
     {
         // Use Database.createDatabase() to create database
         static public string folder = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);

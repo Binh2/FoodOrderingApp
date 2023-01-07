@@ -13,8 +13,7 @@
                     <StackLayout Spacing="15">
                         <StackLayout Orientation="Vertical" Spacing="0">
                             <Label Text="Image  " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userImage" 
-                                   ReturnType="Next"
+                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userImage" ReturnType="Next"
                                    IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Spacing="0">

@@ -12,27 +12,8 @@
         <CollectionView ItemsLayout="VerticalList" x:Name="collectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame>
-                        <StackLayout>
-                            <CollectionView ItemsLayout="HorizontalList" 
-                                            ItemsSource="{Binding CardNumber, Converter={StaticResource CardNumberToListConverter}}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Text="{Binding .}"></Label>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout>
-                                    <Label Text="Credit holder"></Label>
-                                    <Label Text="{Binding CardHolderName}"></Label>
-                                </StackLayout>
-                                <StackLayout>
-                                    <Label Text="Expiry"></Label>
-                                    <Label Text="{Binding CardExpiryDate, Converter={StaticResource DateTimeToStringConverter}}"></Label>
-                                </StackLayout>
-                            </StackLayout>
-                        </StackLayout>
+                    <Frame CornerRadius="10">
+                        <Image Source="{Binding CardImage}"></Image>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer x:Name="cardLayout" Tapped="cardLayout_Tapped"
                                                   CommandParameter="{Binding .}"></TapGestureRecognizer>

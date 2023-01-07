@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using WEBAPI.Models;
 
 namespace WEBAPI.Controllers
 {
@@ -17,30 +18,51 @@ namespace WEBAPI.Controllers
         {
             try
             {
-                DataTable result = Database.Database.ReadTable("Proc_GetAllCards");
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
+                DataTable result = Database.Database.ReadTable("Proc_GetAllCards", param);
                 return Ok(result);
             }
-            catch
+            catch (Exception e)
             {
-                return NotFound();
+                return Ok(e.Message);
             }
         }
 
         [Route("api/CardController/InsertCard")]
         [HttpPost]
-        public IHttpActionResult InsertCard()
+        public IHttpActionResult InsertCard(Card card)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("CardNumber", "1234 5678");
-                param.Add("CardImage", "card2.png");
-                param.Add("CardTypeID", 2);
-                param.Add("ConsumerID", 2);
+                param.Add("CardNumber", card.CardNumber);
+                param.Add("CardImage", card.CardImage);
+                param.Add("CardImage", card.CardExpiryDate);
+                param.Add("CardTypeID", card.CardTypeID);
+                param.Add("ConsumerID", card.ConsumerID);
                 var result = Database.Database.Exec_Command("Proc_InsertCard", param);
-                if (result != null)
-                    return Ok(int.Parse(result.ToString()));
-                return Ok("nullllllll");
+                return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+        [Route("api/CardController/UpdateCard")]
+        [HttpPost]
+        public IHttpActionResult DeleteCard(Card card)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("CardID", card.CardID);
+                param.Add("CardNumber", card.CardNumber);
+                param.Add("CardImage", card.CardImage);
+                param.Add("CardImage", card.CardExpiryDate);
+                param.Add("CardTypeID", card.CardTypeID);
+                var result = Database.Database.Exec_Command("Proc_UpdateCard", param);
+                return Ok(int.Parse(result.ToString()));
             }
             catch (Exception e)
             {

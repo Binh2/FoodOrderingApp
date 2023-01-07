@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodOrderingApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace FoodOrderingApp.ProfilePages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditCardPage : ContentPage
     {
-        public EditCardPage()
+        Card card;
+        public EditCardPage(Card card)
         {
             InitializeComponent();
+            Title = "Edit Card";
+            this.card = card;
         }
     }
 }

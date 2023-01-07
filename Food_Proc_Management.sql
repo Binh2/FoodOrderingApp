@@ -1,4 +1,9 @@
-﻿USE FOOD_MANAGEMENT;
+﻿-- Execute every connect please
+USE FOOD_MANAGEMENT; go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 -------------------- Delete all procedures -------------------------
 declare @procName varchar(500)
 declare cur cursor 
@@ -15,20 +20,12 @@ deallocate cur
 --//---------------- Delete all procedures ---------------------//--
 
 --LẤY TẤT CẢ LOẠI HÀNG--
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE proc [Proc_GetAllCategories](@IP nvarchar(max))
 as
 select CategoryID, CategoryName, 'http://'+@IP+CategoryImage CategoryImage from Categories;
 GO
 
 --LẤY TẤT CẢ LOẠI HÀNG--
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE proc [Proc_GetAllFoods](@IP nvarchar(max))
 as
 select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
@@ -36,29 +33,17 @@ select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages,
 GO
 
 -- LIST THỨC ĂN THEO LOẠI--
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE proc [dbo].[Proc_GetFoodsByCategoryID](@IP nvarchar(max), @categoryid int)
 as
 select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods where CategoryID=@categoryid
 GO
 /******GET Foods BY CATEID ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE proc [dbo].[Proc_GetBooksBySubjectID](@macd int)
 as
 select * from SACH where Mcd=@macd
 GO
 --TOP 4 SỐ LƯỢNG ĐỒ ĂN TRONG LOẠI
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE proc [dbo].[Proc_GetTOP3CategoryBySL]
 as
 SELECT TOP 4 CategoryID, COUNT(CategoryID) AS "So luong"
@@ -67,10 +52,6 @@ SELECT TOP 4 CategoryID, COUNT(CategoryID) AS "So luong"
 GO
 
 --Lấy thông tin thức ăn
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE proc [dbo].[Proc_GetFoodByID](@IP nvarchar(max), @foodid int)
 as
 select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
@@ -79,23 +60,22 @@ GO
 
 
 -- Get all cards
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC Proc_GetAllCards
+CREATE PROC Proc_GetAllCards(@IP nvarchar(max))
 AS
-SELECT CardID, CardNumber, CardImage, CardTypeID, ConsumerID FROM Cards;
+SELECT CardID, CardNumber, 'http://'+@IP+CardImage CardImage, CardExpiryDate, CardTypeID, ConsumerID FROM Cards;
+GO
+
+-- Get cards by ConsumerID
+CREATE PROC Proc_GetCardsByConsumerID(@IP nvarchar(max), @ConsumerID int)
+AS
+SELECT CardID, CardNumber, 'http://'+@IP+CardImage CardImage, CardExpiryDate, CardTypeID, ConsumerID FROM Cards where;
 GO
 
 -- Insert a card
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE PROC dbo.Proc_InsertCard(
 	@CardNumber nvarchar(max), 
 	@CardImage nvarchar(max), 
+	@CardExpiryDate date,
 	@CardTypeID int, 
 	@ConsumerID int, 
 	@CurrentID int output)
@@ -114,17 +94,23 @@ begin catch
  end catch
 GO
 
--- Insert a fake card
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROC dbo.Proc_InsertFakeCard(
+-- Update a card
+CREATE PROC dbo.Proc_UpdateCard(
+	@CardID		int,
+	@CardNumber nvarchar(max), 
+	@CardImage nvarchar(max), 
+	@CardExpiryDate date,
+	@CardTypeID int,
 	@CurrentID int output)
 as
 begin try
- insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES ('123456789', 'image.png', 5, 5);
- set @CurrentID=@@IDENTITY
+ if(exists(select * from Cards where CardID=@CardID))
+  begin
+   update Cards set CardNumber = @CardNumber, CardImage = @CardImage, CardExpiryDate = @CardExpiryDate, CardTypeID = @CardTypeID 
+   where CardID = @CardID
+   set @CurrentID=@CardID
+   return
+  end
 end try
 begin catch
  set @CurrentID=0
@@ -153,12 +139,7 @@ begin catch
 GO
 
 
-exec Proc_InsertCard @CardNumber = '123', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
-exec Proc_InsertCard @CardNumber = '1234', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
-exec Proc_InsertCard @CardNumber = '12345', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
-exec Proc_InsertCard @CardNumber = '123456', @CardImage = 'card3.png', @CardTypeID = 3, @ConsumerID = 3, @CurrentID = 0;
 select * from Cards;
-insert into Cards select * from Cards;
 
 exec Proc_DeleteCard @CardID = 3, @CurrentID = 0;
 select * from Cards;

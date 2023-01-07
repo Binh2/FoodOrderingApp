@@ -163,7 +163,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\CardType.cs" />
     <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\Consumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -178,10 +181,14 @@
     <Content Include="Images\coca.jpg" />
     <Content Include="Images\comtam.jpg" />
     <Content Include="Images\Hatch_Green_Chile_Hamburger.jpg" />
+    <Content Include="Images\master-card1.png" />
+    <Content Include="Images\master-card2.png" />
     <Content Include="Images\milktea.jpg" />
     <Content Include="Images\noodle.jpg" />
     <Content Include="Images\rice.jpg" />
     <Content Include="Images\shishi.jpg" />
+    <Content Include="Images\visa-card1.png" />
+    <Content Include="Images\visa-card2.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
