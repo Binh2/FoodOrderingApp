@@ -18,6 +18,12 @@ namespace FoodOrderingApp.Model
             public static readonly string GET_ALL_CARDS = "http://" + IP + "/webapi/api/CardController/GetAllCards";
             public static readonly string INSERT_CARD = "http://" + IP + "/webapi/api/CardController/InsertCard";
             public static readonly string DELETE_CARD = "http://" + IP + "/webapi/api/CardController/DeleteCard";
+
+            public static readonly string GET_ALL = "http://" + IP + "/webapi/api/BaseController/GetAll";
+            public static readonly string GET_BY = "http://" + IP + "/webapi/api/BaseController/GetBy";
+            public static readonly string INSERT = "http://" + IP + "/webapi/api/BaseController/Insert";
+            public static readonly string UPDATE = "http://" + IP + "/webapi/api/BaseController/Update";
+            public static readonly string DELETE = "http://" + IP + "/webapi/api/BaseController/Delete";
         }
     }
 }

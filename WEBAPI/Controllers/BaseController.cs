@@ -16,6 +16,24 @@ namespace WEBAPI.Controllers
             return Ok(e.Message);
             //return NotFound();
         }
+        [Route("api/BaseController/GetBy")]
+        [HttpGet]
+        public IHttpActionResult GetBy(string pluralTable, string byColumn, string byValue)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("pluralTable", pluralTable);
+                param.Add("byColumn", byColumn);
+                param.Add("byValue", byValue);
+                DataTable result = Database.Database.ReadTable("Proc_GetBy", param);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return ExceptionHandling(e);
+            }
+        }
         [Route("api/BaseController/GetAll")]
         [HttpGet]
         public IHttpActionResult GetAll(string pluralTable)
