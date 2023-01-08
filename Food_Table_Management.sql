@@ -1,4 +1,5 @@
-﻿use FOOD_MANAGEMENT; go
+﻿use FOOD_MANAGEMENT; 
+go
 -------------------- Delete all tables -----------------------------
 DECLARE @Sql NVARCHAR(500) DECLARE @Cursor CURSOR
 SET @Cursor = CURSOR FAST_FORWARD FOR
@@ -24,21 +25,30 @@ create table Categories(
 	CategoryID			INT IDENTITY (1, 1) PRIMARY KEY,
 	CategoryName		NVARCHAR(MAX) not null,
 	CategoryImage		NVARCHAR(MAX) not null
-); go
+); 
+go
 
 create table Cards(
+	--CardID				INT IDENTITY (1, 1) PRIMARY KEY,
+	--CardNumber			NVARCHAR(MAX) not null,
+	--CardImage			NVARCHAR(MAX) not null,
+	--CardExpiryDate		date not null,
+	--CardTypeID			INT not null,
+	--ConsumerID			INT not null
 	CardID				INT IDENTITY (1, 1) PRIMARY KEY,
-	CardNumber			NVARCHAR(MAX) not null,
-	CardImage			NVARCHAR(MAX) not null,
-	CardExpiryDate		date not null,
-	CardTypeID			INT not null,
-	ConsumerID			INT not null
-); go
+	CardNumber			NVARCHAR(MAX),
+	CardImage			NVARCHAR(MAX),
+	CardExpiryDate		date,
+	CardTypeID			INT,
+	ConsumerID			INT
+); 
+go
 create table CardTypes(
 	CardTypeID			INT IDENTITY (1, 1) PRIMARY KEY,
 	CardTypeName		NVARCHAR(MAX) not null,
 	CardTypeImage		nvarchar(max) not null
-); go
+); 
+go
 
 create table Foods(
 	FoodID				INT IDENTITY (1, 1) PRIMARY KEY,
@@ -50,33 +60,39 @@ create table Foods(
 	FoodFavourite		NVARCHAR(MAX),	-- Not suppose to be here
 	CategoryID			INT,
 	RestaurantID		INT not null
-); go
+); 
+go
 create table FoodRatings(
 	ConsumerID			int not null,
 	FoodID				int not null,
 	primary key (ConsumerID, FoodID)
-); go
+); 
+go
 create table FoodFavourites(
 	ConsumerID			int not null,
 	FoodID				int not null,
 	primary key (ConsumerID, FoodID)
-); go
+); 
+go
 
 create table Orders(
 	OrderID				int IDENTITY (1, 1) PRIMARY KEY,
 	ConsumerID			int not null,
 	FoodID				int not null,
-); go
+); 
+go
 create table OrderStates(
 	OrderID				int not null,
 	OrderStateTypeID	int not null,
 	OrderDate			date not null,
 	OrderLocation		NVARCHAR(MAX) not null
-); go
+); 
+go
 create table OrderStateTypes(
 	OrderStateTypeID	int IDENTITY (1, 1) PRIMARY KEY,
 	OrderStateTypeName	int not null
-); go
+); 
+go
 
 create table Consumers(
 	ConsumerID			int IDENTITY (1, 1) PRIMARY KEY,
@@ -85,7 +101,8 @@ create table Consumers(
 	ConsumerImage		nvarchar(MAX),
 	ConsumerUsername	nvarchar(MAX) not null,
 	ConsumerPassword	nvarchar(MAX) not null
-); go
+); 
+go
 
 create table Producers(
 	ProducerID			int IDENTITY (1, 1) PRIMARY KEY,
@@ -94,7 +111,8 @@ create table Producers(
 	ProducerImage		nvarchar(MAX),
 	ProducerPassword	nvarchar(MAX) not null,
 	RestaurantID		int not null
-); go
+); 
+go
 
 create table Admins(
 	AdminID				int IDENTITY (1, 1) PRIMARY KEY,
@@ -102,19 +120,22 @@ create table Admins(
 	AdminEmail			nvarchar(MAX) not null,
 	AdminImage			nvarchar(MAX),
 	AdminPassword		nvarchar(MAX) not null
-); go
+); 
+go
 
 create table Comments (
 	CommentID			INT IDENTITY (1, 1) PRIMARY KEY,
 	CommentDetail		NVARCHAR(MAX),
 	FoodID				int not null,
 	ConsumerID			int not null
-); go
+); 
+go
 create table Restaurants (
 	RestaurantID		INT IDENTITY (1, 1) PRIMARY KEY,
 	RestaurantName		NVARCHAR(MAX) not null,
 	RestaurantImage		NVARCHAR(MAX)
-); go
+); 
+go
 
 create table Users( -- this table will be removed in the future because already have Consumer, Producer and Manager table
 	UserID				int IDENTITY (1, 1) PRIMARY KEY,
@@ -124,12 +145,14 @@ create table Users( -- this table will be removed in the future because already 
 	UserEmail			nvarchar(MAX) not null,
 	UserImage			nvarchar(MAX) not null,
 	UserPassword		nvarchar(MAX) not null
-); go
+); 
+go
 
 CREATE TABLE Roles ( -- this table will be removed in the future because already have Consumer, Producer and Manager table 
 	RoleID		int IDENTITY (1, 1) PRIMARY KEY,  -- 1: staff, 2: admin --
 	RoleName	nvarchar(MAX) not null
-); go
+); 
+go
 
 ALTER TABLE Foods ADD CONSTRAINT Foods_CategoryID_FK FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID);
 ALTER TABLE Foods ADD CONSTRAINT Foods_RestaurantID_FK FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID);

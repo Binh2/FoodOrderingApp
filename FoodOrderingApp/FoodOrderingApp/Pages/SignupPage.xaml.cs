@@ -20,33 +20,33 @@ namespace FoodOrderingApp.Pages
 
         private async void Signup(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushAsync(new VerificationPage());
-            //string image = userImage.Text,
-            //    name = userName.Text,
-            //    email = userEmail.Text,
-            //    password = userPassword.Text,
-            //    confirmPassword = userConfirmPassword.Text;
+            //await Shell.Current.Navigation.PushAsync(new VerificationPage());
+            string image = consumerImage.Text,
+                name = consumerName.Text,
+                email = consumerEmail.Text,
+                password = consumerPassword.Text,
+                confirmPassword = consumerConfirmPassword.Text;
 
-            //if (password != confirmPassword)
+            if (password != confirmPassword)
+            {
+                await DisplayAlert("Confirm password does not match with Password!!!", "", "Close");
+                return;
+            }
+
+            //Consumer consumer = new Consumer
             //{
-            //    await DisplayAlert("Confirm password does not match with Password!!!", "", "Close");
-            //    return;
-            //}
-            
-            //User user = new User
-            //{
-            //    UserImage = image,
-            //    UserName = name,
-            //    UserEmail = email,
-            //    UserPassword = password
+            //    ConsumerImage = image,
+            //    ConsumerName = name,
+            //    ConsumerEmail = email,
+            //    ConsumerPassword = password
             //};
 
-            //User returnUser = Database.selectUserByEmail(user);
-            //if (returnUser == null)
+            //Consumer returnConsumer = Database.selectConsumerByEmail(consumer);
+            //if (returnConsumer == null)
             //{
             //    await Shell.Current.GoToAsync("//tabBar/homepage");
-            //    Database.insertUser(user);
-            //    UserProvider.user = user;
+            //    Database.insertConsumer(consumer);
+            //    ConsumerProvider.consumer = consumer;
             //}
             //else await DisplayAlert(email + " is already in use.", "", "Close");
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -69,13 +70,42 @@ namespace FoodOrderingApp.Pages
             }
             if (enteredVerification == "123456")
                 await Shell.Current.GoToAsync("//tabBar/homepage");
-            else await DisplayAlert("Incorrect verification code", "Please reenter the correct verification code", "Close");
+            else
+            {
+                foreach (Entry entry in verificationEntries)
+                {
+                    entry.Text = "";
+                }
+                await DisplayAlert("Incorrect verification code", "Please reenter the correct verification code", "Close");
+            }
         }
         private string GenerateRandom6DigitString()
         {
             Random generator = new Random();
             return generator.Next(0, 1000000).ToString("D6");
         }
-
+        public async Task SendEmail(string subject, string body, List<string> recipients)
+        {
+            try
+            {
+                var message = new EmailMessage
+                {
+                    Subject = subject,
+                    Body = body,
+                    To = recipients,
+                    //Cc = ccRecipients,
+                    //Bcc = bccRecipients
+                };
+                await Email.ComposeAsync(message);
+            }
+            catch (FeatureNotSupportedException fbsEx)
+            {
+                // Email is not supported on this device
+            }
+            catch (Exception ex)
+            {
+                // Some other exception occurred
+            }
+        }
     }
 }

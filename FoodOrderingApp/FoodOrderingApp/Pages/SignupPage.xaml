@@ -12,30 +12,30 @@
                         <StackLayout Spacing="30">
                             <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Image  " Style="{StaticResource EntryLabelStyle}"></Label>
-                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userImage" ReturnType="Next"
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerImage" ReturnType="Next"
                                    IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Name " Style="{StaticResource EntryLabelStyle}"></Label>
-                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userName" 
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerName" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Email " Style="{StaticResource EntryLabelStyle}"></Label>
-                                <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                                <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerEmail" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Password " Style="{StaticResource EntryLabelStyle}"></Label>
-                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="consumerPassword" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Confirm password " Style="{StaticResource EntryLabelStyle}"></Label>
-                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="userConfirmPassword" 
+                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="consumerConfirmPassword" 
                                    ReturnType="Done" Completed="Signup"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>

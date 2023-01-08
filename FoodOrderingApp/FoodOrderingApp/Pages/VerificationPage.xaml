@@ -16,35 +16,34 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        
-            <Frame Padding="15,20,15,0">
-                <Frame>
-                    <StackLayout VerticalOptions="Start">
-                        <Label Text="Verification" Style="{StaticResource TitleStyle}"></Label>
-                        <Label Text="A 6-digit PIN has been sent to your email adddress, enter it below to continue" Style="{StaticResource SubtitleStyle}"></Label>
-                        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,60,0,0">
-                            <Entry x:Name="verificationEntry1" TextChanged="verificationEntry1_TextChanged" 
+        <Frame Padding="15,20,15,0">
+            <Frame>
+                <StackLayout VerticalOptions="Start">
+                    <Label Text="Verification" Style="{StaticResource TitleStyle}"></Label>
+                    <Label Text="A 6-digit PIN has been sent to your email adddress, enter it below to continue" Style="{StaticResource SubtitleStyle}"></Label>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,60,0,0">
+                        <Entry x:Name="verificationEntry1" TextChanged="verificationEntry1_TextChanged" 
                                Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
-                            <Entry x:Name="verificationEntry2" TextChanged="verificationEntry2_TextChanged"
+                        <Entry x:Name="verificationEntry2" TextChanged="verificationEntry2_TextChanged"
                                Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
-                            <Entry x:Name="verificationEntry3" TextChanged="verificationEntry3_TextChanged"
+                        <Entry x:Name="verificationEntry3" TextChanged="verificationEntry3_TextChanged"
                                Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
-                            <Entry x:Name="verificationEntry4" TextChanged="verificationEntry4_TextChanged"
+                        <Entry x:Name="verificationEntry4" TextChanged="verificationEntry4_TextChanged"
                                Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
-                            <Entry x:Name="verificationEntry5" TextChanged="verificationEntry5_TextChanged"
+                        <Entry x:Name="verificationEntry5" TextChanged="verificationEntry5_TextChanged"
                                Style="{StaticResource VerificationStyle}" ReturnType="Next"></Entry>
-                            <Entry x:Name="verificationEntry6" TextChanged="verificationEntry6_TextChanged"
+                        <Entry x:Name="verificationEntry6" TextChanged="verificationEntry6_TextChanged"
                                Style="{StaticResource VerificationStyle}" ReturnType="Done"></Entry>
-                        </StackLayout>
-                        <Label Text="Resend PIN" FontSize="16" TextColor="Black"
+                    </StackLayout>
+                    <Label Text="Resend PIN" FontSize="16" TextColor="Black"
                                VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,0,50">
-                            <!--<Label.GestureRecognizers>
+                        <!--<Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ResendVerificationCommand}"></TapGestureRecognizer>
                             </Label.GestureRecognizers>-->
-                        </Label>
-                        <Button Text="Continue" Style="{StaticResource ButtonStyle}"></Button>
-                    </StackLayout>
-                </Frame>
+                    </Label>
+                    <Button Text="Continue" Style="{StaticResource ButtonStyle}"></Button>
+                </StackLayout>
             </Frame>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
