@@ -74,41 +74,25 @@ namespace WEBAPI.Controllers
                 return ExceptionHandling(e);
             }
         }
-        //[Route("api/CardController/UpdateCard")]
-        //[HttpPost]
-        //public IHttpActionResult DeleteCard(Card card)
-        //{
-        //    try
-        //    {
-        //        Dictionary<string, object> param = new Dictionary<string, object>();
-        //        param.Add("CardID", card.CardID);
-        //        param.Add("CardNumber", card.CardNumber);
-        //        param.Add("CardImage", card.CardImage);
-        //        param.Add("CardImage", card.CardExpiryDate);
-        //        param.Add("CardTypeID", card.CardTypeID);
-        //        var result = Database.Database.Exec_Command("Proc_UpdateCard", param);
-        //        return Ok(int.Parse(result.ToString()));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return Ok(e.Message);
-        //    }
-        //}
-        //[Route("api/CardController/DeleteCard")]
-        //[HttpPost]
-        //public IHttpActionResult DeleteCard(int CardID)
-        //{
-        //    try
-        //    {
-        //        Dictionary<string, object> param = new Dictionary<string, object>();
-        //        param.Add("CardID", CardID);
-        //        var result = Database.Database.Exec_Command("Proc_DeleteCard", param);
-        //        return Ok(int.Parse(result.ToString()));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return Ok(e.Message);
-        //    }
-        //}
+        [Route("api/BaseController/Delete")]
+        [HttpPost]
+        public IHttpActionResult Delete(string pluralTable, string tableID, string tableIDValue)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("pluralTable", pluralTable);
+                param.Add("uniqueColumn", tableID);
+                param.Add("uniqueValue", tableIDValue);
+                param.Add("tableID", tableID);
+                param.Add("tableIDValue", tableIDValue);
+                var result = Database.Database.Exec_Command("Proc_Delete", param);
+                return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return ExceptionHandling(e);
+            }
+        }
     }
 }

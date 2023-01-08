@@ -29,18 +29,12 @@ create table Categories(
 go
 
 create table Cards(
-	--CardID				INT IDENTITY (1, 1) PRIMARY KEY,
-	--CardNumber			NVARCHAR(MAX) not null,
-	--CardImage			NVARCHAR(MAX) not null,
-	--CardExpiryDate		date not null,
-	--CardTypeID			INT not null,
-	--ConsumerID			INT not null
 	CardID				INT IDENTITY (1, 1) PRIMARY KEY,
-	CardNumber			NVARCHAR(MAX),
-	CardImage			NVARCHAR(MAX),
-	CardExpiryDate		date,
-	CardTypeID			INT,
-	ConsumerID			INT
+	CardNumber			NVARCHAR(MAX) not null,
+	CardImage			NVARCHAR(MAX) not null,
+	CardExpiryDate		date not null,
+	CardTypeID			INT not null,
+	ConsumerID			INT not null
 ); 
 go
 create table CardTypes(
