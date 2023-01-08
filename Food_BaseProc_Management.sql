@@ -93,14 +93,14 @@ declare @delete nvarchar(max), @proc nvarchar(max), @ifNotExists nvarchar(max);
 set @ifNotExists = N'if(not exists(select * from ' + @pluralTable + N' where ' + @uniqueColumn + N'=' + @uniqueValue + N')) ';
 set @delete = N'delete ' + @pluralTable + N' where ' + @tableID + N'=' + @TableIDValue + N';';
 set @proc = 
-	N'begin try' +
+	N'begin try ' +
 	   @ifNotExists +
 	N'  begin ' +
 	N'   set @CurrentID=-1;' +
 	N'   return;' +
 	N'  end ' +
 	    @delete +
-	N'  set @CurrentID=@CardID;' +
+	N'  set @CurrentID=' + @tableIDValue + N';' +
 	N'end try ' +
 	N'begin catch ' +
 	N' set @CurrentID=0;' +

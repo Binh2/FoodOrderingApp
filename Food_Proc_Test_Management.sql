@@ -15,3 +15,12 @@ exec Proc_Update @pluralTable=N'Cards', @parameters=N'CardNumber=''1''',
 select @CurrentID;
 select * from Cards;
 go
+
+-- Execute Proc_Delete
+declare @CurrentID int;
+exec Proc_Delete @pluralTable=N'Cards',
+	@uniqueColumn=N'CardID', @uniqueValue=N'1', @tableID=N'CardID', @tableIDValue=N'1', 
+	@CurrentID = @CurrentID output;
+select @CurrentID;
+select * from Cards;
+go
