@@ -159,3 +159,4 @@ GO
 
 INSERT INTO Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES ('1234', 'card.png', 1, 1);
 select * from cards;
+
