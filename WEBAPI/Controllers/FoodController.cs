@@ -68,6 +68,23 @@ namespace WEBAPI.Controllers
                 return NotFound();
             }
         }
+
+        [Route("api/FoodController/GetAllFoodss")]
+        [HttpGet]
+        public IHttpActionResult GetAllFoodss()
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
+                DataTable result = Database.Database.ReadTable("Proc_GetAllFoodss", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
         [Route("api/FoodController/Proc_GetTOP4FoodByRATES")]
         [HttpGet]
         public IHttpActionResult Proc_GetTOP4FoodByRATES()

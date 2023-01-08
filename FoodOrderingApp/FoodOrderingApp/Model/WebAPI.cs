@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,10 @@ namespace FoodOrderingApp.Model
             var resultConverted = JsonConvert.DeserializeObject<T>(result);
             return resultConverted;
         }
-        //static async public Task<T> Insert<T>(object obj) // Not done
+        //static async public Task<T> Insert<T>(T obj) where T : IBase
         //{
-        //    string url;
+        //    string parameterColumns = typeof(T).GetProperties().Aggregate("", (columns, column) => columns ;
+        //    string url = "http://" + Constants.IP + "/webapi/api/BaseController/Insert?pluralTable=" + obj.pluralTable + "&parameterColumns=" 
         //    HttpClient http = new HttpClient();
         //    string json = JsonConvert.SerializeObject(obj);
         //    StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
