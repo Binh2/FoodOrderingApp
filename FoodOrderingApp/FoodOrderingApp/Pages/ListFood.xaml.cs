@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoodOrderingApp.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -16,16 +18,21 @@ namespace FoodOrderingApp.Pages
         public ListFood()
         {
             InitializeComponent();
+            GetAllFood();   
         }
 
-       
-        private async void CmdHelloWEBAPI_Clicked_1(object sender, EventArgs e)
+        async void GetAllFood()
         {
             HttpClient httpClient = new HttpClient();
+            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllFoods");
+            var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
+            listView.ItemsSource = foodListConverted;
+        }
 
-            var result = await httpClient.GetStringAsync("http://192.168.2.13/WEBAPI/api/FoodController/HelloWebAPI");
-            LbHello.Text = result;
-            LbHello.TextColor = Color.Red;
+        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Foods foods = (Foods)e.SelectedItem;
+            Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
         }
     }
 }

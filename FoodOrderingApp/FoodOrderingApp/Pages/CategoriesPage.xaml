@@ -19,7 +19,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding CategoryImage}" Grid.Column="0" WidthRequest="90" HeightRequest="90"/>
+                            <Image Source="{Binding CategoryImage}" Grid.Column="0" WidthRequest="90" HeightRequest="90" />
                             <Label Text="{Binding CategoryName}" FontSize="Large" TextColor="Black" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0"/>
                         </Grid>
                     </DataTemplate>

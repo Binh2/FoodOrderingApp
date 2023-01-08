@@ -17,16 +17,16 @@ namespace FoodOrderingApp.Pages
     public partial class CategoriesPage : ContentPage
 
     {
-       
+
         public CategoriesPage()
         {
-            InitializeComponent();  
-        }
-        protected async override void OnAppearing()
+            InitializeComponent();
+            ListViewInit();
+        }      
+        async void ListViewInit()
         {
-            base.OnAppearing();
             HttpClient httpClient = new HttpClient();
-            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategory");
+            var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategories");
             var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
             Lstcategories.ItemsSource = categoryListConverted;
         }

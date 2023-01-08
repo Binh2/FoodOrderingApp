@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WEBAPI.Models
+﻿namespace WEBAPI.Models
 {
     static public class Constants
     {
@@ -13,6 +8,6 @@ namespace WEBAPI.Models
 
         // Thien
         //public static readonly string IP = "192.168.2.13";
-        //public static readonly string CONNECTION_STRING_NAME = "QLBConnectionstringThien";
+        //public static readonly string CONNECTION_STRING_NAME = "QLBConnectionstring";
     }
 }

@@ -23,13 +23,12 @@ namespace FoodOrderingApp.Pages
         async void GetFoodsByCateID(int CategoryID)
         {
             HttpClient httpClient = new HttpClient();
-
-            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodBycategoryID?CategoryId=" + CategoryID.ToString());
+            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodsBycategoryID?CategoryId=" + CategoryID.ToString());
             var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
-            LstFood.ItemsSource = foodListConverted;
+            listView.ItemsSource = foodListConverted;
         }
 
-        private void LstFood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Foods foods = (Foods)e.SelectedItem;
             Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
