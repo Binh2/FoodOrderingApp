@@ -20,7 +20,8 @@ namespace FoodOrderingApp.ProfilePages
         }
         protected async override void OnAppearing()
         {
-            cards = await WebAPI.GetAll<Card>();
+            //cards = await WebAPI.GetAll<Card>();
+            cards = new List<Card>() { new Card() };
             collectionView.ItemsSource = cards;
         }
         private async void cardLayout_Tapped(object sender, EventArgs e)

@@ -13,13 +13,8 @@ namespace FoodOrderingApp.Model
         DateTime CardExpiryDate { get; set; }
         string CardType { get; set; }
     }
-    public class Card : ICard, IConsumer, ICardType, IBase
+    public class Card : ICard, IConsumer, ICardType
     {
-        public string pluralTable { get; } = "Cards";
-        public string uniqueColumn { get; set; } = "CardNumber";
-        public string IDColumn { get; } = "CardID";
-        public List<string> parameterColumns { get; } = new List<string>() { "CardNumber", "CardImage", "CardExpiryDate", "CardTypeID", "ConsumerID" };
-
         public int CardID { get; set; }
         public string CardNumber { get; set; }
         public string CardImage { get; set; }
