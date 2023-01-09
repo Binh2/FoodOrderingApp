@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
              x:Class="FoodOrderingApp.ProfilePages.ProfilePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10">
                 <Frame CornerRadius="500" Padding="0,0,15,0">
-                    <Image Source="{Binding UserImage}"></Image>
+                    <Image Source="{Binding ConsumerImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
                 </Frame>
                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                    <Label Text="{Binding UserName}" FontAttributes="Bold"
+                    <Label Text="{Binding ConsumerName}" FontAttributes="Bold"
                            FontSize="20"></Label>
-                    <Label Text="{Binding UserEmail}"></Label>
+                    <Label Text="{Binding ConsumerEmail}"></Label>
                 </StackLayout>
             </StackLayout>
 

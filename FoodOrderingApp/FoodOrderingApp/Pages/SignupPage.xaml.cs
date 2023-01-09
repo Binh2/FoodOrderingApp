@@ -46,12 +46,11 @@ namespace FoodOrderingApp.Pages
             Consumer returnConsumer = await WebAPI.SelectConsumerByUsername(consumer.ConsumerUsername);
             if (returnConsumer == null)
             {
-                await Shell.Current.GoToAsync("//tabBar/homepage");
-                //Database.insertConsumer(consumer);
-                await WebAPI.InsertConsumer(consumer);
                 ConsumerProvider.consumer = consumer;
+                //await Shell.Current.GoToAsync("//tabBar/homepage");
+                await Shell.Current.GoToAsync("//verificationPage");
             }
-            else await DisplayAlert(email + " is already in use.", "", "Close");
+            else await DisplayAlert(username + " is already in use.", "", "Close");
         }
     }
 }
