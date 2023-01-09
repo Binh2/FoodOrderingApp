@@ -21,6 +21,7 @@ namespace FoodOrderingApp.Model
             
             public static readonly string SELECT_ALL_CONSUMERS = "http://" + IP + "/webapi/api/ConsumerController/SelectAllConsumers";
             public static readonly string SELECT_CONSUMER_BY_USERNAME = "http://" + IP + "/webapi/api/ConsumerController/SelectConsumerByUsername";
+            public static readonly string SELECT_CONSUMER_BY_EMAIL = "http://" + IP + "/webapi/api/ConsumerController/SelectConsumerByEmail";
             public static readonly string INSERT_CONSUMER = "http://" + IP + "/webapi/api/ConsumerController/InsertConsumer";
             public static readonly string UPDATE_CONSUMER = "http://" + IP + "/webapi/api/ConsumerController/UpdateConsumer";
             public static readonly string DELETE_CONSUMER = "http://" + IP + "/webapi/api/ConsumerController/DeleteConsumer";

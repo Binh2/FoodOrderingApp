@@ -11,6 +11,10 @@
                   Title="Signin" ContentTemplate="{DataTemplate pages:SigninPage}"></ShellContent>
     <ShellContent Icon="search_button.png" Route="signupPage" FlyoutItemIsVisible="False"
                   Title="Signup" ContentTemplate="{DataTemplate pages:SignupPage}"></ShellContent>
+    <ShellContent Icon="search_button.png" Route="verificationPage" FlyoutItemIsVisible="False"
+                  Title="Verification" ContentTemplate="{DataTemplate pages:VerificationPage}"></ShellContent>
+    <ShellContent Icon="search_button.png" Route="resetPasswordPage" FlyoutItemIsVisible="False"
+                  Title="Reset password" ContentTemplate="{DataTemplate pages:ResetPasswordPage}"></ShellContent>
 
     <TabBar Route="tabBar">
         <ShellContent Icon="search_button.png" Route="homepage"

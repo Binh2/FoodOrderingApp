@@ -25,6 +25,15 @@ namespace FoodOrderingApp.Model
                 return consumers[0];
             return null;
         }
+        static public async Task<Consumer> SelectConsumerByEmail(string ConsumerEmail)
+        {
+            HttpClient http = new HttpClient();
+            var result = await http.GetStringAsync(Constants.ProcURL.SELECT_CONSUMER_BY_EMAIL + "?ConsumerEmail=" + ConsumerEmail);
+            var consumers = JsonConvert.DeserializeObject<List<Consumer>>(result);
+            if (consumers.Count > 0) 
+                return consumers[0];
+            return null;
+        }
         static public async Task<int> InsertConsumer(Consumer consumer)
         {
             HttpClient http = new HttpClient();

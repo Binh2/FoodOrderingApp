@@ -40,6 +40,12 @@
                 <Setter Property="Padding" Value="0,12"></Setter>
                 <Setter Property="CornerRadius" Value="5"></Setter>
             </Style>
+            <Style x:Key="SecondButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="{DynamicResource GreenColor}"></Setter>
+                <Setter Property="Padding" Value="0,12"></Setter>
+                <Setter Property="CornerRadius" Value="5"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

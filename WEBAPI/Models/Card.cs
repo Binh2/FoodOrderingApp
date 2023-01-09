@@ -10,6 +10,7 @@ namespace WEBAPI.Models
         int CardID { get; set; }
         string CardNumber { get; set; }
         string CardImage { get; set; }
+        double CardBalance { get; set; }
         DateTime CardExpiryDate { get; set; }
         string CardType { get; set; }
     }
@@ -18,6 +19,7 @@ namespace WEBAPI.Models
         public int CardID { get; set; }
         public string CardNumber { get; set; }
         public string CardImage { get; set; }
+        public double CardBalance { get; set; }
         public DateTime CardExpiryDate { get; set; }
         public string CardType { get; set; }
 

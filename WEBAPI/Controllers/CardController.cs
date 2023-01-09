@@ -19,7 +19,6 @@ namespace WEBAPI.Controllers
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("IP", Constants.IP);
                 DataTable result = Database.Database.ReadTable("Proc_GetAllCards", param);
                 return Ok(result);
             }
@@ -38,7 +37,8 @@ namespace WEBAPI.Controllers
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("CardNumber", card.CardNumber);
                 param.Add("CardImage", card.CardImage);
-                param.Add("CardImage", card.CardExpiryDate);
+                param.Add("CardExipryDate", card.CardExpiryDate);
+                param.Add("Cardalance", card.CardBalance);
                 param.Add("CardTypeID", card.CardTypeID);
                 param.Add("ConsumerID", card.ConsumerID);
                 var result = Database.Database.Exec_Command("Proc_InsertCard", param);
@@ -59,8 +59,10 @@ namespace WEBAPI.Controllers
                 param.Add("CardID", card.CardID);
                 param.Add("CardNumber", card.CardNumber);
                 param.Add("CardImage", card.CardImage);
-                param.Add("CardImage", card.CardExpiryDate);
+                param.Add("CardExipryDate", card.CardExpiryDate);
+                param.Add("Cardalance", card.CardBalance);
                 param.Add("CardTypeID", card.CardTypeID);
+                param.Add("ConsumerID", card.ConsumerID);
                 var result = Database.Database.Exec_Command("Proc_UpdateCard", param);
                 return Ok(int.Parse(result.ToString()));
             }

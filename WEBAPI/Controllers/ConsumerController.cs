@@ -43,6 +43,22 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
+        [Route("api/ConsumerController/SelectConsumerByEmail")]
+        [HttpGet]
+        public IHttpActionResult SelectConsumerByEmail(string ConsumerEmail)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("ConsumerEmail", ConsumerEmail);
+                DataTable result = Database.Database.ReadTable("Proc_SelectConsumerByEmail", param);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
 
         [Route("api/ConsumerController/InsertConsumer")]
         [HttpPost]
@@ -75,6 +91,7 @@ namespace WEBAPI.Controllers
                 param.Add("ConsumerName", consumer.ConsumerName);
                 param.Add("ConsumerEmail", consumer.ConsumerEmail);
                 param.Add("ConsumerImage", consumer.ConsumerImage);
+                param.Add("ConsumerUsername", consumer.ConsumerUsername);
                 param.Add("ConsumerPassword", consumer.ConsumerPassword);
                 var result = Database.Database.Exec_Command("Proc_UpdateConsumer", param);
                 return Ok(int.Parse(result.ToString()));

@@ -11,12 +11,12 @@ namespace FoodOrderingApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return "http://" + Constants.IP + (string)value;
+            return "http://" + Constants.IP + "/WEBAPI/Images/" + (string)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((string)value).Replace("http://" + Constants.IP, "");
+            return ((string)value).Replace("http://" + Constants.IP + "/WEBAPI/Images" , "");
         }
     }
 }

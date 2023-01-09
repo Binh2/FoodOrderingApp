@@ -33,6 +33,7 @@ create table Cards(
 	CardNumber			NVARCHAR(MAX) not null,
 	CardImage			NVARCHAR(MAX) not null,
 	CardExpiryDate		date not null,
+	CardBalance			float(53) not null,
 	CardTypeID			INT not null,
 	ConsumerID			INT not null
 ); 
@@ -173,8 +174,8 @@ SELECT CategoryID, COUNT(CategoryID) AS "So luong"
   GROUP BY CategoryID;
 GO
 
-insert into CardTypes(CardTypeName, CardTypeImage) values ('Visa', '/WEBAPI/Images/visa_logo.png');
-insert into CardTypes(CardTypeName, CardTypeImage) values ('MasterCard', '/WEBAPI/Images/master_logo.png');
+insert into CardTypes(CardTypeName, CardTypeImage) values ('Visa', 'visa_logo.png');
+insert into CardTypes(CardTypeName, CardTypeImage) values ('MasterCard', 'master_logo.png');
 select * from CardTypes;
 go
 drop table Consumers
@@ -187,25 +188,25 @@ create table Consumers(
 	ConsumerPassword	nvarchar(MAX) not null
 ); 
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('Mark Olson', 'mark@gmail.com', '/WEBAPI/Images/mark_olson.png', 'mark', '123');
+	('Mark Olson', 'mark@gmail.com', 'mark_olson.png', 'mark', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('Samathan Smith', 'Samathan@gmail.com', '/WEBAPI/Images/samathan_smith.png', 'samathan', '123');
+	('Samathan Smith', 'Samathan@gmail.com', 'samathan_smith.png', 'samathan', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('John Smith', 'john@gmail.com', '/WEBAPI/Images/mark_olson.png', 'john', '123');
+	('John Smith', 'john@gmail.com', 'mark_olson.png', 'john', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('Alex Livingson', 'alex@gmail.com', '/WEBAPI/Images/alex_livingson.png', 'alex', '123');
+	('Alex Livingson', 'alex@gmail.com', 'alex_livingson.png', 'alex', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('David Spade', 'david@gmail.com', '/WEBAPI/Images/david.png', 'david', '123');
+	('David Spade', 'david@gmail.com', 'david.png', 'david', '123');
 select * from Consumers;
 GO
 
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('4227 0123 4567 8901', '/WEBAPI/Images/visa-card1.png', '2024-01-01', 1, 1);
+	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 1, 1);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('1234 4567 8910 1289', '/WEBAPI/Images/visa-card2.png', '2023-12-20', 1, 2);
+	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 1, 2);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('5100 1234 5678 9012', '/WEBAPI/Images/master-card1.png', '2023-12-20', 2, 3);
+	('5100 1234 5678 9012', 'master-card1.png', '2023-12-20', 2, 3);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('4000 0012 3456 7899', '/WEBAPI/Images/master-card2.png', '2021-03-31', 2, 4);
+	('4000 0012 3456 7899', 'master-card2.png', '2021-03-31', 2, 4);
 select * from cards;
 go

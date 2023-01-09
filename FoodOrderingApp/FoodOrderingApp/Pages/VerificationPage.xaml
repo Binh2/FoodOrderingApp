@@ -35,11 +35,11 @@
                         <Entry x:Name="verificationEntry6" TextChanged="verificationEntry6_TextChanged"
                                Style="{StaticResource VerificationStyle}" ReturnType="Done"></Entry>
                     </StackLayout>
-                    <Label Text="Resend PIN" FontSize="16" TextColor="Black"
+                    <Label Text="Resend PIN" FontSize="16" TextColor="Black" x:Name="resendPINLabel"
                                VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,0,50">
                         <!--<Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ResendVerificationCommand}"></TapGestureRecognizer>
-                            </Label.GestureRecognizers>-->
+                            <TapGestureRecognizer Command="{Binding ResendVerificationCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>-->
                     </Label>
                     <Button Text="Continue" Style="{StaticResource ButtonStyle}"></Button>
                 </StackLayout>
