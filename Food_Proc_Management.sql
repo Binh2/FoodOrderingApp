@@ -96,7 +96,7 @@ AS
 SELECT * FROM Cards;
 GO
 
--- Select cards by ConsumerID
+-- Select card by ConsumerID
 CREATE PROC Proc_GetCardsByConsumerID(@ConsumerID int)
 AS
 SELECT * FROM Cards where ConsumerID = @ConsumerID;
@@ -107,6 +107,7 @@ CREATE PROC dbo.Proc_InsertCard(
 	@CardNumber nvarchar(max), 
 	@CardImage nvarchar(max), 
 	@CardExpiryDate date,
+	@CardBalance float(53),
 	@CardTypeID int, 
 	@ConsumerID int, 
 	@CurrentID int output)
@@ -117,7 +118,8 @@ begin try
    set @CurrentID=0
    return
   end
- insert into Cards(CardNumber, CardImage, CardTypeID, ConsumerID) VALUES (@CardNumber, @CardImage, @CardTypeID, @ConsumerID);
+ insert into Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
+ (@CardNumber, @CardImage, @CardExpiryDate, @CardBalance, @CardTypeID, @ConsumerID);
  set @CurrentID=@@IDENTITY
 end try
 begin catch
