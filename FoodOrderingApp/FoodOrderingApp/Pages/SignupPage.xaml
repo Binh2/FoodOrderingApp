@@ -28,8 +28,13 @@
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Username " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry HorizontalOptions="FillAndExpand" x:Name="consumerUsername" 
+                                   ReturnType="Next" IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Password " Style="{StaticResource EntryLabelStyle}"></Label>
-                                <Entry IsPassword="True" VerticalOptions="End" HorizontalOptions="FillAndExpand" x:Name="consumerPassword" 
+                                <Entry IsPassword="True" HorizontalOptions="FillAndExpand" x:Name="consumerPassword" 
                                    ReturnType="Next"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>

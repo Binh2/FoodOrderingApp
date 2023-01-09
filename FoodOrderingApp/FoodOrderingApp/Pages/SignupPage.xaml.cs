@@ -24,6 +24,7 @@ namespace FoodOrderingApp.Pages
             string image = consumerImage.Text,
                 name = consumerName.Text,
                 email = consumerEmail.Text,
+                username = consumerUsername.Text,
                 password = consumerPassword.Text,
                 confirmPassword = consumerConfirmPassword.Text;
 
@@ -33,22 +34,24 @@ namespace FoodOrderingApp.Pages
                 return;
             }
 
-            //Consumer consumer = new Consumer
-            //{
-            //    ConsumerImage = image,
-            //    ConsumerName = name,
-            //    ConsumerEmail = email,
-            //    ConsumerPassword = password
-            //};
+            Consumer consumer = new Consumer
+            {
+                ConsumerImage = image,
+                ConsumerName = name,
+                ConsumerEmail = email,
+                ConsumerUsername = username,
+                ConsumerPassword = password
+            };
 
-            //Consumer returnConsumer = Database.selectConsumerByEmail(consumer);
-            //if (returnConsumer == null)
-            //{
-            //    await Shell.Current.GoToAsync("//tabBar/homepage");
-            //    Database.insertConsumer(consumer);
-            //    ConsumerProvider.consumer = consumer;
-            //}
-            //else await DisplayAlert(email + " is already in use.", "", "Close");
+            Consumer returnConsumer = await WebAPI.SelectConsumerByUsername(consumer.ConsumerUsername);
+            if (returnConsumer == null)
+            {
+                await Shell.Current.GoToAsync("//tabBar/homepage");
+                //Database.insertConsumer(consumer);
+                await WebAPI.InsertConsumer(consumer);
+                ConsumerProvider.consumer = consumer;
+            }
+            else await DisplayAlert(email + " is already in use.", "", "Close");
         }
     }
 }

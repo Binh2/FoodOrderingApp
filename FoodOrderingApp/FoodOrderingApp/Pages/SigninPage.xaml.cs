@@ -25,26 +25,27 @@ namespace FoodOrderingApp.Pages
 
         private async void Signin(object sender, EventArgs e)
         {
-            string email = userEmail.Text,
-                password = userPassword.Text;
+            string username = consumerUsername.Text,
+                password = consumerPassword.Text;
 
-            User user = new User
+            Consumer consumer = new Consumer
             {
-                UserEmail = email,
-                UserPassword = password
+                ConsumerUsername = username,
+                ConsumerPassword = password
             };
 
-            User returnUser = Database.selectUserByEmail(user);
-            if (returnUser == null || returnUser.UserPassword != user.UserPassword)
+            //Consumer returnConsumer = Database.selectConsumerByEmail(consumer);
+            Consumer returnConsumer = await WebAPI.SelectConsumerByUsername(username);
+            if (returnConsumer == null || returnConsumer.ConsumerPassword != consumer.ConsumerPassword)
             {
                 await DisplayAlert("Email or password is not correct", "", "Close");
                 return;
             }
 
-            if (returnUser.UserPassword == user.UserPassword)
+            if (returnConsumer.ConsumerPassword == consumer.ConsumerPassword)
             {
                 await Shell.Current.GoToAsync("//tabBar/homepage");
-                UserProvider.user = returnUser;
+                ConsumerProvider.consumer = returnConsumer;
             }
         }
     }

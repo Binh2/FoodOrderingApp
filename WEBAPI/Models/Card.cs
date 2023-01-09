@@ -28,6 +28,7 @@ namespace WEBAPI.Models
         public string ConsumerName { get; set; }
         public string ConsumerEmail { get; set; }
         public string ConsumerImage { get; set; }
+        public string ConsumerUsername { get; set; }
         public string ConsumerPassword { get; set; }
     }
 }

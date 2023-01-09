@@ -92,7 +92,7 @@ create table Consumers(
 	ConsumerID			int IDENTITY (1, 1) PRIMARY KEY,
 	ConsumerName		nvarchar(MAX) not null,
 	ConsumerEmail		nvarchar(MAX) not null,
-	ConsumerImage		nvarchar(MAX),
+	ConsumerImage		nvarchar(MAX) not null,
 	ConsumerUsername	nvarchar(MAX) not null,
 	ConsumerPassword	nvarchar(MAX) not null
 ); 
@@ -194,6 +194,8 @@ insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUserna
 	('John Smith', 'john@gmail.com', '/WEBAPI/Images/mark_olson.png', 'john', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
 	('Alex Livingson', 'alex@gmail.com', '/WEBAPI/Images/alex_livingson.png', 'alex', '123');
+insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
+	('David Spade', 'david@gmail.com', '/WEBAPI/Images/david.png', 'david', '123');
 select * from Consumers;
 GO
 

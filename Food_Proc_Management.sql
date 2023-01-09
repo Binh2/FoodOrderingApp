@@ -17,6 +17,7 @@ begin
 end
 close cur
 deallocate cur
+go
 --//---------------- Delete all procedures ---------------------//--
 
 --LẤY TẤT CẢ LOẠI HÀNG--

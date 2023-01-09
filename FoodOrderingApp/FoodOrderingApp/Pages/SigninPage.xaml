@@ -23,16 +23,20 @@
                             <BoxView HeightRequest="15"></BoxView>
                             <StackLayout Spacing="15">
 
-                                <StackLayout Orientation="Vertical">
+                                <!--<StackLayout Orientation="Vertical">
                                     <Label Text="Email " VerticalOptions="End" TextColor="#555" FontSize="18"></Label>
-                                    <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userEmail" 
+                                    <Entry Keyboard="Email" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerEmail" 
                                    ReturnType="Next" Margin="0" 
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
+                                </StackLayout>-->
+                                <StackLayout Orientation="Vertical" Spacing="0">
+                                    <Label Text="Username " Style="{StaticResource EntryLabelStyle}"></Label>
+                                    <Entry HorizontalOptions="FillAndExpand" x:Name="consumerUsername" 
+                                   ReturnType="Next" IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text="Password " VerticalOptions="End" TextColor="#555"
-                                   FontSize="20"></Label>
-                                    <Entry IsPassword="True" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="userPassword" 
+                                    <Label Text="Password " Style="{StaticResource EntryLabelStyle}"></Label>
+                                    <Entry IsPassword="True" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerPassword" 
                                    ReturnType="Done" Margin="0"
                                    IsTextPredictionEnabled="False" IsSpellCheckEnabled="False" Completed="Signin"></Entry>
                                 </StackLayout>
