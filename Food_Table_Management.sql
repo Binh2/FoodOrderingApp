@@ -88,14 +88,6 @@ create table OrderStateTypes(
 ); 
 go
 
-create table Consumers(
-	ConsumerID			int IDENTITY (1, 1) PRIMARY KEY,
-	ConsumerName		nvarchar(MAX) not null,
-	ConsumerEmail		nvarchar(MAX) not null,
-	ConsumerImage		nvarchar(MAX) not null,
-	ConsumerUsername	nvarchar(MAX) not null,
-	ConsumerPassword	nvarchar(MAX) not null
-); 
 go
 
 create table Producers(
@@ -185,7 +177,15 @@ insert into CardTypes(CardTypeName, CardTypeImage) values ('Visa', '/WEBAPI/Imag
 insert into CardTypes(CardTypeName, CardTypeImage) values ('MasterCard', '/WEBAPI/Images/master_logo.png');
 select * from CardTypes;
 go
-
+drop table Consumers
+create table Consumers(
+	ConsumerID			int IDENTITY (1, 1) PRIMARY KEY,
+	ConsumerName		nvarchar(MAX) not null,
+	ConsumerEmail		nvarchar(MAX) not null,
+	ConsumerImage		nvarchar(MAX) not null,
+	ConsumerUsername	nvarchar(MAX) not null,
+	ConsumerPassword	nvarchar(MAX) not null
+); 
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
 	('Mark Olson', 'mark@gmail.com', '/WEBAPI/Images/mark_olson.png', 'mark', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
