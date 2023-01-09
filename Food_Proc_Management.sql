@@ -1,5 +1,6 @@
 ﻿-- Execute every connect please
-USE FOOD_MANAGEMENT; go
+USE FOOD_MANAGEMENT; 
+go
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -77,17 +78,28 @@ select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages,
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID  from Foods where FoodID=@foodid
 GO
 
-
--- Get all cards
-CREATE PROC Proc_GetAllCards(@IP nvarchar(max))
+-- Get all food
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC Proc_GetFoods
 AS
-SELECT CardID, CardNumber, 'http://'+@IP+CardImage CardImage, CardExpiryDate, CardTypeID, ConsumerID FROM Cards;
+SELECT TOP 4 FoodRating,* FROM Foods;
 GO
 
--- Get cards by ConsumerID
-CREATE PROC Proc_GetCardsByConsumerID(@IP nvarchar(max), @ConsumerID int)
+
+
+-- Select all cards
+CREATE PROC Proc_GetAllCards
 AS
-SELECT CardID, CardNumber, 'http://'+@IP+CardImage CardImage, CardExpiryDate, CardTypeID, ConsumerID FROM Cards where;
+SELECT * FROM Cards;
+GO
+
+-- Select cards by ConsumerID
+CREATE PROC Proc_GetCardsByConsumerID(@ConsumerID int)
+AS
+SELECT * FROM Cards where ConsumerID = @ConsumerID;
 GO
 
 -- Insert a card
@@ -158,20 +170,81 @@ begin catch
 GO
 
 
-select * from Cards;
 
-exec Proc_DeleteCard @CardID = 3, @CurrentID = 0;
-select * from Cards;
+--Select all consumers
+CREATE proc Proc_SelectAllConsumers
+as
+select * from Consumers;
+GO
 
-delete from Cards where CardID=2;
-select * from Cards;
-select * from Foods
--- Get all food
-SET ANSI_NULLS ON
+-- Select a consumer by ConsumerUsername
+CREATE proc Proc_SelectConsumerByUsername(@ConsumerUsername nvarchar(max))
+as
+select * from Consumers where ConsumerUsername = @ConsumerUsername;
 GO
-SET QUOTED_IDENTIFIER ON
+
+-- Insert a consumer
+CREATE PROC dbo.Proc_InsertConsumer(
+	@ConsumerName		nvarchar(MAX),
+	@ConsumerEmail		nvarchar(MAX),
+	@ConsumerImage		nvarchar(MAX),
+	@ConsumerUsername	nvarchar(MAX),
+	@ConsumerPassword	nvarchar(MAX),
+	@CurrentID int output)
+as
+begin try
+ if(exists(select * from Consumers where ConsumerUsername=@ConsumerUsername))
+  begin
+   set @CurrentID=0
+   return
+  end
+ insert into Consumers(ConsumerName,ConsumerEmail,ConsumerImage,ConsumerUsername,ConsumerPassword) VALUES 
+ (@ConsumerName,@ConsumerEmail,@ConsumerImage,@ConsumerUsername,@ConsumerPassword);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
 GO
-CREATE PROC Proc_GetFoods
-AS
-SELECT TOP 4 FoodRating,* FROM Foods;
+
+-- Update a consumer
+CREATE PROC dbo.Proc_UpdateConsumer(
+	@ConsumerID			int,
+	@ConsumerName		nvarchar(MAX),
+	@ConsumerEmail		nvarchar(MAX),
+	@ConsumerImage		nvarchar(MAX),
+	@ConsumerUsername	nvarchar(MAX),
+	@ConsumerPassword	nvarchar(MAX),
+	@CurrentID int output)
+as	
+begin try
+ if(exists(select * from Consumers where ConsumerID=@ConsumerID))
+  begin
+   update Consumers set ConsumerName=@ConsumerName, ConsumerEmail=@ConsumerEmail, 
+   ConsumerImage = @ConsumerImage, ConsumerUsername = @ConsumerUsername, ConsumerPassword = @ConsumerPassword
+   where ConsumerID = @ConsumerID;
+   set @CurrentID=@ConsumerID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+-- Delete a consumer
+create PROC Proc_DeleteConsumer(@ConsumerID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from Consumers where ConsumerID=@ConsumerID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete Consumers where ConsumerID=@ConsumerID;
+  set @CurrentID=@ConsumerID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
 GO
