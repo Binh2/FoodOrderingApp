@@ -11,7 +11,6 @@ namespace WEBAPI.Controllers
 {
     public class ConsumerController : ApiController
     {
-
         [Route("api/ConsumerController/SelectAllConsumers")]
         [HttpGet]
         public IHttpActionResult SelectAllConsumers()

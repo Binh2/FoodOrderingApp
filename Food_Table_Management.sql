@@ -51,8 +51,8 @@ create table Foods(
 	FoodImages			NVARCHAR(MAX) not null,
 	FoodDetail			NVARCHAR(MAX),
 	FoodPrice			FLOAT(53) not null,
-	FoodRating			NVARCHAR(MAX),	-- Can be here for faster calculation
-	FoodFavourite		NVARCHAR(MAX),	-- Not suppose to be here
+	FoodRating			FLOAT(53),	-- Can be here for faster calculation
+	FoodFavourite		INT,	-- Not suppose to be here
 	CategoryID			INT,
 	RestaurantID		INT not null
 ); 
@@ -77,6 +77,7 @@ create table Orders(
 ); 
 go
 create table OrderStates(
+	OrderStateID		int identity (1, 1) primary key,
 	OrderID				int not null,
 	OrderStateTypeID	int not null,
 	OrderDate			date not null,
@@ -89,6 +90,14 @@ create table OrderStateTypes(
 ); 
 go
 
+create table Consumers(
+	ConsumerID			int IDENTITY (1, 1) PRIMARY KEY,
+	ConsumerName		nvarchar(MAX) not null,
+	ConsumerEmail		nvarchar(MAX) not null,
+	ConsumerImage		nvarchar(MAX) not null,
+	ConsumerUsername	nvarchar(MAX) not null,
+	ConsumerPassword	nvarchar(MAX) not null
+); 
 go
 
 create table Producers(
@@ -178,15 +187,7 @@ insert into CardTypes(CardTypeName, CardTypeImage) values ('Visa', 'visa_logo.pn
 insert into CardTypes(CardTypeName, CardTypeImage) values ('MasterCard', 'master_logo.png');
 select * from CardTypes;
 go
-drop table Consumers
-create table Consumers(
-	ConsumerID			int IDENTITY (1, 1) PRIMARY KEY,
-	ConsumerName		nvarchar(MAX) not null,
-	ConsumerEmail		nvarchar(MAX) not null,
-	ConsumerImage		nvarchar(MAX) not null,
-	ConsumerUsername	nvarchar(MAX) not null,
-	ConsumerPassword	nvarchar(MAX) not null
-); 
+
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
 	('Mark Olson', 'mark@gmail.com', 'mark_olson.png', 'mark', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
@@ -200,13 +201,13 @@ insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUserna
 select * from Consumers;
 GO
 
-INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 1, 1);
-INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 1, 2);
-INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('5100 1234 5678 9012', 'master-card1.png', '2023-12-20', 2, 3);
-INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardTypeID, ConsumerID) VALUES 
-	('4000 0012 3456 7899', 'master-card2.png', '2021-03-31', 2, 4);
+INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
+	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 1000, 1, 1);
+INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
+	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 30, 1, 2);
+INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
+	('5100 1234 5678 9012', 'master-card1.png', '2023-12-20', 0, 2, 3);
+INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
+	('4000 0012 3456 7899', 'master-card2.png', '2021-03-31', 100, 2, 4);
 select * from cards;
 go

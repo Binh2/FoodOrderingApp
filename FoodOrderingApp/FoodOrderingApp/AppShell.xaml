@@ -3,19 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:FoodOrderingApp.Views"
              xmlns:pages="clr-namespace:FoodOrderingApp.Pages"
+             xmlns:accountPages="clr-namespace:FoodOrderingApp.AccountPages"
              xmlns:profilePages="clr-namespace:FoodOrderingApp.ProfilePages"
              x:Class="FoodOrderingApp.AppShell"
        FlyoutBehavior="Disabled">
-
-    <ShellContent Icon="search_button.png" Route="signinPage" FlyoutItemIsVisible="False"
-                  Title="Signin" ContentTemplate="{DataTemplate pages:SigninPage}"></ShellContent>
-    <ShellContent Icon="search_button.png" Route="signupPage" FlyoutItemIsVisible="False"
-                  Title="Signup" ContentTemplate="{DataTemplate pages:SignupPage}"></ShellContent>
-    <ShellContent Icon="search_button.png" Route="verificationPage" FlyoutItemIsVisible="False"
-                  Title="Verification" ContentTemplate="{DataTemplate pages:VerificationPage}"></ShellContent>
-    <ShellContent Icon="search_button.png" Route="resetPasswordPage" FlyoutItemIsVisible="False"
-                  Title="Reset password" ContentTemplate="{DataTemplate pages:ResetPasswordPage}"></ShellContent>
-
+    <TabBar Shell.TabBarIsVisible="False">
+        <ShellContent Icon="search_button.png" Route="signinPage" FlyoutItemIsVisible="False"
+                        Title="Signin" ContentTemplate="{DataTemplate accountPages:SigninPage}"></ShellContent>
+        <ShellContent Icon="search_button.png" Route="signupPage" FlyoutItemIsVisible="False"
+                        Title="Signup" ContentTemplate="{DataTemplate accountPages:SignupPage}"></ShellContent>
+        <ShellContent Icon="search_button.png" Route="verificationPage" FlyoutItemIsVisible="False"
+                        Title="Verification" ContentTemplate="{DataTemplate accountPages:VerificationPage}"></ShellContent>
+        <ShellContent Icon="search_button.png" Route="resetPasswordPage" FlyoutItemIsVisible="False"
+                        Title="Reset password" ContentTemplate="{DataTemplate accountPages:ResetPasswordPage}"></ShellContent>
+    </TabBar>
+    
+    
     <TabBar Route="tabBar">
         <ShellContent Icon="search_button.png" Route="homepage"
                       Title="Home" ContentTemplate="{DataTemplate pages:Homepage}"/>

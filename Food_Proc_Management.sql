@@ -91,19 +91,20 @@ GO
 
 
 -- Select all cards
-CREATE PROC Proc_GetAllCards
+CREATE PROC Proc_SelectAllCards
 AS
-SELECT * FROM Cards;
+SELECT * FROM Cards join Consumers on Consumers.ConsumerID = Cards.ConsumerID;
 GO
 
 -- Select card by ConsumerID
-CREATE PROC Proc_GetCardsByConsumerID(@ConsumerID int)
+CREATE PROC Proc_SelectCardsByConsumerID(@ConsumerID int)
 AS
-SELECT * FROM Cards where ConsumerID = @ConsumerID;
+SELECT * FROM Cards join Consumers on Consumers.ConsumerID = Cards.ConsumerID where Cards.ConsumerID = @ConsumerID;
 GO
+--exec Proc_SelectCardsByConsumerID @ConsumerID=1;
 
 -- Insert a card
-CREATE PROC dbo.Proc_InsertCard(
+CREATE PROC Proc_InsertCard(
 	@CardNumber nvarchar(max), 
 	@CardImage nvarchar(max), 
 	@CardExpiryDate date,
@@ -133,13 +134,16 @@ CREATE PROC dbo.Proc_UpdateCard(
 	@CardNumber nvarchar(max), 
 	@CardImage nvarchar(max), 
 	@CardExpiryDate date,
+	@CardBalance float(53),
 	@CardTypeID int,
+	@ConsumerID int,
 	@CurrentID int output)
 as	
 begin try
  if(exists(select * from Cards where CardID=@CardID))
   begin
-   update Cards set CardNumber = @CardNumber, CardImage = @CardImage, CardExpiryDate = @CardExpiryDate, CardTypeID = @CardTypeID 
+   update Cards set CardNumber=@CardNumber, CardImage=@CardImage, CardExpiryDate=@CardExpiryDate, CardBalance=@CardBalance, 
+   CardTypeID=@CardTypeID, ConsumerID=@ConsumerID 
    where CardID = @CardID
    set @CurrentID=@CardID
    return
@@ -149,6 +153,7 @@ begin catch
  set @CurrentID=0
  end catch
 GO
+--exec Proc_UpdateCard @CardID=1, @CardNumber='1', @CardImage='2', @CardExpiryDate='2024-01-01', @CardBalance=0.5, @CardTypeID=1, @CurrentID=0
 
 -- Delete a card
 SET ANSI_NULLS ON

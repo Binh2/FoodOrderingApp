@@ -99,17 +99,18 @@
             </Frame>
             
             <Frame Padding="10,0">
-                <StackLayout>
-                    <Label Text="Signout"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="notifications.png"></Image>
+                    <Label Text="Signout" VerticalOptions="Center"></Label>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="signoutBtn" Tapped="signoutBtn_Tapped"></TapGestureRecognizer>
                 </Frame.GestureRecognizers>
             </Frame>
             <Frame Padding="10,0">
-                <StackLayout>
-                    <Label Text="Delete account" TextColor="Red" FontAttributes="Bold">
-                        </Label>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="notifications.png"></Image>
+                    <Label Text="Delete account" TextColor="{StaticResource RedColor}" VerticalOptions="Center" FontAttributes="Bold"></Label>
                 </StackLayout>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="deleteAccountBtn" Tapped="deleteAccountBtn_Tapped"></TapGestureRecognizer>

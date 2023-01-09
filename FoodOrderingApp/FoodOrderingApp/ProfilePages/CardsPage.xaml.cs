@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,19 +17,32 @@ namespace FoodOrderingApp.ProfilePages
         public CardsPage()
         {
             InitializeComponent();
+            Title = "Cards";
         }
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
-            //cards = await WebAPI.GetAll<Card>();
-            cards = new List<Card>() { new Card() };
+            base.OnAppearing();
+            Refresh();
+        }
+        private async void Refresh()
+        {
+            cards = await WebAPI.SelectCardsByConsumerID(ConsumerProvider.consumer.ConsumerID);
             collectionView.ItemsSource = cards;
         }
-        private async void cardLayout_Tapped(object sender, EventArgs e)
+
+        private async void editSwipe_Invoked(object sender, EventArgs e)
         {
-            Frame frame = sender as Frame;
-            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
-            Card card = tapGestureRecognizer.CommandParameter as Card;
+            SwipeItem swipeItem = sender as SwipeItem;
+            Card card = (Card)swipeItem.CommandParameter;
             await Shell.Current.Navigation.PushAsync(new EditCardPage(card));
+        }
+
+        private async void deleteSwipe_Invoked(object sender, EventArgs e)
+        {
+            SwipeItem swipeItem = sender as SwipeItem;
+            Card card = (Card)swipeItem.CommandParameter;
+            await WebAPI.DeleteCard(card.CardID);
+            Refresh();
         }
     }
 }

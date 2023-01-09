@@ -13,13 +13,23 @@
         <CollectionView ItemsLayout="VerticalList" x:Name="collectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame CornerRadius="10">
-                        <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="cardLayout" Tapped="cardLayout_Tapped"
-                                                  CommandParameter="{Binding .}"></TapGestureRecognizer>
-                        </Frame.GestureRecognizers>
-                    </Frame>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit" BackgroundColor="{StaticResource OrangeColor}" x:Name="editSwipe" Invoked="editSwipe_Invoked" 
+                                           CommandParameter="{Binding .}"></SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete" BackgroundColor="{StaticResource RedColor}" x:Name="deleteSwipe" Invoked="deleteSwipe_Invoked"
+                                           CommandParameter="{Binding .}"></SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame CornerRadius="10">
+                            <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
+                        </Frame>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
