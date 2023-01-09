@@ -23,10 +23,10 @@ namespace FoodOrderingApp.Pages
         {
             string password = passwordEntry.Text,
                 confirmPassword = confirmPasswordEntry.Text;
-            Consumer consumer = ConsumerProvider.consumer;
+            Consumer consumer = Consumer.consumer;
             if (password == confirmPassword) {
                 consumer.ConsumerPassword = password;
-                ConsumerProvider.consumer = consumer;
+                Consumer.consumer = consumer;
                 await WebAPI.UpdateConsumer(consumer);
                 await Shell.Current.GoToAsync("//tabBar/homepage");
             } else

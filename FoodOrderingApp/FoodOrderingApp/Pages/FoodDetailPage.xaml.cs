@@ -28,7 +28,7 @@ namespace FoodOrderingApp.Pages
 
             var Food = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodByID?foodid=" + foodID.ToString()); 
             var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(Food);
-            //detailfood. = foodListConverted;
+            food.ItemsSource = foodListConverted;
         }
 
         private void LstFood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -50,5 +50,27 @@ namespace FoodOrderingApp.Pages
         {
 
         }
-    }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            ImageButton bt = (ImageButton)sender;
+            Foods hc = (Foods)bt.BindingContext;
+            bool dachon = false;
+            foreach (Foods h in Consumer.cart.Foods)
+            {
+                if (hc.FoodID == h.FoodID)
+                {
+                    h.FoodCount++;
+                    dachon = true;
+                    break;
+                }
+            }
+            if (dachon == false)
+            {
+                hc.FoodCount = 1;
+                Consumer.cart.Foods.Add(hc);
+            }
+            DisplayAlert("Thông báo", "Mua hàng thành công", "OK");
+        }
+    }   
 }

@@ -46,7 +46,7 @@ namespace FoodOrderingApp.Pages
             Consumer returnConsumer = await WebAPI.SelectConsumerByUsername(consumer.ConsumerUsername);
             if (returnConsumer == null)
             {
-                ConsumerProvider.consumer = consumer;
+                Consumer.consumer = consumer;
                 //await Shell.Current.GoToAsync("//tabBar/homepage");
                 await Shell.Current.GoToAsync("//verificationPage");
             }

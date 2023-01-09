@@ -21,9 +21,11 @@ namespace FoodOrderingApp.Model
         public string ConsumerImage { get; set; }
         public string ConsumerUsername { get; set; }
         public string ConsumerPassword { get; set; }
+        static public Consumer consumer { get; set; }
+        static public Cart cart;
     }
     public class ConsumerProvider
     {
-        static public Consumer consumer { get; set; }
+
     }
 }

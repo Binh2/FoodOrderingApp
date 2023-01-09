@@ -88,7 +88,7 @@ namespace FoodOrderingApp.Pages
             }
             if (enteredVerification == random)
             {
-                await WebAPI.InsertConsumer(ConsumerProvider.consumer);
+                await WebAPI.InsertConsumer(Consumer.consumer);
                 await Shell.Current.GoToAsync(nextPage);
             }
             else

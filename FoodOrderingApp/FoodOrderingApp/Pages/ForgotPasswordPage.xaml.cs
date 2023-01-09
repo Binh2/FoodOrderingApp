@@ -21,7 +21,7 @@ namespace FoodOrderingApp.Pages
 
         private async void Continue(object sender, EventArgs e)
         {
-            ConsumerProvider.consumer = await WebAPI.SelectConsumerByEmail(emailEntry.Text);
+            Consumer.consumer = await WebAPI.SelectConsumerByEmail(emailEntry.Text);
             await Shell.Current.Navigation.PushAsync(new VerificationPage("//resetPasswordPage"));
         }
     }

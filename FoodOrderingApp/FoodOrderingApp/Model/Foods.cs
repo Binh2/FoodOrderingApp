@@ -13,6 +13,7 @@ namespace FoodOrderingApp.Model
         public double FoodPrice { get; set; }
         public string FoodRating { get; set; }
         public string FoodFavourite { get; set; }
+        public int FoodCount { get; set; }
         public int FoodQuantity { get; set; }
         public int FoodState { get; set; }
         public int CategoryID { get; set; }

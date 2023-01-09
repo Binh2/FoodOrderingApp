@@ -4,33 +4,40 @@
              x:Class="FoodOrderingApp.Pages.FoodDetailPage"
              BackgroundColor="White">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="0" x:Name="detailfood">
-            <!-- 1.1 Main image-->
-            <StackLayout Grid.Row="0" BackgroundColor="White" HeightRequest="350">
-                <Frame Grid.Row="0">
-                    <Grid ColumnDefinitions="*,Auto" BackgroundColor="#d4f1ef" HorizontalOptions="FillAndExpand">
-                        <Image Grid.Column="0" Margin="10,20,10,20" Source="Deer" />
-                        <Button Grid.Column="0" Grid.ColumnSpan="2" ImageSource="Bag" BackgroundColor="#90dbd5" Margin="0,15,15,0" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="50" WidthRequest="50" CornerRadius="25"/>
-                        <Button Grid.Column="1" VerticalOptions="Start" BackgroundColor="White" HorizontalOptions="End" Margin="0,9,15,0" HeightRequest="{OnPlatform iOS='16', Android='26'}" WidthRequest="{OnPlatform iOS='16', Android='26'}" CornerRadius="{OnPlatform iOS='8', Android='13'}" Text="1" FontAttributes="Bold" FontSize="7" TextColor="Red" />
-                    </Grid>
-                </Frame>
-            </StackLayout>
-
-            <StackLayout Grid.Row="1" BackgroundColor="#d4f1ef">
-                <Frame Grid.Row="1">
-                    <Grid RowDefinitions="Auto,Auto,Auto,Auto" Padding="20,45,20,0" BackgroundColor="White" HeightRequest="300">
-                        <Label Grid.Row="0" Text="Flussmonger" FontAttributes="Bold" TextColor="Silver"/>
-                        <Label Grid.Row="1" Text="Reindeer Teddy Bear&#10;with Chocolates" FontSize="30" FontAttributes="Bold"/>
-                        <Label Grid.Row="2" Text="$70.99" FontSize="25" Padding="0,15" TextColor="#49a657" FontAttributes="Bold"/>
-                        <Label Grid.Row="3" Text="A children's favorite is brought to life with the Rudolph animated plush, a cute, collectible frien with red and black buffalo plaid print on his scarf ans inside his ears." TextColor="Silver"/>
-                    </Grid>
-                </Frame>
-            </StackLayout>
-
-            <Button Text="Add to Cart" Grid.Row="3" CornerRadius="20" 
-        Clicked="Button_Clicked" BackgroundColor="White" Margin="60,40" 
-        FontAttributes="Bold" HeightRequest="55" TextColor="Black" 
-        VerticalOptions="CenterAndExpand"/>
+        <Grid>
+            <ListView x:Name="food" 
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowDefinitions="300,Auto,Auto,Auto,200,Auto" Padding="20">
+                                <Frame Grid.Row="0" CornerRadius="20" HasShadow="True">
+                                    <Image Margin="-20" Source="{Binding FoodImages}" Aspect="Fill"></Image>
+                                </Frame>
+                                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                    <Label Text="{Binding FoodName}" FontAttributes="Bold" TextColor="#202020" FontSize="20"></Label>
+                                    <Label x:Name="lblStar" TextColor="#202020" 
+                                               FontSize="20"></Label>
+                                </StackLayout>
+                                <Label Grid.Row="2" Text="Details" FontSize="15" Margin="0,20,0,0" TextColor="#202020" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="3" Text="{Binding FoodDetail}" TextColor="#202020"></Label>
+                                <Label Text="Comment"
+                                          Grid.Row="4" TextColor="Gray"></Label>
+                                <StackLayout Grid.Row="5" VerticalOptions="EndAndExpand" HeightRequest="60" Orientation="Horizontal" BackgroundColor="White" Margin="-20" Padding="20,10">
+                                    <Label Text="{Binding FoodPrice}" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
+                                    <Button Text="Add to cart" CornerRadius="20" HorizontalOptions="EndAndExpand" WidthRequest="180" BackgroundColor="Green" TextColor="White">
+                                        <Button.GestureRecognizers>
+                                            <TapGestureRecognizer  CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped_1"/>
+                                        </Button.GestureRecognizers>
+                                    </Button>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
+
     </ContentPage.Content>
 </ContentPage>
