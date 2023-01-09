@@ -16,7 +16,7 @@ namespace FoodOrderingApp.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((string)value).Replace("http://" + Constants.IP + "/WEBAPI/Images" , "");
+            return ((string)value).Replace("http://" + Constants.IP + "/WEBAPI/Images/" , "");
         }
     }
 }

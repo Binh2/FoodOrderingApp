@@ -20,20 +20,6 @@ namespace FoodOrderingApp.ProfilePages
             BindingContext = UserProvider.user;
         }
 
-        private async void deleteAccountBtn_Tapped(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Are you sure you want to delete this account?", "", "Yes", "No");
-            if (answer) { 
-                await Shell.Current.GoToAsync("//signinPage");
-                Database.deleteUser(UserProvider.user);
-            }
-        }
-
-        private async void signoutBtn_Tapped(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//signinPage");
-        }
-
 
         private async void editProfileBtn_Tapped(object sender, EventArgs e)
         {
@@ -68,6 +54,22 @@ namespace FoodOrderingApp.ProfilePages
         private async void notificationsBtn_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.Navigation.PushAsync(new NotificationsPage());
+        }
+
+        private async void signoutBtn_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//signinPage");
+        }
+
+        private async void deleteAccountBtn_Tapped(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Are you sure you want to delete this account?", "", "Yes", "No");
+            if (answer)
+            {
+                await Shell.Current.GoToAsync("//signinPage");
+                //Database.deleteUser(UserProvider.user);
+                await WebAPI.DeleteConsumer(ConsumerProvider.consumer.ConsumerID);
+            }
         }
     }
 }

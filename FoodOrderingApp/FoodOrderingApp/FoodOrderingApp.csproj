@@ -39,7 +39,7 @@
     <Compile Update="Views\CommentView.xaml.cs">
       <DependentUpon>CommentView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\SigninPage.xaml.cs">
+    <Compile Update="AccountPages\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\ResourcesPage.xaml.cs">
@@ -54,13 +54,13 @@
     <EmbeddedResource Update="Pages\CategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ForgotPasswordPage.xaml">
+    <EmbeddedResource Update="AccountPages\ForgotPasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ResetPasswordPage.xaml">
+    <EmbeddedResource Update="AccountPages\ResetPasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\VerificationPage.xaml">
+    <EmbeddedResource Update="AccountPages\VerificationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ProfilePages\CardsPage.xaml">
@@ -108,7 +108,7 @@
 	  <EmbeddedResource Update="Pages\ListFood.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	  </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SigninPage.xaml">
+    <EmbeddedResource Update="AccountPages\SigninPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ProfilePages\ProfilePage.xaml">
@@ -123,7 +123,7 @@
     <EmbeddedResource Update="Pages\Homepage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SignupPage.xaml">
+    <EmbeddedResource Update="AccountPages\SignupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\StateView.xaml">

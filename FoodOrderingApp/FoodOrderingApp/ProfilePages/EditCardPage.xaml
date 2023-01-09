@@ -16,12 +16,12 @@
                         <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
                         <StackLayout Spacing="0">
                             <Label Text="Name on card " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                            <Entry Text="{Binding ConsumerName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerNameEntry" ReturnType="Next"
+                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerNameEntry" ReturnType="Next"
                                IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
                         </StackLayout>
                         <StackLayout Spacing="0">
                             <Label Text="Card Number " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                            <Entry Text="{Binding CardNumber}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="cardNumberEntry" ReturnType="Next"
+                            <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="cardNumberEntry" ReturnType="Next"
                                IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
                         </StackLayout>
                         <StackLayout Spacing="0">
