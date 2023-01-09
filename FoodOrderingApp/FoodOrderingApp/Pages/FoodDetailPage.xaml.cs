@@ -28,7 +28,7 @@ namespace FoodOrderingApp.Pages
 
             var Food = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodByID?foodid=" + foodID.ToString()); 
             var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(Food);
-            food.ItemsSource = foodListConverted;
+            //detailfood. = foodListConverted;
         }
 
         private void LstFood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -42,6 +42,11 @@ namespace FoodOrderingApp.Pages
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
         {
 
         }

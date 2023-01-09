@@ -25,13 +25,21 @@ namespace FoodOrderingApp.Pages
             HttpClient httpClient = new HttpClient();
             var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodsBycategoryID?CategoryId=" + CategoryID.ToString());
             var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
-            listView.ItemsSource = foodListConverted;
+            lstview.ItemsSource = foodListConverted;
         }
 
         private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Foods foods = (Foods)e.SelectedItem;
             Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Frame frame = sender as Frame;
+            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
+            Foods foods = tapGestureRecognizer.CommandParameter as Foods;
+            await Shell.Current.Navigation.PushAsync(new FoodDetailPage(foods));
         }
     }
 }   

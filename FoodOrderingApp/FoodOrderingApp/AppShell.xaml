@@ -16,7 +16,7 @@
         <ShellContent Icon="search_button.png" Route="homepage"
                       Title="Home" ContentTemplate="{DataTemplate pages:Homepage}"/>
         <ShellContent Icon="search_button.png" Route="foodPage"
-                      Title="Food" ContentTemplate="{DataTemplate pages:ListFood}"/>
+                      Title="Food" ContentTemplate="{DataTemplate pages:CategoriesPage}"/>
         <!--<ShellContent Icon="search_button.png" Route="foodDetailPage"
                       Title="Food details" ContentTemplate="{DataTemplate pages:FoodDetailPage}"/>-->
         <ShellContent Icon="search_button.png" Route="cartPage"

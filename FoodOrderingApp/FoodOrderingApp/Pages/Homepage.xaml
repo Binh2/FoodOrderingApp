@@ -3,442 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.Pages.Homepage">
     <ContentPage.Content >
-        <StackLayout>
-            <StackLayout Margin="15,25,25,0">
-                <!--  Top Search Bar  -->
-                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="#F7F7F7"
-                        CornerRadius="45"
-                        HasShadow="False"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Horizontal">
-                            <Image
-                                Margin="20,10,0,10"
-                                Aspect="AspectFit"
-                                HeightRequest="18"
-                                Source="search"
-                                WidthRequest="18" />
-                            <Entry HorizontalOptions="FillAndExpand"/>
-                        </StackLayout>
-                    </Frame>
-                    <StackLayout>
-                        <Image
-                            Margin="13,0,0,0"
-                            Aspect="AspectFit"
-                            HeightRequest="40"
-                            Source="Search_Camera"
-                            WidthRequest="40" />
-                    </StackLayout>
-                </StackLayout>
-                <ScrollView VerticalScrollBarVisibility="Never">
-                    <StackLayout>
-                        <!--  Categories  -->
-                        <StackLayout>
-                            <StackLayout Margin="0,5,0,5">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    Text="Categories"
-                                    TextColor="Black">
-                                </Label>
+        <ScrollView>
+            <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto" 
+          ColumnDefinitions="*,Auto" VerticalOptions="StartAndExpand" Padding="30,10,30,15">
 
-                                <StackLayout
-                                    Margin="0,20,0,20"
-                                    HeightRequest="90"
-                                    Orientation="Horizontal">
-                                    <CollectionView x:Name="Lstcategories">
-                                        <CollectionView.ItemsLayout>
-                                            <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout>
-                                                    <Frame
-                                                        Margin="1,5,10,5"
-                                                        Padding="0"
-                                                        CornerRadius="30"
-                                                        HasShadow="True"
-                                                        HeightRequest="60"
-                                                        IsClippedToBounds="False"
-                                                        WidthRequest="60">
-                                                        <Image
-                                                            Margin="15"
-                                                            Aspect="AspectFit"
-                                                            HorizontalOptions="CenterAndExpand"
-                                                            Source="{Binding CategoryImage}"
-                                                            VerticalOptions="CenterAndExpand" />
-                                                        <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" CommandParameter="{Binding .}" />
-                                                        </Frame.GestureRecognizers>
-                                                    </Frame>
+                <Grid Grid.Row="0" Grid.ColumnSpan="2" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,*">
+                    <!--Profile picture-->
+                    <ImageButton Grid.Column="0" Grid.RowSpan="2" Source="user.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" BackgroundColor="#f1f0f4" CornerRadius="10"/>
+                    <!--Welcome & Name-->
+                    <Label Grid.Column="1" Grid.Row="0" Text="Welcome" TextColor="Silver" FontAttributes="Bold" Margin="20,0,0,0"/>
+                    <Label Grid.Column="1" Grid.Row="1" Text="Thiện" FontAttributes="Bold" Margin="20,0,0,0"/>
+                </Grid>
 
-                                                    <Label
-                                                        FontSize="12"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding CategoryName}"
-                                                        TextColor="Black">
-                                                    </Label>
-                                                   
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
+                <!--Search & Action Button-->
+                <SearchBar Grid.Column="0" Grid.Row="1" Margin="-5,10,0,10" BackgroundColor="Transparent"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="Popular Fashion" TextColor="#858788" FontSize="20" FontAttributes="Bold" />
+                <Label Grid.Column="1" Grid.Row="2" Text="View All" HorizontalTextAlignment="End" FontAttributes="Bold" TextColor="Silver" VerticalTextAlignment="Center"/>
 
-                                </StackLayout>
+                <CollectionView Grid.ColumnSpan="2" Grid.Row="3" HorizontalScrollBarVisibility="Never"
+                Margin="-20,0,-25,0"
+                ItemsLayout="HorizontalList"
+                HeightRequest="380"
+                x:Name="Popular">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="2,10,20,30">
+                                <Frame Padding="20,10,20,30" WidthRequest="220" HeightRequest="320" VerticalOptions="FillAndExpand" CornerRadius="20" HorizontalOptions="Start" HasShadow="False">
+                                    <Grid RowDefinitions="*,Auto,Auto" ColumnDefinitions="*,Auto">
+                                        <Frame Grid.ColumnSpan="2" Grid.Row="0" IsClippedToBounds="True" CornerRadius="25" HasShadow="False" Padding="0" >
+                                            <Image Source="{Binding FoodImages}" Aspect="AspectFill" />
+                                        </Frame>
+                                        <Label Grid.Column="0" Grid.Row="1" Text="{Binding FoodName}" FontAttributes="Bold" Padding="0,10,0,0"/>
+                                        <Label Grid.Column="0" Grid.Row="2" Text="{Binding FoodPrice}" TextColor="#00c569" FontAttributes="Bold"/>
+                                        <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" ImageSource="favourte.png" HorizontalOptions="End" WidthRequest="35" HeightRequest="35" CornerRadius="8" VerticalOptions="Center" />
+                                    </Grid>
+                                </Frame>
                             </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-                        </StackLayout>
-                        <!--  Best Rating  -->
-                        <StackLayout Margin="0,10,0,10">
-                            <StackLayout Orientation="Horizontal">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="Best Rating"
-                                    TextColor="Black">
-                                </Label>
-                                <StackLayout Margin="10,5,0,5">
-                                    <Label
-                                        FontSize="16"
-                                        HorizontalOptions="EndAndExpand"
-                                        Text="See All"
-                                        TextColor="Black">
-                                    </Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
-                            </StackLayout>
-
-                            <StackLayout HeightRequest="350">
-                                <CollectionView x:Name="listView1">
-
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
-
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout Margin="0" HorizontalOptions="CenterAndExpand">
-                                                <StackLayout>
-                                                    <Frame
-                                                        CornerRadius="5"
-                                                        HasShadow="False"
-                                                        HorizontalOptions="Center"
-                                                        IsClippedToBounds="True">
-                                                        <Image
-                                                            Aspect="AspectFit"
-                                                            HeightRequest="240"
-                                                            Source="{Binding FoodImages}"
-                                                            WidthRequest="165" />
-                                                    </Frame>
-                                                </StackLayout>
-
-                                                <StackLayout Margin="0,-10,0,0">
-                                                    <Label
-                                                        FontSize="16"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding FoodName}"
-                                                        TextColor="Black"
-                                                        VerticalOptions="Start">
-                                                    </Label>
-
-                                                    <Label
-                                                        FontSize="12"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding FoodRating}"
-                                                        TextColor="#929292"
-                                                        VerticalOptions="Start">
-                                                    </Label>
-
-                                                    <Label
-                                                        FontSize="16"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding Foodprice}"
-                                                        TextColor="#00C569"
-                                                        VerticalOptions="Start">
-                                                    </Label>
-                                                </StackLayout>
-
-                                                <StackLayout.GestureRecognizers>
-                                                    <TapGestureRecognizer  CommandParameter="{Binding .}" />
-                                                </StackLayout.GestureRecognizers>
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </StackLayout>
-
-                        </StackLayout>
-
-                        <!--  Featured Brands  -->
-                        <StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="Featured Brands"
-                                    TextColor="Black">
-                                </Label>
-
-
-                            </StackLayout>
-
-                            <StackLayout HeightRequest="80">
-                                <CollectionView ItemsSource="{Binding featuredItemPreview}">
-
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
-
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout>
-                                                <Frame
-                                                    Margin="1,5,10,5"
-                                                    Padding="0"
-                                                    BorderColor="#F7F7F7"
-                                                    HasShadow="False"
-                                                    HorizontalOptions="CenterAndExpand"
-                                                    VerticalOptions="CenterAndExpand">
-
-                                                    <StackLayout Margin="15,10,15,10" Orientation="Horizontal">
-                                                        <Frame
-                                                            Padding="0"
-                                                            CornerRadius="20"
-                                                            HasShadow="False"
-                                                            HeightRequest="40"
-                                                            Opacity="10"
-                                                            WidthRequest="40">
-                                                            <Image
-                                                                Aspect="AspectFit"
-                                                                HeightRequest="40"
-                                                                HorizontalOptions="CenterAndExpand"
-                                                                Source="{Binding ImageUrl}"
-                                                                VerticalOptions="CenterAndExpand"
-                                                                WidthRequest="40" />
-                                                        </Frame>
-
-                                                        <StackLayout>
-                                                            <Label
-                                                                FontAttributes="Bold"
-                                                                FontSize="16"
-                                                                HorizontalOptions="Center"
-                                                                Text="{Binding brand}"
-                                                                TextColor="Black">
-                                                            </Label>
-
-                                                            <Label
-                                                                FontSize="12"
-                                                                HorizontalOptions="Center"
-                                                                Text="{Binding details}"
-                                                                TextColor="#929292">
-                                                            </Label>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                    <Frame.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference mainView}, Path=BindingContext.FeaturedTapCommand}" CommandParameter="{Binding .}" />
-                                                    </Frame.GestureRecognizers>
-                                                </Frame>
-
-
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </StackLayout>
-
-                        </StackLayout>
-
-                        <!--  Recommended  -->
-                        <StackLayout Margin="0,10,0,10">
-                            <StackLayout Orientation="Horizontal">
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    HorizontalOptions="StartAndExpand"
-                                    Text="Recommended"
-                                    TextColor="Black">
-                                </Label>
-                                <StackLayout Margin="10,5,0,5">
-                                    <Label
-                                        FontSize="16"
-                                        HorizontalOptions="EndAndExpand"
-                                        Text="See All"
-                                        TextColor="Black">
-                                    </Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
-
-                            </StackLayout>
-
-                            <StackLayout HeightRequest="350">
-                                <CollectionView ItemsSource="{Binding itemPreview}">
-
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
-
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout Margin="0" HorizontalOptions="CenterAndExpand">
-
-                                                <StackLayout>
-                                                    <Frame
-                                                        CornerRadius="5"
-                                                        HasShadow="False"
-                                                        HorizontalOptions="Center"
-                                                        IsClippedToBounds="True">
-                                                        <Image
-                                                            Aspect="AspectFit"
-                                                            HeightRequest="240"
-                                                            Source="{Binding ImageUrl}"
-                                                            WidthRequest="165" />
-                                                    </Frame>
-                                                </StackLayout>
-
-                                                <StackLayout Margin="0,-10,0,0">
-                                                    <Label
-                                                        FontSize="16"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding Name}"
-                                                        TextColor="Black"
-                                                        VerticalOptions="Start">
-                                                    </Label>
-
-                                                    <Label
-                                                        FontSize="12"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding brand}"
-                                                        TextColor="#929292"
-                                                        VerticalOptions="Start">
-                                                    </Label>
-
-                                                    <Label
-                                                        FontSize="16"
-                                                        HorizontalOptions="Center"
-                                                        Text="{Binding price}"
-                                                        TextColor="#00C569"
-                                                        VerticalOptions="Start">
-                                                    </Label>
-                                                </StackLayout>
-
-                                                <StackLayout.GestureRecognizers>
-                                                    <TapGestureRecognizer CommandParameter="{Binding .}" />
-                                                </StackLayout.GestureRecognizers>
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </StackLayout>
-
-                        </StackLayout>
-
-                    </StackLayout>
-                </ScrollView>
-            </StackLayout>
-            <!--  Footer  -->
-            <StackLayout
-                Margin="0,-5,0,10"
-                HeightRequest="80"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="EndAndExpand">
-                <BoxView
-                    Margin="0"
-                    BackgroundColor="#F7F7F7"
-                    HeightRequest="1"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="StartAndExpand" />
-                <Frame
-                    Padding="0"
-                    BackgroundColor="Transparent"
-                    HasShadow="True"
-                    HorizontalOptions="FillAndExpand">
-                    <StackLayout
-                        Margin="50,10,50,10"
-                        HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal"
-                        VerticalOptions="CenterAndExpand">
-
-                        <StackLayout Margin="20,10,25,10" HorizontalOptions="FillAndExpand">
+                <Label Grid.Column="0" Grid.Row="4" Text="Recommended" TextColor="#858788" FontSize="20" FontAttributes="Bold" />
+                <Label Grid.Column="1" Grid.Row="4" Text="View All" HorizontalTextAlignment="End" FontAttributes="Bold" TextColor="Silver" VerticalTextAlignment="Center"/>
+                <CollectionView Grid.ColumnSpan="2" Grid.Row="5" Margin="-20,20,-25,0" HorizontalScrollBarVisibility="Never"
+                x:Name="Recommend"
+                ItemsLayout="HorizontalList"
+                HeightRequest="150">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
                             <StackLayout>
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="14"
-                                    HorizontalOptions="FillAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Text="Explore"
-                                    TextColor="Black">
-                                </Label>
-
-                                <Label
-                                    Margin="0,-15,0,0"
-                                    FontAttributes="Bold"
-                                    FontSize="16"
-                                    HorizontalTextAlignment="Center"
-                                    Text="."
-                                    TextColor="Black"
-                                    VerticalTextAlignment="Start">
-                                </Label>
+                                <Frame Margin="0,0,10,0" HasShadow="False" CornerRadius="20">
+                                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
+                                        <Frame Grid.Column="0" Grid.RowSpan="3" Margin="0,0,20,0"  VerticalOptions="CenterAndExpand" WidthRequest="75" HeightRequest="85" HasShadow="False" CornerRadius="10" Padding="0" IsClippedToBounds="True">
+                                            <Image Source="{Binding FoodImages}" Aspect="AspectFill"/>
+                                        </Frame>
+                                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding FoodName}" FontAttributes="Bold"/>
+                                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding FoodDetail}" TextColor="Silver" FontAttributes="Bold"/>
+                                        <Label Grid.Column="1" Grid.Row="2" Text="⭐⭐⭐⭐⭐"  FontSize="13" />
+                                        <Image Grid.Column="2" Grid.RowSpan="3" Source="DetailsArrow"/>
+                                    </Grid>
+                                </Frame>
                             </StackLayout>
-
-
-
-                        </StackLayout>
-
-                        <StackLayout Margin="25,10,25,10" HorizontalOptions="FillAndExpand">
-                            <Frame
-                                Padding="0"
-                                BackgroundColor="Transparent"
-                                HasShadow="False"
-                                HeightRequest="50"
-                                WidthRequest="50">
-                                <Image
-                                    Aspect="AspectFit"
-                                    HeightRequest="20"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Source="chart"
-                                    VerticalOptions="CenterAndExpand"
-                                    WidthRequest="20" />
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
-                                </Frame.GestureRecognizers>
-                            </Frame>
-
-                        </StackLayout>
-
-                        <StackLayout Margin="25,10,25,10" HorizontalOptions="FillAndExpand">
-                            <Frame
-                                Padding="0"
-                                BackgroundColor="Transparent"
-                                HasShadow="False"
-                                HeightRequest="50"
-                                WidthRequest="50">
-                                <Image
-                                    Aspect="AspectFit"
-                                    HeightRequest="20"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Source="profile"
-                                    VerticalOptions="CenterAndExpand"
-                                    WidthRequest="20" />
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                </Frame.GestureRecognizers>
-                            </Frame>
-
-                        </StackLayout>
-
-                    </StackLayout>
-                </Frame>
-
-            </StackLayout>
-        </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

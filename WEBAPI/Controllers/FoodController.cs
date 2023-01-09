@@ -35,23 +35,6 @@ namespace WEBAPI.Controllers
                 return NotFound();
             }
         }
-        [Route("api/FoodController/GetAllCategoriess")]
-        [HttpGet]
-        public IHttpActionResult GetAllCategoriess()
-        {
-            try
-            {
-                Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("IP", Constants.IP);
-                DataTable result = Database.Database.ReadTable("Proc_GetAllCategoriess", param);
-                return Ok(result);
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
-
         [Route("api/FoodController/GetAllFoods")]
         [HttpGet]
         public IHttpActionResult GetAllFoods()
@@ -61,23 +44,6 @@ namespace WEBAPI.Controllers
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("IP", Constants.IP);
                 DataTable result = Database.Database.ReadTable("Proc_GetAllFoods", param);
-                return Ok(result);
-            }
-            catch
-            {
-                return NotFound();
-            }
-        }
-
-        [Route("api/FoodController/GetAllFoodss")]
-        [HttpGet]
-        public IHttpActionResult GetAllFoodss()
-        {
-            try
-            {
-                Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("IP", Constants.IP);
-                DataTable result = Database.Database.ReadTable("Proc_GetAllFoodss", param);
                 return Ok(result);
             }
             catch
