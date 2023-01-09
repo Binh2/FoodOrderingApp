@@ -51,7 +51,7 @@ namespace WEBAPI.Controllers
         }
         [Route("api/CardController/UpdateCard")]
         [HttpPost]
-        public IHttpActionResult DeleteCard(Card card)
+        public IHttpActionResult UpdateCard(Card card)
         {
             try
             {

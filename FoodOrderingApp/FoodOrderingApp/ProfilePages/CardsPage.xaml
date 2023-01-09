@@ -6,6 +6,7 @@
         <ResourceDictionary>
             <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
             <converters:CardNumberToListConverter x:Key="CardNumberToListConverter"></converters:CardNumberToListConverter>
+            <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -13,7 +14,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame CornerRadius="10">
-                        <Image Source="{Binding CardImage}"></Image>
+                        <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer x:Name="cardLayout" Tapped="cardLayout_Tapped"
                                                   CommandParameter="{Binding .}"></TapGestureRecognizer>

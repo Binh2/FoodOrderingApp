@@ -10,7 +10,7 @@ go
 -- Execute Proc_Update
 declare @CurrentID int;
 exec Proc_Update @pluralTable=N'Cards', @parameters=N'CardNumber=''1''', 
-	@uniqueColumn=N'CardNumber', @uniqueValue=N'''7227 0123 4567 8901''', @tableID=N'CardID', @tableIDValue=N'1', 
+	@uniqueColumn=N'CardNumber', @uniqueValue=N'''7227 0123 4567 8901''', @IDColumn=N'CardID', @IDValue=N'1', 
 	@CurrentID = @CurrentID output;
 select @CurrentID;
 select * from Cards;
@@ -19,7 +19,7 @@ go
 -- Execute Proc_Delete
 declare @CurrentID int;
 exec Proc_Delete @pluralTable=N'Cards',
-	@uniqueColumn=N'CardID', @uniqueValue=N'1', @tableID=N'CardID', @tableIDValue=N'1', 
+	@uniqueColumn=N'CardID', @uniqueValue=N'1', @IDColumn=N'CardID', @IDValue=N'1', 
 	@CurrentID = @CurrentID output;
 select @CurrentID;
 select * from Cards;

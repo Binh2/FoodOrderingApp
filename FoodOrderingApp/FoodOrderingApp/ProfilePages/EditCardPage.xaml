@@ -5,36 +5,39 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
+            <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <Frame Padding="10">
-                <StackLayout>
-                    <Image Source="{Binding CardImage}"></Image>
-                    <StackLayout Spacing="0">
-                        <Label Text="Name on card " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                        <Entry Text="{Binding ConsumerName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerNameEntry" ReturnType="Next"
+                <Frame>
+                    <StackLayout>
+                        <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
+                        <StackLayout Spacing="0">
+                            <Label Text="Name on card " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
+                            <Entry Text="{Binding ConsumerName}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerNameEntry" ReturnType="Next"
                                IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
-                    </StackLayout>
-                    <StackLayout Spacing="0">
-                        <Label Text="Card Number " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                        <Entry Text="{Binding CardNumber}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="cardNumberEntry" ReturnType="Next"
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <Label Text="Card Number " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
+                            <Entry Text="{Binding CardNumber}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="cardNumberEntry" ReturnType="Next"
                                IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>
-                    </StackLayout>
-                    <StackLayout Spacing="0">
-                        <Label Text="Card Expiry Date " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
-                        <!--<Entry Text="{Binding CardExpiryDate, Converter={StaticResource DateTimeToStringConverter}}" VerticalOptions="Start" 
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <Label Text="Card Expiry Date " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
+                            <!--<Entry Text="{Binding CardExpiryDate, Converter={StaticResource DateTimeToStringConverter}}" VerticalOptions="Start" 
                                HorizontalOptions="FillAndExpand" x:Name="cardExpiryDateEntry" ReturnType="Next"
                                IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"></Entry>-->
-                        <DatePicker Date="{Binding CardExpiryDate}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="cardExpiryDateEntry"
+                            <DatePicker Date="{Binding CardExpiryDate}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="cardExpiryDateEntry"
                                     ></DatePicker>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Cancel" x:Name="cancelBtn" Clicked="cancelBtn_Clicked" BorderColor="{StaticResource GreenColor}" Padding="20,5"></Button>
+                            <Button Text="Edit" x:Name="editBtn" Clicked="editBtn_Clicked" BackgroundColor="{StaticResource GreenColor}" Padding="20,5"></Button>
+                        </StackLayout>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Cancel" BorderColor="{StaticResource GreenColor}" Padding="20,5"></Button>
-                        <Button Text="Cancel" BackgroundColor="{StaticResource GreenColor}" Padding="20,5"></Button>
-                    </StackLayout>
-                </StackLayout>
+                </Frame>
             </Frame>
         </ScrollView>
     </ContentPage.Content>

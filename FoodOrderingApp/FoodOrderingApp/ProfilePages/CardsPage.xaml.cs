@@ -20,7 +20,7 @@ namespace FoodOrderingApp.ProfilePages
         }
         protected async override void OnAppearing()
         {
-            cards = await WebAPI.Get<List<Card>>(Constants.ProcURL.GET_ALL_CARDS);
+            cards = await WebAPI.GetAll<Card>();
             collectionView.ItemsSource = cards;
         }
         private async void cardLayout_Tapped(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace FoodOrderingApp.ProfilePages
             Frame frame = sender as Frame;
             TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
             Card card = tapGestureRecognizer.CommandParameter as Card;
-            await Shell.Current.Navigation.PushAsync(new TestPage());
+            await Shell.Current.Navigation.PushAsync(new EditCardPage(card));
         }
     }
 }

@@ -7,9 +7,14 @@ namespace FoodOrderingApp.Attributes
     [System.AttributeUsage(System.AttributeTargets.Property, AllowMultiple = true)]
     class OperationType : Attribute
     {
-        string type;
-        public string Type { get => type; }
+        string _type;
+        public string Type { get => _type; }
         public OperationType(string operationType)
+        {
+            if (isValidOperationType(operationType)) _type = operationType;
+            else throw new ArgumentException("operationType can only be Insert or Update or Delete or Select");
+        }
+        static public bool isValidOperationType(string operationType)
         {
             switch (operationType)
             {
@@ -17,10 +22,9 @@ namespace FoodOrderingApp.Attributes
                 case ("Update"):
                 case ("Delete"):
                 case ("Select"):
-                    type = operationType;
-                    break;
+                    return true;
             }
-            throw new ArgumentException("operationType can only be Insert or Update or Delete or Select");
+            return false;
         }
     }
 }

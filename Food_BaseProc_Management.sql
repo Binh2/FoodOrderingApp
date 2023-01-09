@@ -62,19 +62,19 @@ exec sp_executesql @proc, N'@CurrentID int output', @CurrentID output;
 go
 
 create proc Proc_Update(@pluralTable nvarchar(max), @parameters nvarchar(max),
-	@uniqueColumn nvarchar(max), @uniqueValue nvarchar(max), @tableID nvarchar(max), @tableIDValue nvarchar(max), 
+	@uniqueColumn nvarchar(max), @uniqueValue nvarchar(max), @IDColumn nvarchar(max), @IDValue nvarchar(max), 
 	@CurrentID int output)
 as
 declare @update nvarchar(max), @proc nvarchar(max), @ifExists nvarchar(max);
 --declare @CurrentID int;
 set @ifExists = N'if(exists(select * from ' + @pluralTable + N' where ' + @uniqueColumn + N'=' + @uniqueValue + N')) ';
-set @update = N'update ' + @pluralTable + N' set ' + @parameters + N' where ' + @tableID + N'=' + @tableIDValue + N';';
+set @update = N'update ' + @pluralTable + N' set ' + @parameters + N' where ' + @IDColumn + N'=' + @IDValue + N';';
 set @proc = 
 	N'begin try ' +
 	   @ifExists +
 	N'  begin ' +
 	     @update +
-	N'   set @CurrentID=' + @tableIDValue + N';' +
+	N'   set @CurrentID=' + @IDValue + N';' +
 	N'   return;' +
 	N'  end ' +
 	N'end try ' +
@@ -85,13 +85,13 @@ exec sp_executesql @proc, N'@CurrentID int output', @CurrentID output;
 go
 
 create proc Proc_Delete(@pluralTable nvarchar(max),
-	@uniqueColumn nvarchar(max), @uniqueValue nvarchar(max), @tableID nvarchar(max), @tableIDValue nvarchar(max), 
+	@uniqueColumn nvarchar(max), @uniqueValue nvarchar(max), @IDColumn nvarchar(max), @IDValue nvarchar(max), 
 	@CurrentID int output)
 as
 declare @delete nvarchar(max), @proc nvarchar(max), @ifNotExists nvarchar(max);
 --declare @CurrentID int;
 set @ifNotExists = N'if(not exists(select * from ' + @pluralTable + N' where ' + @uniqueColumn + N'=' + @uniqueValue + N')) ';
-set @delete = N'delete ' + @pluralTable + N' where ' + @tableID + N'=' + @TableIDValue + N';';
+set @delete = N'delete ' + @pluralTable + N' where ' + @IDColumn + N'=' + @IDValue + N';';
 set @proc = 
 	N'begin try ' +
 	   @ifNotExists +
@@ -100,7 +100,7 @@ set @proc =
 	N'   return;' +
 	N'  end ' +
 	    @delete +
-	N'  set @CurrentID=' + @tableIDValue + N';' +
+	N'  set @CurrentID=' + @IDValue + N';' +
 	N'end try ' +
 	N'begin catch ' +
 	N' set @CurrentID=0;' +
@@ -108,3 +108,12 @@ set @proc =
 exec sp_executesql @proc, N'@CurrentID int output', @CurrentID output;
 go
 
+create proc Proc_Get(@proc nvarchar(max))
+as
+exec(@proc)
+go
+
+create proc Proc_Post(@proc nvarchar(max), @CurrentID int output)
+as
+exec sp_executesql @proc, N'@CurrentID int output', @CurrentID output;
+go

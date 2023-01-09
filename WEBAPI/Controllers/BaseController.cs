@@ -73,7 +73,7 @@ namespace WEBAPI.Controllers
         }
         [Route("api/BaseController/Update")]
         [HttpPost]
-        public IHttpActionResult Update(string pluralTable, string parameters, string uniqueColumn, string uniqueValue, string tableID, string tableIDValue)
+        public IHttpActionResult Update(string pluralTable, string parameters, string uniqueColumn, string uniqueValue, string IDColumn, string IDValue)
         {
             try
             {
@@ -82,8 +82,8 @@ namespace WEBAPI.Controllers
                 param.Add("parameters", parameters);
                 param.Add("uniqueColumn", uniqueColumn);
                 param.Add("uniqueValue", uniqueValue);
-                param.Add("tableID", tableID);
-                param.Add("tableIDValue", tableIDValue);
+                param.Add("IDColumn", IDColumn);
+                param.Add("IDValue", IDValue);
                 var result = Database.Database.Exec_Command("Proc_Update", param);
                 return Ok(int.Parse(result.ToString()));
             }
@@ -94,18 +94,51 @@ namespace WEBAPI.Controllers
         }
         [Route("api/BaseController/Delete")]
         [HttpPost]
-        public IHttpActionResult Delete(string pluralTable, string tableID, string tableIDValue)
+        public IHttpActionResult Delete(string pluralTable, string IDColumn, string IDValue)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("pluralTable", pluralTable);
-                param.Add("uniqueColumn", tableID);
-                param.Add("uniqueValue", tableIDValue);
-                param.Add("tableID", tableID);
-                param.Add("tableIDValue", tableIDValue);
+                param.Add("uniqueColumn", IDColumn);
+                param.Add("uniqueValue", IDValue);
+                param.Add("IDColumn", IDColumn);
+                param.Add("IDValue", IDValue);
                 var result = Database.Database.Exec_Command("Proc_Delete", param);
                 return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return ExceptionHandling(e);
+            }
+        }
+
+        [Route("api/BaseController/Post")]
+        [HttpPost]
+        public IHttpActionResult Post(string proc)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("proc", proc);
+                var result = Database.Database.Exec_Command("Proc_Post", param);
+                return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return ExceptionHandling(e);
+            }
+        }
+        [Route("api/BaseController/Get")]
+        [HttpGet]
+        public IHttpActionResult Get(string proc)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("proc", proc);
+                DataTable result = Database.Database.ReadTable("Proc_Get", param);
+                return Ok(result);
             }
             catch (Exception e)
             {

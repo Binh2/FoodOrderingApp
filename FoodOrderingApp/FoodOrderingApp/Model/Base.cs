@@ -7,7 +7,8 @@ namespace FoodOrderingApp.Model
     public interface IBase
     {
         string pluralTable { get; }
-        string byColumn { get; set; }
-        object byValue { get; set; }
+        string uniqueColumn { get; set; }
+        string IDColumn { get; }
+        List<string> parameterColumns { get; }
     }
 }
