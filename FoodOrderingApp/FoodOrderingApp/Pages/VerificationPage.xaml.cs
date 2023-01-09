@@ -17,9 +17,16 @@ namespace FoodOrderingApp.Pages
         List<Entry> verificationEntries = null;
         public ICommand ResendVerificationCommand { get; set; }
         string random;
+        string nextPage = "//tabBar/homepage";
+
         public VerificationPage()
         {
             InitializeComponent();
+        }
+        public VerificationPage(string nextPage)
+        {
+            InitializeComponent();
+            this.nextPage = nextPage;
         }
         protected async override void OnAppearing()
         {
@@ -82,7 +89,7 @@ namespace FoodOrderingApp.Pages
             if (enteredVerification == random)
             {
                 await WebAPI.InsertConsumer(ConsumerProvider.consumer);
-                await Shell.Current.GoToAsync("//tabBar/homepage");
+                await Shell.Current.GoToAsync(nextPage);
             }
             else
             {

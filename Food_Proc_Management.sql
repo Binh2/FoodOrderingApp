@@ -183,6 +183,12 @@ as
 select * from Consumers where ConsumerUsername = @ConsumerUsername;
 GO
 
+-- Select a consumer by ConsumerEmail
+CREATE proc Proc_SelectConsumerByEmail(@ConsumerEmail nvarchar(max))
+as
+select * from Consumers where ConsumerEmail = @ConsumerEmail;
+GO
+
 -- Insert a consumer
 CREATE PROC dbo.Proc_InsertConsumer(
 	@ConsumerName		nvarchar(MAX),

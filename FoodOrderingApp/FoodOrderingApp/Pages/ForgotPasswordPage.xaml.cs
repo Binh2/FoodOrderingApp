@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodOrderingApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace FoodOrderingApp.Pages
         public ForgotPasswordPage()
         {
             InitializeComponent();
+            Title = "Forgot password?";
+        }
+
+        private async void Continue(object sender, EventArgs e)
+        {
+            ConsumerProvider.consumer = await WebAPI.SelectConsumerByEmail(emailEntry.Text);
+            await Shell.Current.Navigation.PushAsync(new VerificationPage("//resetPasswordPage"));
         }
     }
 }
