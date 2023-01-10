@@ -17,10 +17,11 @@
                 <Setter Property="Shell.TabBarForegroundColor" Value="Black"></Setter>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95000000"></Setter>
                 <Setter Property="Shell.TabBarTitleColor" Value="Black"></Setter>
+                <!--<Setter Property="Shell.Padding" Value="100"></Setter>-->
             </Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar"></Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem"></Style>
-            <Style BasedOn="{StaticResource BaseStyle}" TargetType="NavigationPage"></Style>
+            <!--<Style BasedOn="{StaticResource BaseStyle}" TargetType="NavigationPage"></Style>-->
             <Style x:Key="EntryLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#555"></Setter>
                 <Setter Property="FontSize" Value="18"></Setter>

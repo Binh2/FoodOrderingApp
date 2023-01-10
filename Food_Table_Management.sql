@@ -48,7 +48,7 @@ go
 create table Foods(
 	FoodID				INT IDENTITY (1, 1) PRIMARY KEY,
 	FoodName			NVARCHAR(MAX) not null,
-	FoodImages			NVARCHAR(MAX) not null,
+	FoodImages			NVARCHAR(MAX) not null, -- later will be removed
 	FoodDetail			NVARCHAR(MAX),
 	FoodPrice			FLOAT(53) not null,
 	FoodRating			FLOAT(53),	-- Can be here for faster calculation
@@ -56,6 +56,11 @@ create table Foods(
 	CategoryID			INT,
 	RestaurantID		INT not null
 ); 
+create table FoodImages(
+	FoodImageID			int identity (1, 1) primary key,
+	FoodID				int not null,
+	FoodImage			nvarchar(max) not null
+);
 go
 create table FoodRatings(
 	ConsumerID			int not null,
@@ -73,8 +78,15 @@ go
 create table Orders(
 	OrderID				int IDENTITY (1, 1) PRIMARY KEY,
 	ConsumerID			int not null,
-	FoodID				int not null,
 ); 
+go
+create table OrderFoods(
+	OrderFoodID			int identity (1, 1) primary key,
+	OrderID				int not null,
+	FoodID				int not null,
+	FoodQuantity		int not null,
+	FoodPrice			int not null
+);
 go
 create table OrderStates(
 	OrderStateID		int identity (1, 1) primary key,
@@ -86,7 +98,7 @@ create table OrderStates(
 go
 create table OrderStateTypes(
 	OrderStateTypeID	int IDENTITY (1, 1) PRIMARY KEY,
-	OrderStateTypeName	int not null,
+	OrderStateTypeName	nvarchar(max) not null,
 	OrderStateTypeIsDone bit not null
 ); 
 go
@@ -155,27 +167,27 @@ ALTER TABLE Foods ADD CONSTRAINT Foods_CategoryID_FK FOREIGN KEY (CategoryID) RE
 ALTER TABLE Foods ADD CONSTRAINT Foods_RestaurantID_FK FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID);
 go
 
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Hamburger','/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Shusi','/WEBAPI/Images/shishi.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Noodles','/WEBAPI/Images/noodle.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Drinks','/WEBAPI/Images/coca.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Milktea','/WEBAPI/Images/milktea.jpg')
-INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Rice','/WEBAPI/Images/rice.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Hamburger','Hatch_Green_Chile_Hamburger.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Shusi','shishi.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Noodles','noodle.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Drinks','coca.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Milktea','milktea.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Rice','rice.jpg')
 go
 
 INSERT INTO Restaurants(RestaurantName) VALUES ('Đặng Văn Hải')
 go
 
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
-'/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon',15000,4.5,0,1,1)
+'Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon',15000,4.5,0,1,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cocacola',
-'/WEBAPI/Images/coca.jpg','Cocacola ngon',15000,4.5,0,4,1)
+'coca.jpg','Cocacola ngon',15000,4.5,0,4,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mì xào',
-'/WEBAPI/Images/noodle.jpg','Mì xào ngon',15000,4.6,0,3,1)
+'noodle.jpg','Mì xào ngon',15000,4.6,0,3,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm',
-'/WEBAPI/Images/rice.jpg','Cơm ngon',15000,3.0,0,6,1)
+'rice.jpg','Cơm ngon',15000,3.0,0,6,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm tấm',
-'/WEBAPI/Images/comtam.jpg','Cơm tấm ngon',15000,3.7,0,6,1)
+'comtam.jpg','Cơm tấm ngon',15000,3.7,0,6,1)
 go
 
 --TÌM SỐ LƯỢNG --
@@ -203,7 +215,7 @@ select * from Consumers;
 GO
 
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
-	('4227 0123 4567 8901', 'visa-card1.png', '2022-07-', 1000, 1, 1);
+	('4227 0123 4567 8901', 'visa-card1.png', '2022-07-20', 1000, 1, 1);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 30, 1, 2);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
@@ -225,9 +237,16 @@ insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sh
 insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 1);			--8
 insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 0);			--9
 insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 1);			--10
+go
 
 insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,4,'2022-07-20','Lagos State, Nigeria');
-insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,6,'2023-07-20','Lagos State, Nigeria');
-insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,8,'2023-07-21','Lagos State, Nigeria');
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,6,'2022-07-20','Lagos State, Nigeria');
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,8,'2022-07-21','Lagos State, Nigeria');
+go
 
-insert into Orders(ConsumerID, FoodID) values (1,1);
+insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,1,1,15000);
+insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,2,1,15000);
+go
+
+insert into Orders(ConsumerID) values (1);
+go

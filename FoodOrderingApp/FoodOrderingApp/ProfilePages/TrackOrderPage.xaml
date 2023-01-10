@@ -45,8 +45,7 @@
                                         <!--<views:StateView StateDescription="{Binding Path=OrderState,
                                         Converter={StaticResource OrderStateToStringConverter}}"></views:StateView>-->
                                     </StackLayout>
-                                    <CollectionView ItemsSource="{Binding OrderImages, 
-                                                Converter={StaticResource ImagesStringToListConverter}}"
+                                    <CollectionView ItemsSource="{Binding OrderImages}"
                                                 ItemsLayout="VerticalGrid, 2" HeightRequest="124"
                                                 WidthRequest="124" Margin="57,0,0,0">
                                         <CollectionView.ItemTemplate>

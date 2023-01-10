@@ -4,6 +4,19 @@ using System.Collections.Generic;
 using System.Text;
 namespace FoodOrderingApp.Model
 {
+    public interface IFood
+    {
+        int FoodID { get; set; }
+        string FoodName { get; set; }
+        string FoodImages { get; set; }
+        string FoodDetail { get; set; }
+        double FoodPrice { get; set; }
+        double FoodRating { get; set; }
+        int FoodFavourite { get; set; }
+        int CategoryID { get; set; }
+        int RestaurantID { get; set; }
+
+    }
     public class Foods
     {
         public int FoodID { get; set; }

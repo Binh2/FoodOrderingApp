@@ -9,11 +9,11 @@ namespace WEBAPI.Models
     {
         int OrderID { get; set; }
         int ConsumerID { get; set; }
-        int FoodID { get; set; }
     }
 
-    public class Order : IOrder, IConsumer, IFood
+    public class Order : IOrder, IConsumer
     {
+        // Nessesary
         public int OrderID { get; set; }
 
         public int ConsumerID { get; set; }
@@ -23,14 +23,11 @@ namespace WEBAPI.Models
         public string ConsumerUsername { get; set; }
         public string ConsumerPassword { get; set; }
 
-        public int FoodID { get; set; }
-        public string FoodName { get; set; }
-        public string FoodImages { get; set; }
-        public string FoodDetail { get; set; }
-        public double FoodPrice { get; set; }
-        public double FoodRating { get; set; }
-        public int FoodFavourite { get; set; }
-        public int CategoryID { get; set; }
-        public int RestaurantID { get; set; }
+        // not completely nessesary
+        public int OrderPrice { get; set; }
+        public string OrderImages { get; set; }
+        public int OrderState { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string OrderLocation { get; set; }
     }
 }

@@ -24,19 +24,19 @@ go
 --LẤY TẤT CẢ LOẠI HÀNG--
 CREATE proc [Proc_GetAllCategories](@IP nvarchar(max))
 as
-select CategoryID, CategoryName, 'http://'+@IP+CategoryImage CategoryImage from Categories;
+select CategoryID, CategoryName, 'http://'+@IP+'WEBAPI/Images/'+CategoryImage CategoryImage from Categories;
 GO
 --LẤY TẤT CẢ LOẠI HÀNG--
 CREATE proc [Proc_GetAllFoods](@IP nvarchar(max))
 as
-select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods;
 GO
 
 -- LIST THỨC ĂN THEO LOẠI--
 CREATE proc [dbo].[Proc_GetFoodsByCategoryID](@IP nvarchar(max), @categoryid int)
 as
-select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods where CategoryID=@categoryid
 GO
 
@@ -56,7 +56,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [Proc_GetTOP4FoodByRATES](@IP nvarchar(max))
 as
-select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+FoodImages FoodImages, 
+select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice,FoodFavourite, CategoryID, RestaurantID from Foods
 	ORDER BY FoodRating DESC	
 GO
@@ -67,14 +67,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[Proc_GetTOP4NAME](@IP nvarchar(max))
 as
-SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
+SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
   FROM Foods
 GO
 
 --Lấy thông tin thức ăn
 CREATE proc [dbo].[Proc_GetFoodByID](@IP nvarchar(max), @foodid int)
 as
-select FoodID, FoodName, 'http://'+@IP+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID  from Foods where FoodID=@foodid
 GO
 
@@ -267,23 +267,46 @@ GO
 --Select all orders
 CREATE proc Proc_SelectAllOrders
 as
-select * from Orders;
+select * from
+	(select Orders.OrderID, Orders.ConsumerID, max(OrderDate) OrderDate, max(OrderStateTypeID) OrderStateTypeID
+		from Orders 
+		join OrderStates on Orders.OrderID=OrderStates.OrderID
+		group by Orders.OrderID, Orders.ConsumerID)	OrdersOrderStates
+	join
+	(select Orders.OrderID, Orders.ConsumerID, sum(OrderFoods.FoodQuantity*OrderFoods.FoodPrice) OrderPrice, string_agg(FoodImages, '|') FoodImages
+		from Orders 
+		join OrderFoods on Orders.OrderID=OrderFoods.OrderID
+		join Foods on OrderFoods.FoodID = Foods.FoodID
+		group by Orders.OrderID, Orders.ConsumerID) OrdersOrderFoods
+	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID;
 GO
 
 -- Select a order by ConsumerID
 CREATE proc Proc_SelectOrderByConsumerID(@ConsumerID int)
 as
-select * from Orders where ConsumerID = @ConsumerID;
+select * from
+	(select Orders.OrderID, Orders.ConsumerID, max(OrderDate) OrderDate, max(OrderStateTypeID) OrderStateTypeID
+		from Orders 
+		join OrderStates on Orders.OrderID=OrderStates.OrderID
+		where ConsumerID=@ConsumerID
+		group by Orders.OrderID, Orders.ConsumerID)	OrdersOrderStates
+	join
+	(select Orders.OrderID, Orders.ConsumerID, sum(OrderFoods.FoodQuantity*OrderFoods.FoodPrice) OrderPrice, string_agg(FoodImages, '|') FoodImages
+		from Orders 
+		join OrderFoods on Orders.OrderID=OrderFoods.OrderID
+		join Foods on OrderFoods.FoodID = Foods.FoodID
+		where ConsumerID=@ConsumerID
+		group by Orders.OrderID, Orders.ConsumerID) OrdersOrderFoods
+	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID;
 GO
 
 -- Insert a order
 CREATE PROC Proc_InsertOrder(
 	@ConsumerID		int,
-	@FoodID			int,
 	@CurrentID int output)
 as
 begin try
- insert into Orders(ConsumerID, FoodID) VALUES (@ConsumerID, @FoodID);
+ insert into Orders(ConsumerID) VALUES (@ConsumerID);
  set @CurrentID=@@IDENTITY
 end try
 begin catch
@@ -295,13 +318,12 @@ GO
 CREATE PROC dbo.Proc_UpdateOrder(
 	@OrderID		int,
 	@ConsumerID		int,
-	@FoodID			int,
 	@CurrentID int output)
 as	
 begin try
  if(exists(select * from Orders where OrderID=@OrderID))
   begin
-   update Orders set ConsumerID=@ConsumerID, FoodID=@FoodID where OrderID = @OrderID;
+   update Orders set ConsumerID=@ConsumerID where OrderID = @OrderID;
    set @CurrentID=@OrderID
    return
   end
@@ -322,6 +344,75 @@ begin try
   end
   delete Orders where OrderID=@OrderID;
   set @CurrentID=@OrderID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+
+
+--Select all orderStates
+CREATE proc Proc_SelectAllOrderStates
+as
+select * from OrderStates join OrderStateTypes on OrderStates.OrderStateTypeID = OrderStateTypes.OrderStateTypeID;
+GO
+-- Select a orderState by ConsumerID
+CREATE proc Proc_SelectOrderStateByOrderID(@OrderID int)
+as
+select * from OrderStates join OrderStateTypes on OrderStates.OrderStateTypeID = OrderStateTypes.OrderStateTypeID 
+	where OrderID = @OrderID;
+GO
+-- Insert a orderState
+CREATE PROC Proc_InsertOrderState(
+	@OrderID int,
+	@OrderStateTypeID int,
+	@OrderDate date,
+	@OrderLocation nvarchar(max),
+	@CurrentID int output)
+as
+begin try
+ insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) VALUES 
+  (@OrderID,@OrderStateTypeID,@OrderDate,@OrderLocation);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Update a orderState
+CREATE PROC Proc_UpdateOrderState(
+	@OrderStateID		int,
+	@OrderID int,
+	@OrderStateTypeID int,
+	@OrderDate date,
+	@OrderLocation nvarchar(max),
+	@CurrentID int output)
+as	
+begin try
+ if(exists(select * from OrderStates where OrderStateID=@OrderStateID))
+  begin
+   update OrderStates set OrderID=@OrderID, OrderStateTypeID=@OrderStateTypeID,
+    OrderDate=@OrderDate, OrderLocation=@OrderLocation where OrderStateID = @OrderStateID;
+   set @CurrentID=@OrderStateID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Delete a orderState
+create PROC Proc_DeleteOrderState(@OrderStateID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from OrderStates where OrderStateID=@OrderStateID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete OrderStates where OrderStateID=@OrderStateID;
+  set @CurrentID=@OrderStateID;
 end try
 begin catch
  set @CurrentID=0

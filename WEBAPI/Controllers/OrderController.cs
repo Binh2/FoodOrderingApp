@@ -26,31 +26,15 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/OrderController/SelectOrderByUsername")]
+        [Route("api/OrderController/SelectOrderByConsumerID")]
         [HttpGet]
-        public IHttpActionResult SelectOrderByUsername(string OrderUsername)
+        public IHttpActionResult SelectOrderByConsumerID(string ConsumerID)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("OrderUsername", OrderUsername);
-                DataTable result = Database.Database.ReadTable("Proc_SelectOrderByUsername", param);
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return Ok(e.Message);
-            }
-        }
-        [Route("api/OrderController/SelectOrderByEmail")]
-        [HttpGet]
-        public IHttpActionResult SelectOrderByEmail(string OrderEmail)
-        {
-            try
-            {
-                Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("OrderEmail", OrderEmail);
-                DataTable result = Database.Database.ReadTable("Proc_SelectOrderByEmail", param);
+                param.Add(nameof(ConsumerID), ConsumerID);
+                DataTable result = Database.Database.ReadTable("Proc_SelectOrderByConsumerID", param);
                 return Ok(result);
             }
             catch (Exception e)
@@ -67,7 +51,6 @@ namespace WEBAPI.Controllers
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("ConsumerID", order.ConsumerID);
-                param.Add("FoodID", order.FoodID);
                 var result = Database.Database.Exec_Command("Proc_InsertOrder", param);
                 return Ok(int.Parse(result.ToString()));
             }
@@ -85,7 +68,6 @@ namespace WEBAPI.Controllers
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("OrderID", order.OrderID);
                 param.Add("ConsumerID", order.ConsumerID);
-                param.Add("FoodID", order.FoodID);
                 var result = Database.Database.Exec_Command("Proc_UpdateOrder", param);
                 return Ok(int.Parse(result.ToString()));
             }

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
              x:Class="FoodOrderingApp.ProfilePages.ProfilePage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -10,13 +11,15 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10">
-                <Frame CornerRadius="500" Padding="0,0,15,0">
-                    <Image Source="{Binding ConsumerImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
+                <Frame CornerRadius="500" Margin="0,0,15,0" Padding="0">
+                    <Image Source="{Binding ., Converter={StaticResource WebAPIImageConverter}}" x:Name="consumerImage" 
+                           WidthRequest="100" HeightRequest="100" 
+                           Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"></Image>
                 </Frame>
                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                    <Label Text="{Binding ConsumerName}" FontAttributes="Bold"
+                    <Label FontAttributes="Bold" x:Name="consumerNameLabel"
                            FontSize="20"></Label>
-                    <Label Text="{Binding ConsumerEmail}"></Label>
+                    <Label x:Name="consumerEmailLabel"></Label>
                 </StackLayout>
             </StackLayout>
 

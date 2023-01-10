@@ -160,6 +160,7 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderStateController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,7 +172,9 @@
     <Compile Include="Models\Consumer.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderFood.cs" />
     <Compile Include="Models\OrderState.cs" />
+    <Compile Include="Models\OrderStateType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,7 @@ namespace FoodOrderingApp.AccountPages
         public SignupPage()
         {
             InitializeComponent();
+            Title = "Sign up";
         }
 
         private async void Signup(object sender, EventArgs e)

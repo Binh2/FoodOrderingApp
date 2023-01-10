@@ -20,7 +20,7 @@
     
     
     <TabBar Route="tabBar">
-        <ShellContent Icon="search_button.png" Route="homepage"
+        <ShellContent Icon="explore.png" Route="homepage"
                       Title="Home" ContentTemplate="{DataTemplate pages:Homepage}"/>
         <ShellContent Icon="search_button.png" Route="foodPage"
                       Title="Food" ContentTemplate="{DataTemplate pages:CategoriesPage}"/>
@@ -30,7 +30,7 @@
                       Title="Cart" ContentTemplate="{DataTemplate pages:CartPage}"/>
         <ShellContent Icon="search_button.png" Route="profilePage"
                       Title="Profile" ContentTemplate="{DataTemplate profilePages:ProfilePage}"/>
-        <ShellContent Icon="search_button.png" Route="resourcesPage"
-                      Title="Resources" ContentTemplate="{DataTemplate pages:ResourcesPage}"/>
+        <!--<ShellContent Icon="search_button.png" Route="resourcesPage"
+                      Title="Resources" ContentTemplate="{DataTemplate pages:ResourcesPage}"/>-->
     </TabBar>
 </Shell>

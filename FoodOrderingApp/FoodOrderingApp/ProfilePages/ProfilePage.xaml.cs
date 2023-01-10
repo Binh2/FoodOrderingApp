@@ -1,4 +1,5 @@
-﻿using FoodOrderingApp.Model;
+﻿using FoodOrderingApp.Converters;
+using FoodOrderingApp.Model;
 using FoodOrderingApp.ProfilePages;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,21 @@ namespace FoodOrderingApp.ProfilePages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
+        Consumer consumer;
         public ProfilePage()
         {
             InitializeComponent();
-            BindingContext = UserProvider.user;
+            Title = "Profile";
         }
 
+        protected async override void OnAppearing()
+        {
+            consumer = ConsumerProvider.consumer;
+            consumerNameLabel.Text = consumer.ConsumerName;
+            consumerEmailLabel.Text = consumer.ConsumerEmail;
+            consumerImage.BindingContext = null;
+            consumerImage.BindingContext = consumer.ConsumerImage;
+        }
 
         private async void editProfileBtn_Tapped(object sender, EventArgs e)
         {
