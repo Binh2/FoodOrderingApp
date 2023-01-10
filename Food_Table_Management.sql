@@ -86,7 +86,8 @@ create table OrderStates(
 go
 create table OrderStateTypes(
 	OrderStateTypeID	int IDENTITY (1, 1) PRIMARY KEY,
-	OrderStateTypeName	int not null
+	OrderStateTypeName	int not null,
+	OrderStateTypeIsDone bit not null
 ); 
 go
 
@@ -166,15 +167,15 @@ INSERT INTO Restaurants(RestaurantName) VALUES ('Đặng Văn Hải')
 go
 
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
-'/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon','15000','4,5','YES',1,1)
+'/WEBAPI/Images/Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon',15000,4.5,0,1,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cocacola',
-'/WEBAPI/Images/coca.jpg','Cocacola ngon','15000','4,5','YES',4,1)
+'/WEBAPI/Images/coca.jpg','Cocacola ngon',15000,4.5,0,4,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mì xào',
-'/WEBAPI/Images/noodle.jpg','Mì xào ngon','15000','4,6','YES',3,1)
+'/WEBAPI/Images/noodle.jpg','Mì xào ngon',15000,4.6,0,3,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm',
-'/WEBAPI/Images/rice.jpg','Cơm ngon','15000','3,0','YES',6,1)
+'/WEBAPI/Images/rice.jpg','Cơm ngon',15000,3.0,0,6,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm tấm',
-'/WEBAPI/Images/comtam.jpg','Cơm tấm ngon','15000','3,7','YES',6,1)
+'/WEBAPI/Images/comtam.jpg','Cơm tấm ngon',15000,3.7,0,6,1)
 go
 
 --TÌM SỐ LƯỢNG --
@@ -202,12 +203,31 @@ select * from Consumers;
 GO
 
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
-	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 1000, 1, 1);
+	('4227 0123 4567 8901', 'visa-card1.png', '2022-07-', 1000, 1, 1);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 30, 1, 2);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('5100 1234 5678 9012', 'master-card1.png', '2023-12-20', 0, 2, 3);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('4000 0012 3456 7899', 'master-card2.png', '2021-03-31', 100, 2, 4);
-select * from cards;
+select * from Cards;
 go
+
+
+
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In restaurant', 1);	--1
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In cart', 1);			--2
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sign', 0);			--3
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sign', 1);			--4
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('process', 0);			--5
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('process', 1);			--6
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 0);			--7
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 1);			--8
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 0);			--9
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 1);			--10
+
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,4,'2022-07-20','Lagos State, Nigeria');
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,6,'2023-07-20','Lagos State, Nigeria');
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,8,'2023-07-21','Lagos State, Nigeria');
+
+insert into Orders(ConsumerID, FoodID) values (1,1);

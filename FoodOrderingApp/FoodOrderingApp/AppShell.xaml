@@ -20,17 +20,15 @@
     
     
     <TabBar Route="tabBar">
-        <ShellContent Icon="explore.png" Route="homepage"
+        <ShellContent Icon="search_button.png" Route="homepage"
                       Title="Home" ContentTemplate="{DataTemplate pages:Homepage}"/>
         <ShellContent Icon="search_button.png" Route="foodPage"
                       Title="Food" ContentTemplate="{DataTemplate pages:CategoriesPage}"/>
         <!--<ShellContent Icon="search_button.png" Route="foodDetailPage"
                       Title="Food details" ContentTemplate="{DataTemplate pages:FoodDetailPage}"/>-->
-        <ShellContent Icon="cart.png" Route="cartPage"
+        <ShellContent Icon="search_button.png" Route="cartPage"
                       Title="Cart" ContentTemplate="{DataTemplate pages:CartPage}"/>
-        <!--<ShellContent Icon="search_button.png" Route="wishlistPage"
-                      Title="Wishlist" ContentTemplate="{DataTemplate profilePages:WishlistPage}"/>-->
-        <ShellContent Icon="profile.png" Route="profilePage"
+        <ShellContent Icon="search_button.png" Route="profilePage"
                       Title="Profile" ContentTemplate="{DataTemplate profilePages:ProfilePage}"/>
         <ShellContent Icon="search_button.png" Route="resourcesPage"
                       Title="Resources" ContentTemplate="{DataTemplate pages:ResourcesPage}"/>

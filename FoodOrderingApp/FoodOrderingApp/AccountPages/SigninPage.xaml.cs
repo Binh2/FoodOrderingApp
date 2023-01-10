@@ -44,7 +44,7 @@ namespace FoodOrderingApp.AccountPages
 
             if (returnConsumer.ConsumerPassword == consumer.ConsumerPassword)
             {
-                await Shell.Current.GoToAsync("//tabBar/homepage");
+                await Shell.Current.GoToAsync(Route.HOMEPAGE);
                 ConsumerProvider.consumer = returnConsumer;
             }
         }

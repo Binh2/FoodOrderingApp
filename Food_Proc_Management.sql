@@ -261,3 +261,69 @@ begin catch
  set @CurrentID=0
  end catch
 GO
+
+
+
+--Select all orders
+CREATE proc Proc_SelectAllOrders
+as
+select * from Orders;
+GO
+
+-- Select a order by ConsumerID
+CREATE proc Proc_SelectOrderByConsumerID(@ConsumerID int)
+as
+select * from Orders where ConsumerID = @ConsumerID;
+GO
+
+-- Insert a order
+CREATE PROC Proc_InsertOrder(
+	@ConsumerID		int,
+	@FoodID			int,
+	@CurrentID int output)
+as
+begin try
+ insert into Orders(ConsumerID, FoodID) VALUES (@ConsumerID, @FoodID);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+-- Update a order
+CREATE PROC dbo.Proc_UpdateOrder(
+	@OrderID		int,
+	@ConsumerID		int,
+	@FoodID			int,
+	@CurrentID int output)
+as	
+begin try
+ if(exists(select * from Orders where OrderID=@OrderID))
+  begin
+   update Orders set ConsumerID=@ConsumerID, FoodID=@FoodID where OrderID = @OrderID;
+   set @CurrentID=@OrderID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+-- Delete a order
+create PROC Proc_DeleteOrder(@OrderID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from Orders where OrderID=@OrderID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete Orders where OrderID=@OrderID;
+  set @CurrentID=@OrderID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
