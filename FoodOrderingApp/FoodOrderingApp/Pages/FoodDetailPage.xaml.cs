@@ -56,7 +56,7 @@ namespace FoodOrderingApp.Pages
             ImageButton bt = (ImageButton)sender;
             Foods hc = (Foods)bt.BindingContext;
             bool dachon = false;
-            foreach (Foods h in Consumer.cart.Foods)
+            foreach (Foods h in ConsumerProvider.cart.Foods)
             {
                 if (hc.FoodID == h.FoodID)
                 {
@@ -68,7 +68,7 @@ namespace FoodOrderingApp.Pages
             if (dachon == false)
             {
                 hc.FoodCount = 1;
-                Consumer.cart.Foods.Add(hc);
+                ConsumerProvider.cart.Foods.Add(hc);
             }
             DisplayAlert("Thông báo", "Mua hàng thành công", "OK");
         }
