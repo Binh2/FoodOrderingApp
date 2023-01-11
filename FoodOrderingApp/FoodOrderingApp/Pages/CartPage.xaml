@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <CollectionView x:Name="collectionView" BindingContextChanged="collectionView_BindingContextChanged" Margin="10">
+                <CollectionView x:Name="collectionView" BindingContextChanged="collectionView_BindingContextChanged" Margin="10" ItemsSource="lstfoods">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"></LinearItemsLayout>
                     </CollectionView.ItemsLayout>
