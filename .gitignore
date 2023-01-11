@@ -2,8 +2,7 @@
 **/obj
 /.vs
 
-// Binh's personal ignored
-Food_*_Proc_Management.sql
+
 
 
 ## Ignore Visual Studio temporary files, build results, and
