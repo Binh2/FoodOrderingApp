@@ -11923,13 +11923,16 @@ namespace FoodOrderingApp.Droid
 			public const int user = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int Water = 2131165373;
+			public const int view_map = 2131165373;
 			
 			// aapt resource value: 0x7F0700BE
-			public const int white = 2131165374;
+			public const int Water = 2131165374;
 			
 			// aapt resource value: 0x7F0700BF
-			public const int wishlist = 2131165375;
+			public const int white = 2131165375;
+			
+			// aapt resource value: 0x7F0700C0
+			public const int wishlist = 2131165376;
 			
 			static Drawable()
 			{

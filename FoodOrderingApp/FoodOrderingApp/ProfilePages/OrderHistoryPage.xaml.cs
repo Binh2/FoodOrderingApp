@@ -30,8 +30,9 @@ namespace FoodOrderingApp.ProfilePages
                 List<Order> orders =  await WebAPI.SelectOrdersByConsumerID(ConsumerProvider.consumer.ConsumerID);
                 if (orders.Count > 0) orderID = orders[0].OrderID;
             }
+
             Title = orderID.ToString();
-            orderHistory = await WebAPI.SelectAllOrderStates();
+            orderHistory = await WebAPI.SelectOrderStatesByOrderID((int)orderID);
             for (int i = orderHistory.Count; i < 4; i++)
                 orderHistory.Add(new OrderState()
                 {
@@ -41,6 +42,11 @@ namespace FoodOrderingApp.ProfilePages
                     OrderStateTypeIsDone = false
                 });
             collectionView.ItemsSource = orderHistory;
+        }
+
+        private async void viewMapBtn_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PushAsync(new OrderMapPage((int)orderID));
         }
     }
 }

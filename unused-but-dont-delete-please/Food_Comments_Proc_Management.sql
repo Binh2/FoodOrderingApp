@@ -63,7 +63,7 @@ as
 begin try
  if(exists(select * from Comments where CommentID=@CommentID))
   begin
-   update Comments set CommentID=@CommentID, CommentStar=@CommentStar, CommentDetail=@CommentDetail, 
+   update Comments set CommentStar=@CommentStar, CommentDetail=@CommentDetail, 
     CommentDate=@CommentDate, FoodID=@FoodID, ConsumerID=@ConsumerID
    where CommentID = @CommentID;
    set @CurrentID=@CommentID

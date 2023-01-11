@@ -20,7 +20,7 @@ namespace FoodOrderingApp.Model
         static public async Task<Consumer> SelectConsumerByID(int ConsumerID)
         {
             HttpClient http = new HttpClient();
-            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMER_BY_ID + "?ConsumerID=" + ConsumerID);
+            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMERS_BY_ID + "?ConsumerID=" + ConsumerID);
             var consumers = JsonConvert.DeserializeObject<List<Consumer>>(result);
             if (consumers.Count > 0)
                 return consumers[0];
@@ -29,7 +29,7 @@ namespace FoodOrderingApp.Model
         static public async Task<Consumer> SelectConsumerByUsername(string ConsumerUsername)
         {
             HttpClient http = new HttpClient();
-            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMER_BY_USERNAME + "?ConsumerUsername=" + ConsumerUsername);
+            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMERS_BY_USERNAME + "?ConsumerUsername=" + ConsumerUsername);
             var consumers = JsonConvert.DeserializeObject<List<Consumer>>(result);
             if (consumers.Count > 0) 
                 return consumers[0];
@@ -38,7 +38,7 @@ namespace FoodOrderingApp.Model
         static public async Task<Consumer> SelectConsumerByEmail(string ConsumerEmail)
         {
             HttpClient http = new HttpClient();
-            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMER_BY_EMAIL + "?ConsumerEmail=" + ConsumerEmail);
+            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMERS_BY_EMAIL + "?ConsumerEmail=" + ConsumerEmail);
             var consumers = JsonConvert.DeserializeObject<List<Consumer>>(result);
             if (consumers.Count > 0) 
                 return consumers[0];
@@ -189,6 +189,46 @@ namespace FoodOrderingApp.Model
             var resultString = await reponse.Content.ReadAsStringAsync();
             return int.Parse(resultString.ToString());
         }
+
+        static public async Task<List<OrderFood>> SelectAllOrderFoods()
+        {
+            HttpClient http = new HttpClient();
+            var result = await http.GetStringAsync(ProcURL.SELECT_ALL_ORDER_FOODS);
+            var orderFoods = JsonConvert.DeserializeObject<List<OrderFood>>(result);
+            return orderFoods;
+        }
+        static public async Task<List<OrderFood>> SelectOrderFoodsByOrderID(int OrderID)
+        {
+            HttpClient http = new HttpClient();
+            var result = await http.GetStringAsync(ProcURL.SELECT_ORDER_FOODS_BY_ORDER_ID + "?OrderFoodID=" + OrderID);
+            var orderFoods = JsonConvert.DeserializeObject<List<OrderFood>>(result);
+            return orderFoods;
+        }
+        static public async Task<int> InsertOrderFood(OrderFood orderFood)
+        {
+            HttpClient http = new HttpClient();
+            string json = JsonConvert.SerializeObject(orderFood);
+            StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await http.PostAsync(ProcURL.INSERT_ORDER_FOOD, stringContent);
+            var resultString = await reponse.Content.ReadAsStringAsync();
+            return int.Parse(resultString.ToString());
+        }
+        static public async Task<int> UpdateOrderFood(OrderFood orderFood)
+        {
+            HttpClient http = new HttpClient();
+            string json = JsonConvert.SerializeObject(orderFood);
+            StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await http.PostAsync(ProcURL.UPDATE_ORDER_FOOD, stringContent);
+            var resultString = await reponse.Content.ReadAsStringAsync();
+            return int.Parse(resultString.ToString());
+        }
+        static public async Task<int> DeleteOrderFood(int OrderFoodID)
+        {
+            HttpClient http = new HttpClient();
+            var reponse = await http.PostAsync(ProcURL.UPDATE_ORDER_FOOD + "?OrderFoodID=" + OrderFoodID.ToString(), new StringContent(""));
+            var resultString = await reponse.Content.ReadAsStringAsync();
+            return int.Parse(resultString.ToString());
+        }
     }
     public static class ProcURL
     {
@@ -199,23 +239,35 @@ namespace FoodOrderingApp.Model
         public static readonly string DELETE_CARD = "http://" + Constants.IP + "/webapi/api/CardController/DeleteCard";
 
         public static readonly string SELECT_ALL_CONSUMERS = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectAllConsumers";
-        public static readonly string SELECT_CONSUMER_BY_ID = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumerByID";
-        public static readonly string SELECT_CONSUMER_BY_USERNAME = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumerByUsername";
-        public static readonly string SELECT_CONSUMER_BY_EMAIL = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumerByEmail";
+        public static readonly string SELECT_CONSUMERS_BY_ID = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumersByID";
+        public static readonly string SELECT_CONSUMERS_BY_USERNAME = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumersByUsername";
+        public static readonly string SELECT_CONSUMERS_BY_EMAIL = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumersByEmail";
         public static readonly string INSERT_CONSUMER = "http://" + Constants.IP + "/webapi/api/ConsumerController/InsertConsumer";
         public static readonly string UPDATE_CONSUMER = "http://" + Constants.IP + "/webapi/api/ConsumerController/UpdateConsumer";
         public static readonly string DELETE_CONSUMER = "http://" + Constants.IP + "/webapi/api/ConsumerController/DeleteConsumer";
 
         public static readonly string SELECT_ALL_ORDERS = "http://" + Constants.IP + "/webapi/api/OrderController/SelectAllOrders";
-        public static readonly string SELECT_ORDERS_BY_CONSUMER_ID = "http://" + Constants.IP + "/webapi/api/OrderController/SelectOrderByConsumerID";
+        public static readonly string SELECT_ORDERS_BY_CONSUMER_ID = "http://" + Constants.IP + "/webapi/api/OrderController/SelectOrdersByConsumerID";
         public static readonly string INSERT_ORDER = "http://" + Constants.IP + "/webapi/api/OrderController/InsertOrder";
         public static readonly string UPDATE_ORDER = "http://" + Constants.IP + "/webapi/api/OrderController/UpdateOrder";
         public static readonly string DELETE_ORDER = "http://" + Constants.IP + "/webapi/api/OrderController/DeleteOrder";
 
         public static readonly string SELECT_ALL_ORDER_STATES = "http://" + Constants.IP + "/webapi/api/OrderStateController/SelectAllOrderStates";
-        public static readonly string SELECT_ORDER_STATES_BY_ORDER_ID = "http://" + Constants.IP + "/webapi/api/OrderStateController/SelectOrderStateByOrderID";
+        public static readonly string SELECT_ORDER_STATES_BY_ORDER_ID = "http://" + Constants.IP + "/webapi/api/OrderStateController/SelectOrderStatesByOrderID";
         public static readonly string INSERT_ORDER_STATE = "http://" + Constants.IP + "/webapi/api/OrderStateController/InsertOrderState";
         public static readonly string UPDATE_ORDER_STATE = "http://" + Constants.IP + "/webapi/api/OrderStateController/UpdateOrderState";
         public static readonly string DELETE_ORDER_STATE = "http://" + Constants.IP + "/webapi/api/OrderStateController/DeleteOrderState";
+
+        public static readonly string SELECT_ALL_COMMENTS = "http://" + Constants.IP + "/webapi/api/CommentController/SelectAllComments";
+        public static readonly string SELECT_COMMENTS_BY_ORDER_ID = "http://" + Constants.IP + "/webapi/api/CommentController/SelectCommentByOrderID";
+        public static readonly string INSERT_COMMENT = "http://" + Constants.IP + "/webapi/api/CommentController/InsertComment";
+        public static readonly string UPDATE_COMMENT = "http://" + Constants.IP + "/webapi/api/CommentController/UpdateComment";
+        public static readonly string DELETE_COMMENT = "http://" + Constants.IP + "/webapi/api/CommentController/DeleteComment";
+
+        public static readonly string SELECT_ALL_ORDER_FOODS = "http://" + Constants.IP + "/webapi/api/OrderFoodController/SelectAllOrderFoods";
+        public static readonly string SELECT_ORDER_FOODS_BY_ORDER_ID = "http://" + Constants.IP + "/webapi/api/OrderFoodController/SelectOrderFoodsByOrderID";
+        public static readonly string INSERT_ORDER_FOOD = "http://" + Constants.IP + "/webapi/api/OrderFoodController/InsertOrderFood";
+        public static readonly string UPDATE_ORDER_FOOD = "http://" + Constants.IP + "/webapi/api/OrderFoodController/UpdateOrderFood";
+        public static readonly string DELETE_ORDER_FOOD = "http://" + Constants.IP + "/webapi/api/OrderFoodController/DeleteOrderFood";
     }
 }

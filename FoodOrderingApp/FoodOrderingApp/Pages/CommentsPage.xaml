@@ -4,16 +4,16 @@
              x:Class="FoodOrderingApp.Pages.CommentsPage">
     <ContentPage.Content>
         <StackLayout>
-        <StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Image></Image>
-                    <StackLayout>
-                        <Label></Label>
-                        <Label></Label>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="{Binding ConsumerImage}"></Image>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding ConsumerName}"></Label>
+                        <CollectionView ></CollectionView>
                     </StackLayout>
+                    <Label Text="{Binding CommentDetail}"></Label>
                 </StackLayout>
-            
-        </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -27,7 +27,7 @@ as
 select * from OrderStates join OrderStateTypes on OrderStates.OrderStateTypeID = OrderStateTypes.OrderStateTypeID;
 GO
 -- Select a orderState by ConsumerID
-CREATE proc Proc_SelectOrderStateByOrderID(@OrderID int)
+CREATE proc Proc_SelectOrderStatesByOrderID(@OrderID int)
 as
 select * from OrderStates join OrderStateTypes on OrderStates.OrderStateTypeID = OrderStateTypes.OrderStateTypeID 
 	where OrderID = @OrderID;

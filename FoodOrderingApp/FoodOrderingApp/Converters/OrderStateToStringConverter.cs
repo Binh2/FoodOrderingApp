@@ -12,35 +12,28 @@ namespace FoodOrderingApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (targetType == typeof(string))
+            switch ((int)value)
             {
-                switch ((int)value)
-                {
-                    case ORDER_STATE.IN_RESTAURANT:
-                        return "Still in restaurant";
-                    case ORDER_STATE.IN_CART:
-                        return "Still in cart";
-                    case ORDER_STATE.SIGNING:
-                        return "Signing...";
-                    case ORDER_STATE.SIGNED:
-                        return "Signed";
-                    case ORDER_STATE.PROCESSING:
-                        return "Processing...";
-                    case ORDER_STATE.PROCESSED:
-                        return "Processed";
-                    case ORDER_STATE.SHIPPING:
-                        return "Shipping...";
-                    case ORDER_STATE.SHIPPED:
-                        return "SHIPPED";
-                    case ORDER_STATE.RECEIVING:
-                        return "Received";
-                    case ORDER_STATE.RECEIVED:
-                        return "Received";
-                }
-            } else if (targetType == typeof(Color))
-            {
-                if ((int)value == ORDER_STATE.RECEIVED) return (Color)Application.Current.Resources["GreenColor"];
-                else return (Color)Application.Current.Resources["OrangeColor"];
+                case ORDER_STATE.IN_RESTAURANT:
+                    return "Still in restaurant";
+                case ORDER_STATE.IN_CART:
+                    return "Still in cart";
+                case ORDER_STATE.SIGNING:
+                    return "Signing...";
+                case ORDER_STATE.SIGNED:
+                    return "Signed";
+                case ORDER_STATE.PROCESSING:
+                    return "Processing...";
+                case ORDER_STATE.PROCESSED:
+                    return "Processed";
+                case ORDER_STATE.SHIPPING:
+                    return "Shipping...";
+                case ORDER_STATE.SHIPPED:
+                    return "Shipped";
+                case ORDER_STATE.RECEIVING:
+                    return "Receiving...";
+                case ORDER_STATE.RECEIVED:
+                    return "Received";
             }
             return "Still in restaurant";
         }
@@ -63,9 +56,9 @@ namespace FoodOrderingApp.Converters
                     return ORDER_STATE.PROCESSED;
                 case "Shipping...":
                     return ORDER_STATE.SHIPPING;
-                case "SHIPPED":
+                case "Shipped":
                     return ORDER_STATE.SHIPPED;
-                case "Receiving":
+                case "Receiving...":
                     return ORDER_STATE.RECEIVING;
                 case "Received":
                     return ORDER_STATE.RECEIVED;

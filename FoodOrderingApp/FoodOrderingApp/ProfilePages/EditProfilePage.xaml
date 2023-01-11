@@ -2,10 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.ProfilePages.EditProfilePage">
-    <Shell.TitleView>
-        <Label Text="Profile" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
-               FontSize="20" Margin="0,0,75,0" VerticalTextAlignment="Center"></Label>
-    </Shell.TitleView>
     <ContentPage.Content>
         <ScrollView>
             <Frame Padding="15">
@@ -22,7 +18,7 @@
                             <StackLayout Orientation="Vertical" Spacing="0">
                                 <Label Text="Name " Style="{StaticResource EntryLabelStyle}"></Label>
                                 <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerName" 
-                                   ReturnType="Next"
+                                   ReturnType="Next" Text="{Binding ConsumerName}"
                                    IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
                             </StackLayout>
                             <StackLayout Orientation="Vertical" Spacing="0">

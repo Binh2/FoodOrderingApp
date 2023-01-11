@@ -4,10 +4,6 @@
              xmlns:converters="clr-namespace:FoodOrderingApp.Converters" 
              xmlns:views="clr-namespace:FoodOrderingApp.Views"
              x:Class="FoodOrderingApp.ProfilePages.TrackOrderPage">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="search_button.png" Text="Search"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Resources>
         <converters:OrderStateConverter x:Key="OrderStateConverter"></converters:OrderStateConverter>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>

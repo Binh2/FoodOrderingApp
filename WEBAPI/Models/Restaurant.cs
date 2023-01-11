@@ -5,7 +5,19 @@ using System.Web;
 
 namespace WEBAPI.Models
 {
-    public class Restaurant
+    public interface IRestaurant
     {
+        int RestaurantID { get; set; }
+        string RestaurantName { get; set; }
+        string RestaurantImage { get; set; }
+        string RestaurantLocation { get; set; }
+    }
+    
+    public class Restaurant:IRestaurant
+    {
+        public int RestaurantID { get; set; }
+        public string RestaurantName { get; set; }
+        public string RestaurantImage { get; set; }
+        public string RestaurantLocation { get; set; }
     }
 }

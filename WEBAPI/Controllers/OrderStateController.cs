@@ -26,15 +26,15 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/OrderStateController/SelectOrderStateByOrderID")]
+        [Route("api/OrderStateController/SelectOrderStatesByOrderID")]
         [HttpGet]
-        public IHttpActionResult SelectOrderStateByOrderID(string OrderID)
+        public IHttpActionResult SelectOrderStatesByOrderID(string OrderID)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add(nameof(OrderID), OrderID);
-                DataTable result = Database.Database.ReadTable("Proc_SelectOrderStateByOrderID", param);
+                DataTable result = Database.Database.ReadTable("Proc_SelectOrderStatesByOrderID", param);
                 return Ok(result);
             }
             catch (Exception e)

@@ -26,15 +26,15 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/ConsumerController/SelectConsumerByID")]
+        [Route("api/ConsumerController/SelectConsumersByID")]
         [HttpGet]
-        public IHttpActionResult SelectConsumerByID(string ConsumerID)
+        public IHttpActionResult SelectConsumersByID(string ConsumerID)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add(nameof(ConsumerID), ConsumerID);
-                DataTable result = Database.Database.ReadTable("Proc_SelectConsumerByID", param);
+                DataTable result = Database.Database.ReadTable("Proc_SelectConsumersByID", param);
                 return Ok(result);
             }
             catch (Exception e)
@@ -42,15 +42,15 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/ConsumerController/SelectConsumerByUsername")]
+        [Route("api/ConsumerController/SelectConsumersByUsername")]
         [HttpGet]
-        public IHttpActionResult SelectConsumerByUsername(string ConsumerUsername)
+        public IHttpActionResult SelectConsumersByUsername(string ConsumerUsername)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("ConsumerUsername", ConsumerUsername);
-                DataTable result = Database.Database.ReadTable("Proc_SelectConsumerByUsername", param);
+                DataTable result = Database.Database.ReadTable("Proc_SelectConsumersByUsername", param);
                 return Ok(result);
             }
             catch (Exception e)
@@ -58,15 +58,15 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/ConsumerController/SelectConsumerByEmail")]
+        [Route("api/ConsumerController/SelectConsumersByEmail")]
         [HttpGet]
-        public IHttpActionResult SelectConsumerByEmail(string ConsumerEmail)
+        public IHttpActionResult SelectConsumersByEmail(string ConsumerEmail)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("ConsumerEmail", ConsumerEmail);
-                DataTable result = Database.Database.ReadTable("Proc_SelectConsumerByEmail", param);
+                DataTable result = Database.Database.ReadTable("Proc_SelectConsumersByEmail", param);
                 return Ok(result);
             }
             catch (Exception e)

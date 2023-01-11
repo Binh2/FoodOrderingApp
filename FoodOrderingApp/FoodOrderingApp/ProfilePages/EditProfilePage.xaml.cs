@@ -18,6 +18,13 @@ namespace FoodOrderingApp.ProfilePages
             InitializeComponent();
         }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = null;
+            BindingContext = ConsumerProvider.consumer;
+        }
+
         private async void Signup(object sender, EventArgs e)
         {
             string image = consumerImage.Text,

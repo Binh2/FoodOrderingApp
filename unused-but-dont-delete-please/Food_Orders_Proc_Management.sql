@@ -39,7 +39,7 @@ select * from
 GO
 
 -- Select a order by ConsumerID
-CREATE proc Proc_SelectOrderByConsumerID(@ConsumerID int)
+CREATE proc Proc_SelectOrdersByConsumerID(@ConsumerID int)
 as
 select * from
 	(select Orders.OrderID, Orders.ConsumerID, max(OrderDate) OrderDate, max(OrderStateTypeID) OrderStateTypeID

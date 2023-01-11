@@ -85,7 +85,7 @@ create table OrderFoods(
 	OrderID				int not null,
 	FoodID				int not null,
 	FoodQuantity		int not null,
-	FoodPrice			int not null
+	FoodPrice			float(53) not null
 );
 go
 create table OrderStates(
@@ -253,7 +253,6 @@ insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('re
 insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 1);			--12
 go
 
-insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,4,'2022-07-20','Lagos State, Nigeria');
 insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,6,'2022-07-20','Lagos State, Nigeria');
 insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,8,'2022-07-20','Lagos State, Nigeria');
 insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,10,'2022-07-21','Lagos State, Nigeria');

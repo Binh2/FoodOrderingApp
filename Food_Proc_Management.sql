@@ -24,19 +24,19 @@ go
 --LẤY TẤT CẢ LOẠI HÀNG--
 CREATE proc [Proc_GetAllCategories](@IP nvarchar(max))
 as
-select CategoryID, CategoryName, 'http://'+@IP+'WEBAPI/Images/'+CategoryImage CategoryImage from Categories;
+select CategoryID, CategoryName, 'http://'+@IP+'/WEBAPI/Images/'+CategoryImage CategoryImage from Categories;
 GO
 --LẤY TẤT CẢ LOẠI HÀNG--
 CREATE proc [Proc_GetAllFoods](@IP nvarchar(max))
 as
-select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods;
 GO
 
 -- LIST THỨC ĂN THEO LOẠI--
 CREATE proc [dbo].[Proc_GetFoodsByCategoryID](@IP nvarchar(max), @categoryid int)
 as
-select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods where CategoryID=@categoryid
 GO
 
@@ -56,7 +56,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [Proc_GetTOP4FoodByRATES](@IP nvarchar(max))
 as
-select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice,FoodFavourite, CategoryID, RestaurantID from Foods
 	ORDER BY FoodRating DESC	
 GO
@@ -67,14 +67,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[Proc_GetTOP4NAME](@IP nvarchar(max))
 as
-SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
+SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
   FROM Foods
 GO
 
 --Lấy thông tin thức ăn
 CREATE proc [dbo].[Proc_GetFoodByID](@IP nvarchar(max), @foodid int)
 as
-select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID  from Foods where FoodID=@foodid
 GO
 
@@ -184,18 +184,18 @@ as
 select * from Consumers;
 GO
 -- Select a consumer by ConsumerID
-CREATE proc Proc_SelectConsumerByID(@ConsumerID int)
+CREATE proc Proc_SelectConsumersByID(@ConsumerID int)
 as
 select * from Consumers where ConsumerID = @ConsumerID;
 GO
 -- Select a consumer by ConsumerUsername
-CREATE proc Proc_SelectConsumerByUsername(@ConsumerUsername nvarchar(max))
+CREATE proc Proc_SelectConsumersByUsername(@ConsumerUsername nvarchar(max))
 as
 select * from Consumers where ConsumerUsername = @ConsumerUsername;
 GO
 
 -- Select a consumer by ConsumerEmail
-CREATE proc Proc_SelectConsumerByEmail(@ConsumerEmail nvarchar(max))
+CREATE proc Proc_SelectConsumersByEmail(@ConsumerEmail nvarchar(max))
 as
 select * from Consumers where ConsumerEmail = @ConsumerEmail;
 GO
@@ -288,8 +288,8 @@ select * from
 	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID;
 GO
 
--- Select a order by ConsumerID
-CREATE proc Proc_SelectOrderByConsumerID(@ConsumerID int)
+-- Select orders by ConsumerID
+CREATE proc Proc_SelectOrdersByConsumerID(@ConsumerID int)
 as
 select * from
 	(select Orders.OrderID, Orders.ConsumerID, max(OrderDate) OrderDate, max(OrderStateTypeID) OrderStateTypeID
@@ -365,7 +365,7 @@ as
 select * from OrderStates join OrderStateTypes on OrderStates.OrderStateTypeID = OrderStateTypes.OrderStateTypeID;
 GO
 -- Select a orderState by ConsumerID
-CREATE proc Proc_SelectOrderStateByOrderID(@OrderID int)
+CREATE proc Proc_SelectOrderStatesByOrderID(@OrderID int)
 as
 select * from OrderStates join OrderStateTypes on OrderStates.OrderStateTypeID = OrderStateTypes.OrderStateTypeID 
 	where OrderID = @OrderID;
@@ -420,6 +420,80 @@ begin try
   end
   delete OrderStates where OrderStateID=@OrderStateID;
   set @CurrentID=@OrderStateID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+
+
+--Select all orderFoods
+CREATE proc Proc_SelectAllOrderFoods
+as
+select * from OrderFoods 
+	join Orders on Orders.OrderID = OrderFoods.OrderID 
+	join Foods on Foods.FoodID = OrderFoods.FoodID;
+GO
+-- Select orderFoods by OrderID
+CREATE proc Proc_SelectOrderFoodsByOrderID(@OrderID int)
+as
+select * from OrderFoods 
+	join Orders on Orders.OrderID = OrderFoods.OrderID 
+	join Foods on Foods.FoodID = OrderFoods.FoodID
+	where Orders.OrderID=@OrderID;
+GO
+-- Insert a orderFood
+CREATE PROC Proc_InsertOrderFood(
+	@OrderFoodID int,
+	@OrderID	int,
+	@FoodID	int,
+	@FoodQuantity int,
+	@FoodPrice float(53),
+	@CurrentID int output)
+as
+begin try
+ insert into OrderFoods(OrderFoodID,OrderID,FoodID,FoodQuantity,FoodPrice) VALUES 
+  (@OrderFoodID,@OrderID,@FoodID,@FoodQuantity,@FoodPrice);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Update a orderFood
+CREATE PROC Proc_UpdateOrderFood(
+	@OrderFoodID		int,
+	@OrderID	int,
+	@FoodID	int,
+	@FoodQuantity int,
+	@FoodPrice float(53),
+	@CurrentID int output)
+as	
+begin try
+ if(exists(select * from OrderFoods where OrderFoodID=@OrderFoodID))
+  begin
+   update OrderFoods set OrderID=@OrderID,FoodID=@FoodID,FoodQuantity=@FoodQuantity,FoodPrice=@FoodPrice
+    where OrderFoodID = @OrderFoodID;
+   set @CurrentID=@OrderFoodID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Delete a orderFood
+create PROC Proc_DeleteOrderFood(@OrderFoodID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from OrderFoods where OrderFoodID=@OrderFoodID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete OrderFoods where OrderFoodID=@OrderFoodID;
+  set @CurrentID=@OrderFoodID;
 end try
 begin catch
  set @CurrentID=0
@@ -625,7 +699,7 @@ as
 begin try
  if(exists(select * from Comments where CommentID=@CommentID))
   begin
-   update Comments set CommentID=@CommentID, CommentStar=@CommentStar, CommentDetail=@CommentDetail, 
+   update Comments set CommentStar=@CommentStar, CommentDetail=@CommentDetail, 
     CommentDate=@CommentDate, FoodID=@FoodID, ConsumerID=@ConsumerID
    where CommentID = @CommentID;
    set @CurrentID=@CommentID
