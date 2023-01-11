@@ -25,7 +25,10 @@
                                 <Label Text="Comment"
                                           Grid.Row="4" TextColor="Gray"></Label>
                                 <StackLayout Grid.Row="5" VerticalOptions="EndAndExpand" HeightRequest="60" Orientation="Horizontal" BackgroundColor="White" Margin="-20" Padding="20,10">
-                                    <Label Text="{Binding FoodPrice}" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
+                                    <Grid>
+                                        <Label Text="$" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
+                                        <Label Margin="20,0,0,0" Text="{Binding FoodPrice}" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
+                                    </Grid>
                                     <Button Text="Add to cart" CornerRadius="20" HorizontalOptions="EndAndExpand" WidthRequest="180" BackgroundColor="Green" TextColor="White">
                                         <Button.GestureRecognizers>
                                             <TapGestureRecognizer  CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped_1"/>

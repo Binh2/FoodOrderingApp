@@ -3,58 +3,79 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.Pages.ListFood">
     <ContentPage.Content>
-        <Grid Padding="20" ColumnDefinitions="*,auto" RowDefinitions="Auto,Auto,1,Auto,Auto,*">
-            <Label Grid.Row="0" Grid.Column="0" Text="Food" TextColor="#202020" FontSize="30" FontAttributes="Bold"></Label>
-            <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextColor="#202020" 
-                   FontSize="20"/>
-            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20" HeightRequest="50" Orientation="Horizontal">
-                <Frame BorderColor="#f2f2f2" CornerRadius="10" HasShadow="False">
-                    <Label Text="1 - 10 Jan" TextColor="Navy" Margin="0,-5" FontAttributes="Bold"></Label>
-                </Frame>
-                <Frame BorderColor="#f2f2f2" CornerRadius="10" HasShadow="False">
-                    <Label Text="5 People" TextColor="Navy" Margin="0,-5" FontAttributes="Bold"></Label>
-                </Frame>
-                <Frame BorderColor="#f2f2f2" CornerRadius="10" HasShadow="False">
-                    <Label Text="2 Nights" TextColor="Navy" Margin="0,-5" FontAttributes="Bold"></Label>
-                </Frame>
-            </StackLayout>
-            <BoxView Grid.Row="2"  Grid.ColumnSpan="2" BackgroundColor="#f2f2f2" HorizontalOptions="FillAndExpand"></BoxView>
-            <StackLayout Grid.Row="3" Margin="0,20" Spacing="20" Grid.ColumnSpan="2" Orientation="Horizontal">
-                <Label Text="High Price" TextColor="#202020" FontAttributes="Bold"></Label>
-                <Label Text="Low Price" TextColor="Gray"></Label>
-                <Label Text="In Budget" TextColor="Gray"></Label>
-            </StackLayout>
-            <Frame Grid.Row="4" HeightRequest="10"  Grid.ColumnSpan="2" CornerRadius="20" HasShadow="False" BackgroundColor="#f2f2f2">
-                <Label Text="Select Property of Cananda"  Margin="0,-5" TextColor="Navy" FontAttributes="Bold" FontSize="15" HorizontalOptions="CenterAndExpand"></Label>
-            </Frame>
-            <ListView x:Name="listView" Grid.Row="5" Grid.ColumnSpan="2" HasUnevenRows="True" ItemSelected="listView_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="0,10">
-                                <Frame BorderColor="#f2f2f2" CornerRadius="20" HasShadow="False" BackgroundColor="White">
-                                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="120,Auto,Auto,Auto">
-                                        <Image Grid.Row="0"  Grid.ColumnSpan="2" Margin="-20,-20,-20,0" Source="{Binding FoodImages}" Aspect="AspectFill"></Image>
-                                        <Frame CornerRadius="20" Opacity="0.5" BackgroundColor="Red" Grid.Row="0"  Grid.Column="1" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,-10,10">
-                                            <Label  Text="5.8" TextColor="White"></Label>
+        <Grid>
+            <!-- 2.0 Main structure-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5.5*"/>
+            </Grid.RowDefinitions>
+            <SearchBar Grid.Row="0"  Margin="-5,10,0,10"  BackgroundColor="Transparent" x:Name="searchfood" Placeholder="SeachFood" TextChanged="searchfood_TextChanged" CancelButtonColor="Orange"/>
+            <Grid Grid.Row="1" >
+                <!-- 2.2 Rounded board-->
+                <Frame  CornerRadius="30" BackgroundColor="White" Margin="0,-40">
+                    <Grid Padding="25,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Grid.Column="1" Source="More"/>
+                        <!-- 2.4 Menu options-->
+                        <CollectionView x:Name="listView"
+                               VerticalOptions="Start"
+                               VerticalScrollBarVisibility="Never"
+                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Frame HasShadow="False" BackgroundColor="#fef6f2" HeightRequest="90" CornerRadius="20" Margin="0,10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Frame Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" CornerRadius="12" Margin="0,0,10,0">
+                                                    <Image Source="{Binding FoodImages}" HeightRequest="100" WidthRequest="95" Aspect="AspectFit"/>
+                                                </Frame>
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding FoodName}" FontSize="15" FontAttributes="Bold"/>
+                                                <Label Grid.Row="1" Grid.Column="1" Margin="7,2,0,0" Text="$" FontSize="15" TextColor="#a4a7b6"/>
+                                                <Label Grid.Row="1" Grid.Column="1" Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding FoodPrice}" FontAttributes="Bold" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label Grid.Row="2" Grid.Column="1" Margin="0,2,0,0" Text="⭐" HorizontalOptions="Start" WidthRequest="20"/>
+                                                <Label Grid.Row="2" Grid.Column="1" Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding FoodRating}" FontAttributes="Bold" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Image Grid.Row="0" Grid.Column="2" Source="{Binding HomeSelected}" HeightRequest="15" />
+                                            </Grid>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
                                         </Frame>
-                                        <Label Grid.Row="1" Grid.Column="0" TextColor="#202020" FontAttributes="Bold" FontSize="20" Text="{Binding FoodName}" ></Label>
-                                        <Label Grid.Row="1" Grid.Column="1" TextColor="#202020" FontAttributes="Bold" FontSize="20" Text="{Binding FoodPrice}" ></Label>
-                                        <Label Grid.Row="2" Grid.Column="0" TextColor="Gray" Text="{Binding FoodName}" ></Label>
-                                        <Label Grid.Row="2" Grid.Column="1" TextColor="Gray" Text="{Binding FoodRating}" ></Label>
-                                        <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
-                                            <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" TextColor="Navy" 
-                               FontSize="20"/>
-                                            <Label  Text="{Binding FoodName}" TextColor="Gray" ></Label>
-                                        </StackLayout>
-
-                                    </Grid>
-                                </Frame>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Frame>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -190,16 +190,80 @@ INSERT INTO Restaurants(RestaurantName,RestaurantImage,RestaurantLocation) VALUE
 	('Cardinal Drive In', 'cardinal_drive_in_restaurant.png', '400 N Broadway St, Plainville, KS 67663');
 go
 
-INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
-'Hatch_Green_Chile_Hamburger.jpg','Hamburger trứng ngon',15000,4.5,0,1,1)
+go
+
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('FastFood','Doannhanh.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Drinks','Drinks.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Noodles','Noodles.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Homemade','Homemade.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('HotPot','Hotpot.jpg')
+INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Other','Other.jpg')
+
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Pork',
+'Pork.jpg','A kind of pork',126,2.2,0,6,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Beef',
+'Beef.jpg','A kind of beff',150,3.6,0,6,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Ice cream',
+'Icecream.jpg','Delicious Icecream',10,4.5,0,6,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Hamburger',
+'Hamburger.jpg',N'Hamburger là một loại thức ăn bao gồm bánh mì kẹp thịt xay (thường là thịt bò) ở giữa.',15,4.5,0,1,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Sandwich',
+'Sandwich.jpg',N'Bánh mì kẹp hoặc bánh mì lát (tiếng Anh: sandwich) là một món ăn thường bao gồm rau, pho mát hoặc thịt cắt lát được đặt bên trên hoặc giữa các lát bánh mì hoặc nói chung là bất kỳ món ăn nào trong đó bánh mì  dùng để chứa hoặc bao bọc cho một loại thực phẩm khác',16,4.8,0,1,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Taco','Taco.jpg',N'Taco là món ăn truyền thống của người Mexico được làm từ bột ngô  hoặc bột mỳ cho lớp vỏ giòn rụm bên ngoài, trong khi nhân bên trong với nhiều lựa chọn khác nhau.',15,4.2,0,1,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Tobokki',
+'Tobokki.jpg',N'là món bánh gạo cay truyền thống của Triều Tiên , ngoài ra còn là một món ăn nhanh bình dân thường bán ở các quầy hàng ven đường',6,3.0,0,1,1)
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cocacola',
-'coca.jpg','Cocacola ngon',15000,4.5,0,4,1)
-INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mì xào',
-'noodle.jpg','Mì xào ngon',15000,4.6,0,3,1)
-INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm',
-'rice.jpg','Cơm ngon',15000,3.0,0,6,1)
-INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Cơm tấm',
-'comtam.jpg','Cơm tấm ngon',15000,3.7,0,6,1)
+'Cocacola.jpg',N'Coca-Cola là một thương hiệu nước ngọt có ga chứa nước cacbon dioxide bão hòa được sản  xuất bởi Công ty Coca-Cola. Coca-Cola được điều  chế bởi dược sĩ John Pemberton vào cuối thế kỷ XIX với mục đích ban đầu là trở thành một loại biệt dược.',105,4.9,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Pepsi',
+'Pepsi.jpg',N'Peppsi là một thương hiệu nước ngọt có ga chứa nước cacbon dioxide bão hòa được sản  xuất bởi Công ty Pepsi. Pepsi được điều  chế bởi dược sĩ John Pemberton vào cuối thế kỷ XIX với mục đích ban đầu là trở thành một loại biệt dược',19,4.5,0,2,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('7up',
+'A7up.jpg',N'7UP là một nhãn hiệu đồ uống nhẹ vị chanh  xanh-chanh vàng không chứa caffein. Bản quyền nhãn hiệu thuộc về Dr  Pepper Snapple Group của Mỹ và PepsiCo',15,4.0,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Mirinda',
+'Mirinda.jpg',N'Mirinda is a brand of soft drink originally created in Spain in 1959 and  now owned by PepsiCo with global distribution',15,4.0,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Phở',
+'Pho.jpg',N'Phở là một món ăn truyền thống của Việt Nam, có nguồn gốc từ Nam Định, Hà Nội và được xem là một trong những món ăn tiêu biểu cho nền ẩm thực Việt Nam. Thành phần chính của phở là bánh phở và nước dùng  cùng với thịt bò hoặc thịt gà cắt lát mỏng. Thịt bò thích hợp nhất để nấu phở là thịt, xương từ các giống bò ta',15,3.0,0,3,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Hủ tiếu bò kho',
+'Hutieu.jpg',N'Hủ tiếu, còn được viết là hủ tíu, là món ăn dùng chế phẩm gạo dạng sợi của người Triều Châu và người Mân Nam, có nhiều điểm tương tự như sa hà phấn của người Quảng Đông và bản điều của người Khách Gia,  được truyền nhập tới nhiều vùng ở trong và ngoài nước Trung Quốc, trở thành món ăn thường gặp ở vùng Hoa Nam Trung',15,3.7,0,3,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Mì xào',
+'Mixao.jpg',N'Mì xào là tên gọi chỉ chung cho các món ăn  được chế biến từ nguyên liệu chính là sợi mì với phương pháp xào. Đây là một trong những món ăn thông dụng trong ẩm thực đường phố ở châu Á',15000,3.7,0,3,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Cookies',
+'Cookies.jpg',N'Cookies là thực phẩm được nướng hoặc làm chín có hình dạng nhỏ, phẳng và ngọt. Bánh thường chứa bột, đường và một số
+loại dầu hoặc chất béo. Món này có thể bao gồm các thành phần khác như nho khô, yến mạch, sô cô la chip, các loại hạt',150,3.7,0,4,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Milktea',
+'Milktea.jpg','Milk tea refers to several forms of beverage found in many cultures, consisting of some combination of tea and milk. The term milk tea is used for both hot and cold drinks that can be combined with various kinds of milks and a variety of spices. This is a popular way to serve tea in many countries, and is the default type of tea in many South Asian countries.  Beverages vary based on the amount of each of these key ingredients, the method of preparation, and the inclusion of other ingredients',16,3.7,0,3,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Cakes',
+'Cakes.jpg','Cake is a flour confection made from flour, sugar, and other ingredients, and is usually baked. In their oldest forms, cakes were modifications of bread',15,3.7,0,3,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Water',
+'Water.jpg','A bottle of water',15,2.0,0,4,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Shu shi cá hồi',
+'Shushicahoi.jpg','Shu shi được làm với cá hồi',15,2.0,0,6,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Shu shi tổng hợp',
+'Shushitonghop.jpg','Shu shi được làm với nhiều loại cá',15,2.0,0,6,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Shu shi trứng cá muối',
+'Shushitrungcamuoi.jpg','Shu shi kết hợp với trứng cá muối
+',15,2.0,0,6,2)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Bánh mì',
+'Banhmi.png',N'Bánh mì đặc biệt thơm ngon',16,2.2,0,1,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Bánh tráng trộn',
+'Banhtrangtron.png',N'Bánh tráng trộn đặc biệt thơm ngon',6,2.2,0,1,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Gỏi cuốn',
+'Goicuon.png',N'Gỏi cuốn đặc biệt thơm ngon',6,2.2,0,1,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Lẩu cá',
+'Lauca.png',N'Lẩu cá đặc biệt thơm ngon',126,2.2,0,5,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Lẩu bò',
+'Laubo.png',N'Lẩu bò đặc biệt thơm ngon',126,4.2,0,5,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Lẩu thái',
+'Lauthai.png',N'Lẩu thái đặc biệt thơm ngon',156,2.2,0,5,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Trà sửa koithe',
+'TrasuaKoithe.png',N'Trà sữa đặc biệt thơm ngon',126,4.2,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Trà sửa koithe',
+'TrasuaKoithe.png',N'Trà sữa đặc biệt thơm ngon',56,4,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Trà sửa maycha',
+'Trasuamaycha.png',N'Trà sữa đặc biệt thơm ngon',126,4.6,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Trà sửa mộc',
+'Trasuamoc.png',N'Trà sữa đặc biệt thơm ngon',126,4.9,0,2,1)
+INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES (N'Trà sửa yolo',
+'Trasuayolo.png',N'Trà sữa đặc biệt thơm ngon',126,4.2,0,2,1)
 go
 
 --TÌM SỐ LƯỢNG --

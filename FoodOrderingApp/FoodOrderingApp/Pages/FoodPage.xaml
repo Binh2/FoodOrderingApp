@@ -6,11 +6,13 @@
         <Grid>
             <!-- 2.0 Main structure-->
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
-            <Grid>
+            <SearchBar Grid.Row="0" x:Name="searchfood" Placeholder="SeachFood" TextChanged="searchfood_TextChanged_1" CancelButtonColor="Orange"/>
+            <Grid Grid.Row="1">
                 <!-- 2.2 Rounded board-->
-                <Frame Grid.Row="0"  CornerRadius="30" BackgroundColor="White" Margin="0,-40">
+                <Frame CornerRadius="30" BackgroundColor="White" Margin="0,-40">
                     <Grid Padding="25,30">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -42,7 +44,7 @@
                                                     <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
                                                 <Frame Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" CornerRadius="12" Margin="0,0,10,0">
-                                                    <Image Source="{Binding FoodImages}" HeightRequest="100" WidthRequest="95" Aspect="AspectFill"/>
+                                                    <Image Source="{Binding FoodImages}" HeightRequest="100" WidthRequest="95" Aspect="AspectFit"/>
                                                 </Frame>
                                                 <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FoodName}" FontSize="15" FontAttributes="Bold"/>
                                                 <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FoodPrice}" FontSize="15" TextColor="#a4a7b6"/>
