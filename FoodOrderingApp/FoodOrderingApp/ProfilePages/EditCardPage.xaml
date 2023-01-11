@@ -10,7 +10,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <Frame Padding="10">
+            <Frame Padding="15">
                 <Frame>
                     <StackLayout>
                         <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>

@@ -10,11 +10,20 @@ using Xamarin.Forms.Xaml;
 namespace FoodOrderingApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TitleView : ContentView
+    public partial class ShellNavBarTitleView : ContentView
     {
-        public TitleView()
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(ShellNavBarTitleView));
+
+        public string Text
+        {
+            get => (string)GetValue(ShellNavBarTitleView.TextProperty);
+            set => SetValue(ShellNavBarTitleView.TextProperty, value);
+        }
+
+        public ShellNavBarTitleView()
         {
             InitializeComponent();
+            BindingContext = this;
         }
     }
 }

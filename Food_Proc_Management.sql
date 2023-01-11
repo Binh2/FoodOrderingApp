@@ -183,7 +183,11 @@ CREATE proc Proc_SelectAllConsumers
 as
 select * from Consumers;
 GO
-
+-- Select a consumer by ConsumerID
+CREATE proc Proc_SelectConsumerByID(@ConsumerID int)
+as
+select * from Consumers where ConsumerID = @ConsumerID;
+GO
 -- Select a consumer by ConsumerUsername
 CREATE proc Proc_SelectConsumerByUsername(@ConsumerUsername nvarchar(max))
 as
@@ -244,6 +248,9 @@ begin catch
  set @CurrentID=0
  end catch
 GO
+
+--exec Proc_UpdateConsumer @ConsumerID=5, @ConsumerName='david', @ConsumerEmail='david@gmail.com', @ConsumerImage='david.png', @ConsumerUsername='david',
+--@ConsumerPassword='123', @CurrentID=0;
 
 -- Delete a consumer
 create PROC Proc_DeleteConsumer(@ConsumerID int, @CurrentID int output)
@@ -413,6 +420,161 @@ begin try
   end
   delete OrderStates where OrderStateID=@OrderStateID;
   set @CurrentID=@OrderStateID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+
+
+--Select all restaurants
+CREATE proc Proc_SelectAllRestaurants
+as
+select * from Restaurants;
+GO
+-- Select a restaurant by RestaurantID
+CREATE proc Proc_SelectRestaurantByID(@RestaurantID int)
+as
+select * from Restaurants where RestaurantID = @RestaurantID;
+GO
+-- Insert a restaurant
+CREATE PROC dbo.Proc_InsertRestaurant(
+	@RestaurantName		nvarchar(MAX),
+	@RestaurantImage		nvarchar(MAX),
+	@RestaurantLocation	nvarchar(max),
+	@CurrentID int output)
+as
+begin try
+ insert into Restaurants(RestaurantName,RestaurantImage,RestaurantLocation) VALUES 
+ (@RestaurantName,@RestaurantImage,@RestaurantLocation);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Update a restaurant
+CREATE PROC dbo.Proc_UpdateRestaurant(
+	@RestaurantID			int,
+	@RestaurantName		nvarchar(MAX),
+	@RestaurantImage		nvarchar(MAX),
+	@RestaurantLocation		nvarchar(max),
+	@CurrentID int output)
+as	
+begin try
+ if(exists(select * from Restaurants where RestaurantID=@RestaurantID))
+  begin
+   update Restaurants set RestaurantName=@RestaurantName, RestaurantImage=@RestaurantImage, 
+    RestaurantLocation=@RestaurantLocation
+   where RestaurantID = @RestaurantID;
+   set @CurrentID=@RestaurantID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Delete a restaurant
+create PROC Proc_DeleteRestaurant(@RestaurantID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from Restaurants where RestaurantID=@RestaurantID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete Restaurants where RestaurantID=@RestaurantID;
+  set @CurrentID=@RestaurantID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+
+
+
+--Select all producers
+CREATE proc Proc_SelectAllProducers
+as
+select * from Producers;
+GO
+-- Select a producer by ProducerID
+CREATE proc Proc_SelectProducerByID(@ProducerID int)
+as
+select * from Producers where ProducerID = @ProducerID;
+GO
+-- Select a producer by ProducerUsername
+CREATE proc Proc_SelectProducerByUsername(@ProducerUsername nvarchar(max))
+as
+select * from Producers where ProducerUsername = @ProducerUsername;
+GO
+-- Select a producer by ProducerEmail
+CREATE proc Proc_SelectProducerByEmail(@ProducerEmail nvarchar(max))
+as
+select * from Producers where ProducerEmail = @ProducerEmail;
+GO
+-- Insert a producer
+CREATE PROC dbo.Proc_InsertProducer(
+	@ProducerName		nvarchar(MAX),
+	@ProducerEmail		nvarchar(MAX),
+	@ProducerImage		nvarchar(MAX),
+	@ProducerUsername	nvarchar(max),
+	@ProducerPassword	nvarchar(MAX),
+	@RestaurantID		int,
+	@CurrentID int output)
+as
+begin try
+ if(exists(select * from Producers where ProducerUsername=@ProducerUsername))
+  begin
+   set @CurrentID=0
+   return
+  end
+ insert into Producers(ProducerName,ProducerEmail,ProducerImage,ProducerUsername,ProducerPassword,RestaurantID) VALUES 
+ (@ProducerName,@ProducerEmail,@ProducerImage,@ProducerUsername,@ProducerPassword,@RestaurantID);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Update a producer
+CREATE PROC dbo.Proc_UpdateProducer(
+	@ProducerID			int,
+	@ProducerName		nvarchar(MAX),
+	@ProducerEmail		nvarchar(MAX),
+	@ProducerImage		nvarchar(MAX),
+	@ProducerUsername	nvarchar(max),
+	@ProducerPassword	nvarchar(MAX),
+	@RestaurantID		int,
+	@CurrentID int output)
+as	
+begin try
+ if(exists(select * from Producers where ProducerID=@ProducerID))
+  begin
+   update Producers set ProducerName=@ProducerName, ProducerEmail=@ProducerEmail, 
+   ProducerImage = @ProducerImage, ProducerUsername = @ProducerUsername, ProducerPassword = @ProducerPassword, RestaurantID=@RestaurantID
+   where ProducerID = @ProducerID;
+   set @CurrentID=@ProducerID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Delete a producer
+create PROC Proc_DeleteProducer(@ProducerID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from Producers where ProducerID=@ProducerID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete Producers where ProducerID=@ProducerID;
+  set @CurrentID=@ProducerID;
 end try
 begin catch
  set @CurrentID=0

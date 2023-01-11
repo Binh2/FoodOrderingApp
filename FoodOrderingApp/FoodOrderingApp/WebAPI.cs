@@ -17,6 +17,15 @@ namespace FoodOrderingApp.Model
             var consumers = JsonConvert.DeserializeObject<List<Consumer>>(result);
             return consumers;
         }
+        static public async Task<Consumer> SelectConsumerByID(int ConsumerID)
+        {
+            HttpClient http = new HttpClient();
+            var result = await http.GetStringAsync(ProcURL.SELECT_CONSUMER_BY_ID + "?ConsumerID=" + ConsumerID);
+            var consumers = JsonConvert.DeserializeObject<List<Consumer>>(result);
+            if (consumers.Count > 0)
+                return consumers[0];
+            return null;
+        }
         static public async Task<Consumer> SelectConsumerByUsername(string ConsumerUsername)
         {
             HttpClient http = new HttpClient();
@@ -190,6 +199,7 @@ namespace FoodOrderingApp.Model
         public static readonly string DELETE_CARD = "http://" + Constants.IP + "/webapi/api/CardController/DeleteCard";
 
         public static readonly string SELECT_ALL_CONSUMERS = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectAllConsumers";
+        public static readonly string SELECT_CONSUMER_BY_ID = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumerByID";
         public static readonly string SELECT_CONSUMER_BY_USERNAME = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumerByUsername";
         public static readonly string SELECT_CONSUMER_BY_EMAIL = "http://" + Constants.IP + "/webapi/api/ConsumerController/SelectConsumerByEmail";
         public static readonly string INSERT_CONSUMER = "http://" + Constants.IP + "/webapi/api/ConsumerController/InsertConsumer";

@@ -20,11 +20,12 @@ namespace FoodOrderingApp.ProfilePages
 
         private async void Signup(object sender, EventArgs e)
         {
-            string image = userImage.Text,
-                name = userName.Text,
-                email = userEmail.Text,
-                password = userPassword.Text,
-                confirmPassword = userConfirmPassword.Text;
+            string image = consumerImage.Text,
+                name = consumerName.Text,
+                email = consumerEmail.Text,
+                username = consumerUsername.Text,
+                password = consumerPassword.Text,
+                confirmPassword = consumerConfirmPassword.Text;
 
             if (password != confirmPassword)
             {
@@ -32,21 +33,24 @@ namespace FoodOrderingApp.ProfilePages
                 return;
             }
 
-            User user = new User
+            Consumer consumer = new Consumer
             {
-                UserID = UserProvider.user.UserID,
-                UserImage = image,
-                UserName = name,
-                UserEmail = email,
-                UserPassword = password
+                ConsumerID = ConsumerProvider.consumer.ConsumerID,
+                ConsumerImage = image,
+                ConsumerName = name,
+                ConsumerEmail = email,
+                ConsumerUsername = username,
+                ConsumerPassword = password
             };
 
-            User returnUser = Database.selectUserByEmail(user);
-            if (returnUser != null)
+            //Consumer returnedConsumer = Database.selectConsumerByEmail(consumer);
+            Consumer returnedConsumer = await WebAPI.SelectConsumerByID(consumer.ConsumerID);
+            if (returnedConsumer != null)
             {
                 await Shell.Current.Navigation.PopAsync();
-                Database.updateUser(user);
-                UserProvider.user = user;
+                //Database.updateConsumer(consumer);
+                await WebAPI.UpdateConsumer(consumer);
+                ConsumerProvider.consumer = consumer;
             }
         }
     }

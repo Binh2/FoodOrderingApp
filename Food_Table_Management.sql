@@ -118,6 +118,7 @@ create table Producers(
 	ProducerName		nvarchar(MAX) not null,
 	ProducerEmail		nvarchar(MAX) not null,
 	ProducerImage		nvarchar(MAX),
+	ProducerUsername	nvarchar(max) not null,
 	ProducerPassword	nvarchar(MAX) not null,
 	RestaurantID		int not null
 ); 
@@ -142,7 +143,8 @@ go
 create table Restaurants (
 	RestaurantID		INT IDENTITY (1, 1) PRIMARY KEY,
 	RestaurantName		NVARCHAR(MAX) not null,
-	RestaurantImage		NVARCHAR(MAX)
+	RestaurantImage		NVARCHAR(MAX),
+	RestaurantLocation	nvarchar(max)
 ); 
 go
 
@@ -175,7 +177,12 @@ INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Milktea','milktea.j
 INSERT INTO Categories (CategoryName,CategoryImage) VALUES ('Rice','rice.jpg')
 go
 
-INSERT INTO Restaurants(RestaurantName) VALUES ('Đặng Văn Hải')
+INSERT INTO Restaurants(RestaurantName) VALUES ('Đặng Văn Hải');
+INSERT INTO Restaurants(RestaurantName) VALUES ('Taca');
+INSERT INTO Restaurants(RestaurantName) VALUES ('DiDi');
+INSERT INTO Restaurants(RestaurantName,RestaurantLocation) VALUES ('Jiff Burger', '815 E Highway 36, Smith Center, KS 66967');
+INSERT INTO Restaurants(RestaurantName,RestaurantLocation) VALUES ('El A De Oros', '609 3rd St, Phillipsburg, KS 67661');
+INSERT INTO Restaurants(RestaurantName,RestaurantLocation) VALUES ('Cardinal Drive In', '400 N Broadway St, Plainville, KS 67663');
 go
 
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
@@ -215,14 +222,14 @@ select * from Consumers;
 GO
 
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
-	('4227 0123 4567 8901', 'visa-card1.png', '2022-07-20', 1000, 1, 1);
+	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 1000, 1, 1);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 30, 1, 2);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('5100 1234 5678 9012', 'master-card1.png', '2023-12-20', 0, 2, 3);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('4000 0012 3456 7899', 'master-card2.png', '2021-03-31', 100, 2, 4);
-select * from Cards;
+select * from cards;
 go
 
 

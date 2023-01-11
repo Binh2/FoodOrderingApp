@@ -11,7 +11,7 @@ namespace FoodOrderingApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<string> images = ((string)value).Split('|').Take<string>(4).ToList<string>();
+            List<string> images = ((string)value).Split('|').ToList<string>();
             return images;
         }
 

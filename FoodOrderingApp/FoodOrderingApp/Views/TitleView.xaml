@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodOrderingApp.Views.TitleView">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+             x:Class="FoodOrderingApp.Views.ShellNavBarTitleView">
+    <ContentView.Content>
+        <Label Text="{Binding Text}" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+               VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="25" Margin="0,0,75,0">
+        </Label>
+    </ContentView.Content>
 </ContentView>

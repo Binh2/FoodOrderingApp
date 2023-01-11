@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace WEBAPI.Models
 {
@@ -13,12 +10,12 @@ namespace WEBAPI.Models
         DateTime OrderDate { get; set; }
         string OrderLocation { get; set; }
     }
-    public class OrderState:IOrderState, IOrderStateType, IOrder
+    public class OrderState : IOrderState, IOrderStateType, IOrder
     {
         public int OrderStateID { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderLocation { get; set; }
-        
+
         public int OrderID { get; set; }
         public int ConsumerID { get; set; }
 

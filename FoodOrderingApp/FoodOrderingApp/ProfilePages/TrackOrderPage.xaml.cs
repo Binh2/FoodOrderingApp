@@ -35,5 +35,12 @@ namespace FoodOrderingApp.ProfilePages
             orders = await WebAPI.SelectAllOrders();
             collectionView.ItemsSource = orders;
         }
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Frame frame = sender as Frame;
+            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
+            Order order = tapGestureRecognizer.CommandParameter as Order;
+            Shell.Current.Navigation.PushAsync(new OrderHistoryPage(order.OrderID));
+        }
     }
 }

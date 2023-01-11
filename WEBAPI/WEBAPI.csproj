@@ -186,18 +186,41 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\7up.jpg" />
+    <Content Include="Images\Cakes.jpg" />
+    <Content Include="Images\chuong.jpg" />
     <Content Include="Images\coca.jpg" />
+    <Content Include="Images\Cocacola.jpg" />
     <Content Include="Images\comtam.jpg" />
+    <Content Include="Images\Cookies.jpg" />
+    <Content Include="Images\Doannhanh.jpg" />
+    <Content Include="Images\Drinks.jpg" />
+    <Content Include="Images\favourte.png" />
+    <Content Include="Images\Hamburger.jpg" />
     <Content Include="Images\Hatch_Green_Chile_Hamburger.jpg" />
+    <Content Include="Images\HotPot.jpg" />
+    <Content Include="Images\Hutieu.jpg" />
     <Content Include="Images\mark_olson.png" />
     <Content Include="Images\master-card1.png" />
     <Content Include="Images\master-card2.png" />
+    <Content Include="Images\Mi.jpg" />
     <Content Include="Images\milktea.jpg" />
+    <Content Include="Images\Mirinda.jpg" />
+    <Content Include="Images\Mixao.jpg" />
     <Content Include="Images\noodle.jpg" />
+    <Content Include="Images\Noodles.jpg" />
+    <Content Include="Images\Other.jpg" />
+    <Content Include="Images\Pepsi.jpg" />
+    <Content Include="Images\Pho.jpg" />
     <Content Include="Images\rice.jpg" />
+    <Content Include="Images\Sandwich.jpg" />
     <Content Include="Images\shishi.jpg" />
+    <Content Include="Images\Taco.jpg" />
+    <Content Include="Images\Tobokki.jpg" />
+    <Content Include="Images\user.png" />
     <Content Include="Images\visa-card1.png" />
     <Content Include="Images\visa-card2.png" />
+    <Content Include="Images\Water.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -226,13 +249,6 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
@@ -240,11 +256,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Consumer\" />
-    <Folder Include="Views\MyTest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

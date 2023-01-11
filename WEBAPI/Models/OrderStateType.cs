@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WEBAPI.Models
+﻿namespace WEBAPI.Models
 {
     public interface IOrderStateType
     {
@@ -11,7 +6,7 @@ namespace WEBAPI.Models
         int OrderStateTypeName { get; set; }
         int OrderStateTypeIsDone { get; set; }
     }
-    public class OrderStateType: IOrderStateType
+    public class OrderStateType : IOrderStateType
     {
         public int OrderStateTypeID { get; set; }
         public int OrderStateTypeName { get; set; }

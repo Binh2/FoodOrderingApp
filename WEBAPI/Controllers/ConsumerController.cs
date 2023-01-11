@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Http;
 using WEBAPI.Models;
 
@@ -19,6 +16,22 @@ namespace WEBAPI.Controllers
             {
                 //Dictionary<string, object> param = new Dictionary<string, object>();
                 DataTable result = Database.Database.ReadTable("Proc_SelectAllConsumers");
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+        [Route("api/ConsumerController/SelectConsumerByID")]
+        [HttpGet]
+        public IHttpActionResult SelectConsumerByID(int ConsumerID)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add(nameof(ConsumerID), ConsumerID);
+                DataTable result = Database.Database.ReadTable("Proc_SelectConsumerByID", param);
                 return Ok(result);
             }
             catch (Exception e)

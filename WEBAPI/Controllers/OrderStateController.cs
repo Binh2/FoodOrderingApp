@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WEBAPI.Models;
 
@@ -69,7 +66,7 @@ namespace WEBAPI.Controllers
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add(nameof(orderState.OrderStateID), orderState.OrderStateID); 
+                param.Add(nameof(orderState.OrderStateID), orderState.OrderStateID);
                 param.Add(nameof(orderState.OrderID), orderState.OrderID);
                 param.Add(nameof(orderState.OrderStateTypeID), orderState.OrderStateTypeID);
                 param.Add(nameof(orderState.OrderDate), orderState.OrderDate);

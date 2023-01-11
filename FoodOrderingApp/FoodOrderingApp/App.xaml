@@ -11,8 +11,11 @@
                 <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}"></Setter>
                 <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Dark=White, Light=Black}"></Setter>
                 <Setter Property="Shell.TitleColor" Value="Black"></Setter>
-                <Setter Property="Shell.DisabledColor" Value="#B4000000"></Setter>
-                <Setter Property="Shell.UnselectedColor" Value="#95000000"></Setter>
+                <!--#B4000000-->
+                <Setter Property="Shell.DisabledColor" Value="#00000000"></Setter>
+                
+                <!--950000000-->
+                <Setter Property="Shell.UnselectedColor" Value="#00000000"></Setter>
                 <Setter Property="Shell.TabBarBackgroundColor" Value="White"></Setter> <!-- can use primary color here -->
                 <Setter Property="Shell.TabBarForegroundColor" Value="Black"></Setter>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95000000"></Setter>

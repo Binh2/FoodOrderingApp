@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WEBAPI.Models
+﻿namespace WEBAPI.Models
 {
     public interface IFood
     {
@@ -18,8 +13,8 @@ namespace WEBAPI.Models
         int RestaurantID { get; set; }
 
     }
-    
-    public class Food :IFood
+
+    public class Food : IFood
     {
         public int FoodID { get; set; }
         public string FoodName { get; set; }

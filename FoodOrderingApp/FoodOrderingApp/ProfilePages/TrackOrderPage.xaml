@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters" xmlns:views="clr-namespace:FoodOrderingApp.Views"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converters="clr-namespace:FoodOrderingApp.Converters" 
+             xmlns:views="clr-namespace:FoodOrderingApp.Views"
              x:Class="FoodOrderingApp.ProfilePages.TrackOrderPage">
     <ContentPage.Resources>
         <converters:OrderStateConverter x:Key="OrderStateConverter"></converters:OrderStateConverter>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
         <converters:ImagesStringToListConverter x:Key="ImagesStringToListConverter"></converters:ImagesStringToListConverter>
+        <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
@@ -15,55 +18,59 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Path=OrderDate,
+                        <Frame>
+                            <StackLayout>
+                                <Label Text="{Binding Path=OrderDate,
                                 Converter={StaticResource DateTimeToStringConverter}}"
                                    TextColor="Black" FontSize="18"></Label>
-                            <Frame HasShadow="True" Padding="30,10,30,20" Margin="0,5,0,20" CornerRadius="3" 
-                                   >
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                                    <StackLayout>
-                                        <Label Text="{Binding OrderID}" FontSize="20" FontAttributes="Bold"
+                                <Frame HasShadow="True" Padding="30,10,30,20" Margin="0,5,0,20" CornerRadius="3">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                        <StackLayout>
+                                            <Label Text="{Binding OrderID}" FontSize="20" FontAttributes="Bold"
                                            TextColor="Black"></Label>
-                                        <Label FontSize="18" VerticalOptions="Start" TextColor="#00c569">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <FormattedString.Spans>
-                                                        <Span Text="$"></Span>
-                                                        <Span Text="{Binding OrderPrice}"></Span>
-                                                    </FormattedString.Spans>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                        <Frame CornerRadius="5" BackgroundColor="{Binding Path=OrderState,
+                                            <Label FontSize="18" VerticalOptions="Start" TextColor="#00c569">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <FormattedString.Spans>
+                                                            <Span Text="$"></Span>
+                                                            <Span Text="{Binding OrderPrice}"></Span>
+                                                        </FormattedString.Spans>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame CornerRadius="5" BackgroundColor="{Binding Path=OrderState,
                                             Converter={StaticResource OrderStateConverter}}"
                                            Padding="20,8" Margin="0,20,0,0">
-                                            <Label Text="{Binding Path=OrderState,
+                                                <Label Text="{Binding Path=OrderState,
                                             Converter={StaticResource OrderStateConverter}}"
                                                TextColor="White" FontSize="18"></Label>
-                                        </Frame>
-                                        <!--<views:StateView StateDescription="{Binding Path=OrderState,
+                                            </Frame>
+                                            <!--<views:StateView StateDescription="{Binding Path=OrderState,
                                         Converter={StaticResource OrderStateToStringConverter}}"></views:StateView>-->
-                                    </StackLayout>
-                                    <CollectionView ItemsSource="{Binding OrderImages}"
+                                        </StackLayout>
+                                        <CollectionView ItemsSource="{Binding OrderImages, Converter={StaticResource WebAPIImageConverter}}"
                                                 ItemsLayout="VerticalGrid, 2" HeightRequest="124"
                                                 WidthRequest="124" Margin="57,0,0,0">
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout>
-                                                    <Frame IsClippedToBounds="True" WidthRequest="57"
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout>
+                                                        <Frame IsClippedToBounds="True" WidthRequest="57"
                                                        HeightRequest="57" Margin="3" HorizontalOptions="Center"
                                                        VerticalOptions="Center" Padding="0" CornerRadius="5">
-                                                        <Image Source="{Binding .}" HorizontalOptions="Center"
+                                                            <Image Source="{Binding .}" HorizontalOptions="Center"
                                                        Aspect="AspectFill"></Image>
-                                                    </Frame>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
