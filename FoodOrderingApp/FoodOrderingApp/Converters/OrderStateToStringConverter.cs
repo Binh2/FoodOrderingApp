@@ -32,6 +32,8 @@ namespace FoodOrderingApp.Converters
                         return "Shipping...";
                     case ORDER_STATE.SHIPPED:
                         return "SHIPPED";
+                    case ORDER_STATE.RECEIVING:
+                        return "Received";
                     case ORDER_STATE.RECEIVED:
                         return "Received";
                 }
@@ -63,6 +65,8 @@ namespace FoodOrderingApp.Converters
                     return ORDER_STATE.SHIPPING;
                 case "SHIPPED":
                     return ORDER_STATE.SHIPPED;
+                case "Receiving":
+                    return ORDER_STATE.RECEIVING;
                 case "Received":
                     return ORDER_STATE.RECEIVED;
             }

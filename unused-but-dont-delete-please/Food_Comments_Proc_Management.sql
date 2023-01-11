@@ -21,45 +21,28 @@ deallocate cur
 go
 --//---------------- Delete all procedures ---------------------//--
 
---Select all consumers
-CREATE proc Proc_SelectAllConsumers
+--Select all comments
+CREATE proc Proc_SelectAllComments
 as
-select * from Consumers;
+select * from Comments join Consumers on Comments.ConsumerID=Consumers.ConsumerID order by CommentDate desc;
 GO
--- Select a consumer by ConsumerID
-CREATE proc Proc_SelectConsumerByID(@ConsumerID int)
+-- Select a comment by CommentID
+CREATE proc Proc_SelectCommentByFoodID(@FoodID int)
 as
-select * from Consumers where ConsumerID = @ConsumerID;
+select * from Comments join Consumers on Comments.ConsumerID=Consumers.ConsumerID where @FoodID = @FoodID order by CommentDate desc;
 GO
--- Select a consumer by ConsumerUsername
-CREATE proc Proc_SelectConsumerByUsername(@ConsumerUsername nvarchar(max))
-as
-select * from Consumers where ConsumerUsername = @ConsumerUsername;
-GO
-
--- Select a consumer by ConsumerEmail
-CREATE proc Proc_SelectConsumerByEmail(@ConsumerEmail nvarchar(max))
-as
-select * from Consumers where ConsumerEmail = @ConsumerEmail;
-GO
-
--- Insert a consumer
-CREATE PROC dbo.Proc_InsertConsumer(
-	@ConsumerName		nvarchar(MAX),
-	@ConsumerEmail		nvarchar(MAX),
-	@ConsumerImage		nvarchar(MAX),
-	@ConsumerUsername	nvarchar(MAX),
-	@ConsumerPassword	nvarchar(MAX),
+-- Insert a comment
+CREATE PROC dbo.Proc_InsertComment(
+	@CommentStar			int,
+	@CommentDetail		NVARCHAR(MAX),
+	@CommentDate		date,
+	@FoodID				int,
+	@ConsumerID			int,
 	@CurrentID int output)
 as
 begin try
- if(exists(select * from Consumers where ConsumerUsername=@ConsumerUsername))
-  begin
-   set @CurrentID=0
-   return
-  end
- insert into Consumers(ConsumerName,ConsumerEmail,ConsumerImage,ConsumerUsername,ConsumerPassword) VALUES 
- (@ConsumerName,@ConsumerEmail,@ConsumerImage,@ConsumerUsername,@ConsumerPassword);
+ insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) VALUES 
+ (@CommentStar,@CommentDetail,@CommentDate,@FoodID,@ConsumerID);
  set @CurrentID=@@IDENTITY
 end try
 begin catch
@@ -67,23 +50,23 @@ begin catch
  end catch
 GO
 
--- Update a consumer
-CREATE PROC dbo.Proc_UpdateConsumer(
+-- Update a comment
+CREATE PROC dbo.Proc_UpdateComment(
+	@CommentID			int,
+	@CommentStar		int,
+	@CommentDetail		NVARCHAR(MAX),
+	@CommentDate		date,
+	@FoodID				int,
 	@ConsumerID			int,
-	@ConsumerName		nvarchar(MAX),
-	@ConsumerEmail		nvarchar(MAX),
-	@ConsumerImage		nvarchar(MAX),
-	@ConsumerUsername	nvarchar(MAX),
-	@ConsumerPassword	nvarchar(MAX),
 	@CurrentID int output)
 as	
 begin try
- if(exists(select * from Consumers where ConsumerID=@ConsumerID))
+ if(exists(select * from Comments where CommentID=@CommentID))
   begin
-   update Consumers set ConsumerName=@ConsumerName, ConsumerEmail=@ConsumerEmail, 
-   ConsumerImage = @ConsumerImage, ConsumerUsername = @ConsumerUsername, ConsumerPassword = @ConsumerPassword
-   where ConsumerID = @ConsumerID;
-   set @CurrentID=@ConsumerID
+   update Comments set CommentID=@CommentID, CommentStar=@CommentStar, CommentDetail=@CommentDetail, 
+    CommentDate=@CommentDate, FoodID=@FoodID, ConsumerID=@ConsumerID
+   where CommentID = @CommentID;
+   set @CurrentID=@CommentID
    return
   end
 end try
@@ -92,20 +75,20 @@ begin catch
  end catch
 GO
 
---exec Proc_UpdateConsumer @ConsumerID=5, @ConsumerName='david', @ConsumerEmail='david@gmail.com', @ConsumerImage='david.png', @ConsumerUsername='david',
---@ConsumerPassword='123', @CurrentID=0;
+--exec Proc_UpdateComment @CommentID=5, @CommentName='david', @CommentEmail='david@gmail.com', @CommentImage='david.png', @CommentUsername='david',
+--@CommentPassword='123', @CurrentID=0;
 
--- Delete a consumer
-create PROC Proc_DeleteConsumer(@ConsumerID int, @CurrentID int output)
+-- Delete a comment
+create PROC Proc_DeleteComment(@CommentID int, @CurrentID int output)
 as
 begin try
- if(not exists(select * from Consumers where ConsumerID=@ConsumerID))
+ if(not exists(select * from Comments where CommentID=@CommentID))
   begin
    set @CurrentID=-1
    return
   end
-  delete Consumers where ConsumerID=@ConsumerID;
-  set @CurrentID=@ConsumerID;
+  delete Comments where CommentID=@CommentID;
+  set @CurrentID=@CommentID;
 end try
 begin catch
  set @CurrentID=0

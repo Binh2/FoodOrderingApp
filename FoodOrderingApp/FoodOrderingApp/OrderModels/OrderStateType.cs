@@ -7,13 +7,13 @@ namespace FoodOrderingApp.OrderModels
     public interface IOrderStateType
     {
         int OrderStateTypeID { get; set; }
-        int OrderStateTypeName { get; set; }
-        int OrderStateTypeIsDone { get; set; }
+        string OrderStateTypeName { get; set; }
+        bool OrderStateTypeIsDone { get; set; }
     }
     public class OrderStateType : IOrderStateType
     {
         public int OrderStateTypeID { get; set; }
-        public int OrderStateTypeName { get; set; }
-        public int OrderStateTypeIsDone { get; set; }
+        public string OrderStateTypeName { get; set; }
+        public bool OrderStateTypeIsDone { get; set; }
     }
 }

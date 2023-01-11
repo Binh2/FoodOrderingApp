@@ -16,6 +16,7 @@ namespace FoodOrderingApp.Views
         List<Comment> comments;
         public CommentView()
         {
+
             InitializeComponent();
             comments = new List<Comment>()
             {

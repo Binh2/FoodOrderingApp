@@ -21,16 +21,6 @@ namespace FoodOrderingApp.ProfilePages
         {
             InitializeComponent();
             this.orderID = orderID;
-            //orderHistory = new List<Order>()
-            //{
-            //    new Order() { OrderDate = DateTime.Now, OrderState = ORDER_STATE.PROCESSED, OrderLocation = "Lagos State, Nigeria" },
-            //    new Order() { OrderDate = DateTime.Now, OrderState = ORDER_STATE.PROCESSED, OrderLocation = "Lagos State, Nigeria" },
-            //    new Order() { OrderDate = DateTime.Now, OrderState = ORDER_STATE.PROCESSED, OrderLocation = "Lagos State, Nigeria" },
-            //    new Order() { OrderDate = DateTime.Now, OrderState = ORDER_STATE.PROCESSED, OrderLocation = "Lagos State, Nigeria" },
-            //    new Order() { OrderDate = DateTime.Now, OrderState = ORDER_STATE.PROCESSED, OrderLocation = "Lagos State, Nigeria" },
-            //};
-            
-            //collectionView.ItemsSource = orderHistory;
         }
         protected async override void OnAppearing()
         {
@@ -42,6 +32,14 @@ namespace FoodOrderingApp.ProfilePages
             }
             Title = orderID.ToString();
             orderHistory = await WebAPI.SelectAllOrderStates();
+            for (int i = orderHistory.Count; i < 4; i++)
+                orderHistory.Add(new OrderState()
+                {
+                    OrderStateID = i * 2 + 5,
+                    OrderDate = DateTime.Now,
+                    OrderLocation = "",
+                    OrderStateTypeIsDone = false
+                });
             collectionView.ItemsSource = orderHistory;
         }
     }

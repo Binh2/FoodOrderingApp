@@ -26,6 +26,22 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
+        [Route("api/ConsumerController/SelectConsumerByID")]
+        [HttpGet]
+        public IHttpActionResult SelectConsumerByID(string ConsumerID)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add(nameof(ConsumerID), ConsumerID);
+                DataTable result = Database.Database.ReadTable("Proc_SelectConsumerByID", param);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
         [Route("api/ConsumerController/SelectConsumerByUsername")]
         [HttpGet]
         public IHttpActionResult SelectConsumerByUsername(string ConsumerUsername)

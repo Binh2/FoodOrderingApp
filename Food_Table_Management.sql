@@ -135,7 +135,9 @@ go
 
 create table Comments (
 	CommentID			INT IDENTITY (1, 1) PRIMARY KEY,
+	CommentStar			int not null,
 	CommentDetail		NVARCHAR(MAX),
+	CommentDate			date not null,
 	FoodID				int not null,
 	ConsumerID			int not null
 ); 
@@ -180,9 +182,12 @@ go
 INSERT INTO Restaurants(RestaurantName) VALUES ('Đặng Văn Hải');
 INSERT INTO Restaurants(RestaurantName) VALUES ('Taca');
 INSERT INTO Restaurants(RestaurantName) VALUES ('DiDi');
-INSERT INTO Restaurants(RestaurantName,RestaurantLocation) VALUES ('Jiff Burger', '815 E Highway 36, Smith Center, KS 66967');
-INSERT INTO Restaurants(RestaurantName,RestaurantLocation) VALUES ('El A De Oros', '609 3rd St, Phillipsburg, KS 67661');
-INSERT INTO Restaurants(RestaurantName,RestaurantLocation) VALUES ('Cardinal Drive In', '400 N Broadway St, Plainville, KS 67663');
+INSERT INTO Restaurants(RestaurantName,RestaurantImage,RestaurantLocation) VALUES 
+	('Jiffy Burger', 'jiffy_burger_restaurant.png', '815 E Highway 36, Smith Center, KS 66967');
+INSERT INTO Restaurants(RestaurantName,RestaurantImage,RestaurantLocation) VALUES 
+	('El A De Oros', 'el_as_de_oros_restaurant.png', '609 3rd St, Phillipsburg, KS 67661');
+INSERT INTO Restaurants(RestaurantName,RestaurantImage,RestaurantLocation) VALUES 
+	('Cardinal Drive In', 'cardinal_drive_in_restaurant.png', '400 N Broadway St, Plainville, KS 67663');
 go
 
 INSERT INTO Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES ('Hamburger trứng',
@@ -222,7 +227,7 @@ select * from Consumers;
 GO
 
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
-	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 1000, 1, 1);
+	('4227 0123 4567 8901', 'visa-card1.png', '2024-01-01', 10000000, 1, 1);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
 	('1234 4567 8910 1289', 'visa-card2.png', '2023-12-20', 30, 1, 2);
 INSERT INTO Cards(CardNumber, CardImage, CardExpiryDate, CardBalance, CardTypeID, ConsumerID) VALUES 
@@ -234,26 +239,44 @@ go
 
 
 
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In restaurant', 1);	--1
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In cart', 1);			--2
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sign', 0);			--3
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sign', 1);			--4
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('process', 0);			--5
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('process', 1);			--6
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 0);			--7
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 1);			--8
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 0);			--9
-insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 1);			--10
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In restaurant', 0);	--1 This state won't be used. It's just a filler state
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In restaurant', 1);	--2
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In cart', 0);			--3 This state won't be used. It's just a filler state
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('In cart', 1);			--4
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sign', 0);			--5
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('sign', 1);			--6
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('process', 0);			--7
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('process', 1);			--8
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 0);			--9
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('ship', 1);			--10
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 0);			--11
+insert into OrderStateTypes(OrderStateTypeName,OrderStateTypeIsDone) values ('receive', 1);			--12
 go
 
 insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,4,'2022-07-20','Lagos State, Nigeria');
 insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,6,'2022-07-20','Lagos State, Nigeria');
-insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,8,'2022-07-21','Lagos State, Nigeria');
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,8,'2022-07-20','Lagos State, Nigeria');
+insert into OrderStates(OrderID,OrderStateTypeID,OrderDate,OrderLocation) values(1,10,'2022-07-21','Lagos State, Nigeria');
 go
 
 insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,1,1,15000);
 insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,2,1,15000);
+insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,3,1,15000);
+insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,4,1,15000);
+insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) values (1,5,1,15000);
 go
 
 insert into Orders(ConsumerID) values (1);
 go
+
+
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'delicious','2023-01-11',1,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'amazing!!!!!','2023-01-12',1,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'The flavor is so goood','2023-01-15',1,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'I have never taste anything like this before, loving it','2023-01-19',1,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'The food is amazing and the delivery is fast','2023-01-21',2,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'tastefull','2023-01-22',2,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Wonderful','2023-01-25',2,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (2,'There is a fly in my food','2023-01-27',2,4);

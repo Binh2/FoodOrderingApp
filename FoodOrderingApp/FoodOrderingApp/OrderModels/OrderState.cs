@@ -22,7 +22,7 @@ namespace FoodOrderingApp.OrderModels
         public int ConsumerID { get; set; }
 
         public int OrderStateTypeID { get; set; }
-        public int OrderStateTypeName { get; set; }
-        public int OrderStateTypeIsDone { get; set; }
+        public string OrderStateTypeName { get; set; }
+        public bool OrderStateTypeIsDone { get; set; }
     }
 }

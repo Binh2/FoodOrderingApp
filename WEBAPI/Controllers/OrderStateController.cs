@@ -28,7 +28,7 @@ namespace WEBAPI.Controllers
         }
         [Route("api/OrderStateController/SelectOrderStateByOrderID")]
         [HttpGet]
-        public IHttpActionResult SelectOrderStateByUsername(string OrderID)
+        public IHttpActionResult SelectOrderStateByOrderID(string OrderID)
         {
             try
             {

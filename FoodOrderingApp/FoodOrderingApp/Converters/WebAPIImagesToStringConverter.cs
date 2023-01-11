@@ -8,20 +8,20 @@ using Xamarin.Forms;
 
 namespace FoodOrderingApp.Converters
 {
-    class WebAPIImageConverter : IValueConverter
+    class WebAPIImagesToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return "";
             string str = (string)value;
-            return "http://" + Constants.IP + "/WEBAPI/Images/" + image;
-            //return string.Join("|", from image in str.Split('|') select "http://" + Constants.IP + "/WEBAPI/Images/" + image);
+            return string.Join("|", from image in str.Split('|') select "http://" + Constants.IP + "/WEBAPI/Images/" + image);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if ((string)value == "") return "";
             string str = (string)value;
-            return "http://" + Constants.IP + "/WEBAPI/Images/" + image;
-            //return string.Join("|", from image in str.Split('|') select ((string)value).Replace("http://" + Constants.IP + "/WEBAPI/Images/", ""));
+            return string.Join("|", from image in str.Split('|') select ((string)value).Replace("http://" + Constants.IP + "/WEBAPI/Images/", ""));
         }
     }
 }

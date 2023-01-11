@@ -25,8 +25,8 @@ namespace WEBAPI.Models
 
         // not completely nessesary
         public int OrderPrice { get; set; }
-        public string OrderImages { get; set; }
-        public int OrderState { get; set; }
+        public string FoodImages { get; set; }
+        public int OrderStateTypeID { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderLocation { get; set; }
     }

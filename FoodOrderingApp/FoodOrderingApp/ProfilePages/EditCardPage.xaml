@@ -5,7 +5,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
-            <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
+            <converters:WebAPIImagesToStringConverter x:Key="WebAPIImagesToStringConverter"></converters:WebAPIImagesToStringConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -13,7 +13,7 @@
             <Frame Padding="15">
                 <Frame>
                     <StackLayout>
-                        <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
+                        <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImagesToStringConverter}}"></Image>
                         <StackLayout Spacing="0">
                             <Label Text="Name on card " VerticalOptions="End" TextColor="Black" FontSize="20"></Label>
                             <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="consumerNameEntry" ReturnType="Next"

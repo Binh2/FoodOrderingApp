@@ -4,11 +4,15 @@
              xmlns:converters="clr-namespace:FoodOrderingApp.Converters" 
              xmlns:views="clr-namespace:FoodOrderingApp.Views"
              x:Class="FoodOrderingApp.ProfilePages.TrackOrderPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="search_button.png" Text="Search"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <converters:OrderStateConverter x:Key="OrderStateConverter"></converters:OrderStateConverter>
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
-        <converters:ImagesStringToListConverter x:Key="ImagesStringToListConverter"></converters:ImagesStringToListConverter>
-        <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
+        <converters:WebAPIImagesToListConverter x:Key="WebAPIImagesToListConverter"></converters:WebAPIImagesToListConverter>
+        <converters:WebAPIImagesToStringConverter x:Key="WebAPIImagesToStringConverter"></converters:WebAPIImagesToStringConverter>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
@@ -38,19 +42,19 @@
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
-                                            <Frame CornerRadius="5" BackgroundColor="{Binding Path=OrderState,
+                                            <Frame CornerRadius="5" BackgroundColor="{Binding Path=OrderStateTypeID,
                                             Converter={StaticResource OrderStateConverter}}"
-                                           Padding="20,8" Margin="0,20,0,0">
-                                                <Label Text="{Binding Path=OrderState,
-                                            Converter={StaticResource OrderStateConverter}}"
-                                               TextColor="White" FontSize="18"></Label>
+                                                   Margin="0,20,0,0" Padding="0,10" WidthRequest="150">
+                                                <Label Text="{Binding Path=OrderStateTypeID,
+                                                        Converter={StaticResource OrderStateConverter}}"
+                                                        TextColor="White" FontSize="18" HorizontalTextAlignment="Center"></Label>
                                             </Frame>
                                             <!--<views:StateView StateDescription="{Binding Path=OrderState,
                                         Converter={StaticResource OrderStateToStringConverter}}"></views:StateView>-->
                                         </StackLayout>
-                                        <CollectionView ItemsSource="{Binding OrderImages, Converter={StaticResource WebAPIImageConverter}}"
-                                                ItemsLayout="VerticalGrid, 2" HeightRequest="124"
-                                                WidthRequest="124" Margin="57,0,0,0">
+                                        <CollectionView ItemsSource="{Binding FoodImages, Converter={StaticResource WebAPIImagesToListConverter}}"
+                                                ItemsLayout="HorizontalGrid, 2" HeightRequest="124"
+                                                WidthRequest="150" Margin="20,0,0,0">
                                             <CollectionView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackLayout>

@@ -6,7 +6,7 @@
         <ResourceDictionary>
             <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"></converters:DateTimeToStringConverter>
             <converters:CardNumberToListConverter x:Key="CardNumberToListConverter"></converters:CardNumberToListConverter>
-            <converters:WebAPIImageConverter x:Key="WebAPIImageConverter"></converters:WebAPIImageConverter>
+            <converters:WebAPIImagesToStringConverter x:Key="WebAPIImagesToStringConverter"></converters:WebAPIImagesToStringConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -27,7 +27,7 @@
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <Frame CornerRadius="10">
-                            <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImageConverter}}"></Image>
+                            <Image Source="{Binding CardImage, Converter={StaticResource WebAPIImagesToStringConverter}}"></Image>
                         </Frame>
                     </SwipeView>
                 </DataTemplate>
