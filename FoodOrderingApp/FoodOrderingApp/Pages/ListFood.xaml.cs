@@ -15,17 +15,18 @@ namespace FoodOrderingApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListFood : ContentPage
     {
+        List<Foods> foodListConverted;
         public ListFood()
         {
             InitializeComponent();
-            GetAllFood();   
+            GetAllFood();
         }
 
         async void GetAllFood()
         {
             HttpClient httpClient = new HttpClient();
             var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllFoods");
-            var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
+            foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
             listView.ItemsSource = foodListConverted;
         }
 
@@ -33,6 +34,20 @@ namespace FoodOrderingApp.Pages
         {
             Foods foods = (Foods)e.SelectedItem;
             Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Frame frame = sender as Frame;
+            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
+            Foods foods = tapGestureRecognizer.CommandParameter as Foods;
+            await Shell.Current.Navigation.PushAsync(new FoodDetailPage(foods));
+        }
+
+        private void searchfood_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchnamefood = foodListConverted.Where(s => s.FoodName.ToLower().Contains(searchfood.Text.ToLower()));
+            listView.ItemsSource = searchnamefood;
         }
     }
 }

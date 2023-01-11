@@ -4,7 +4,7 @@
              x:Class="FoodOrderingApp.Pages.Homepage">
     <ContentPage.Content >
         <ScrollView>
-            <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto" 
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
           ColumnDefinitions="*,Auto" VerticalOptions="StartAndExpand" Padding="30,10,30,15">
 
                 <Grid Grid.Row="0" Grid.ColumnSpan="2" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,*">
@@ -16,11 +16,102 @@
                 </Grid>
 
                 <!--Search & Action Button-->
-                <SearchBar Grid.Column="0" Grid.Row="1" Margin="-5,10,0,10" BackgroundColor="Transparent"/>
-                <Label Grid.Column="0" Grid.Row="2" Text="Popular Fashion" TextColor="#858788" FontSize="20" FontAttributes="Bold" />
-                <Label Grid.Column="1" Grid.Row="2" Text="View All" HorizontalTextAlignment="End" FontAttributes="Bold" TextColor="Silver" VerticalTextAlignment="Center"/>
 
-                <CollectionView Grid.ColumnSpan="2" Grid.Row="3" HorizontalScrollBarVisibility="Never"
+                <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="White">
+                    <Frame
+                        Margin="55,10,0,10"
+                        Padding="0"
+                        BackgroundColor="#F7F7F7"
+                        CornerRadius="45"
+                        HasShadow="False"
+                        HeightRequest="40"
+                        WidthRequest="60"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal">
+                            <Image
+                                Margin="10,10,0,10"
+                                Aspect="AspectFit"
+                                HeightRequest="18"
+                                Source="user.png"
+                                WidthRequest="18" />
+                            <Entry HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
+
+
+                <CarouselView Grid.Row="2" x:Name="foodcarouse" HeightRequest="200 " WidthRequest="150" Grid.ColumnSpan="2" BackgroundColor="Aquamarine">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame  Margin="0,10,80,0"  VerticalOptions="CenterAndExpand">
+                                <Image Source="{Binding FoodImages}" Aspect="AspectFit"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <StackLayout Grid.Row="3" Grid.ColumnSpan="2">
+                    <StackLayout Margin="0,5,0,5" >
+                        <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Categories"
+                                    TextColor="Black">
+                        </Label>
+                        <StackLayout
+                                    Margin="0,20,0,20"
+                                    HeightRequest="90"
+                                    Orientation="Horizontal">
+                            <CollectionView x:Name="cateview">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Frame
+                                                        Margin="1,5,10,5"
+                                                        Padding="0"
+                                                        CornerRadius="30"
+                                                        HasShadow="True"
+                                                        HeightRequest="60"
+                                                        IsClippedToBounds="False"
+                                                        WidthRequest="60">
+                                                <Image
+                                                            Margin="15"
+                                                            Aspect="AspectFill"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Source="{Binding CategoryImage}"
+                                                            VerticalOptions="CenterAndExpand" />
+                                            </Frame>
+                                            <Label
+                                                        FontSize="12"
+                                                        HorizontalOptions="Center"
+                                                        Text="{Binding CategoryName}"
+                                                        TextColor="Black">
+                                            </Label>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                
+                <Label Grid.Column="0" Grid.Row="4" Text="Popular Fashion" TextColor="#858788" FontSize="20" FontAttributes="Bold" />
+                <Label Grid.Column="1" Grid.Row="4" Text="View All"  FontAttributes="Bold" TextColor="Silver" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <CollectionView Grid.ColumnSpan="2" Grid.Row="5" HorizontalScrollBarVisibility="Never"
                 Margin="-20,0,-25,0"
                 ItemsLayout="HorizontalList"
                 HeightRequest="380"
@@ -32,10 +123,12 @@
                                     <Grid RowDefinitions="*,Auto,Auto" ColumnDefinitions="*,Auto">
                                         <Frame Grid.ColumnSpan="2" Grid.Row="0" IsClippedToBounds="True" CornerRadius="25" HasShadow="False" Padding="0" >
                                             <Image Source="{Binding FoodImages}" Aspect="AspectFill" />
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" CommandParameter="{Binding .}" />
+                                            </Frame.GestureRecognizers>
                                         </Frame>
                                         <Label Grid.Column="0" Grid.Row="1" Text="{Binding FoodName}" FontAttributes="Bold" Padding="0,10,0,0"/>
                                         <Label Grid.Column="0" Grid.Row="2" Text="{Binding FoodPrice}" TextColor="#00c569" FontAttributes="Bold"/>
-                                        <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" ImageSource="favourte.png" HorizontalOptions="End" WidthRequest="35" HeightRequest="35" CornerRadius="8" VerticalOptions="Center" />
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -43,9 +136,13 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Label Grid.Column="0" Grid.Row="4" Text="Recommended" TextColor="#858788" FontSize="20" FontAttributes="Bold" />
-                <Label Grid.Column="1" Grid.Row="4" Text="View All" HorizontalTextAlignment="End" FontAttributes="Bold" TextColor="Silver" VerticalTextAlignment="Center"/>
-                <CollectionView Grid.ColumnSpan="2" Grid.Row="5" Margin="-20,20,-25,0" HorizontalScrollBarVisibility="Never"
+                <Label Grid.Column="0" Grid.Row="6" Text="Recommended" TextColor="#858788" FontSize="20" FontAttributes="Bold" />
+                <Label Grid.Column="1" Grid.Row="6" Text="View All" HorizontalTextAlignment="End" FontAttributes="Bold" TextColor="Silver" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <CollectionView Grid.ColumnSpan="2" Grid.Row="7" Margin="-20,20,-25,0" HorizontalScrollBarVisibility="Never"
                 x:Name="Recommend"
                 ItemsLayout="HorizontalList"
                 HeightRequest="150">
@@ -56,11 +153,14 @@
                                     <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
                                         <Frame Grid.Column="0" Grid.RowSpan="3" Margin="0,0,20,0"  VerticalOptions="CenterAndExpand" WidthRequest="75" HeightRequest="85" HasShadow="False" CornerRadius="10" Padding="0" IsClippedToBounds="True">
                                             <Image Source="{Binding FoodImages}" Aspect="AspectFill"/>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
                                         </Frame>
                                         <Label Grid.Column="1" Grid.Row="0" Text="{Binding FoodName}" FontAttributes="Bold"/>
-                                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding FoodDetail}" TextColor="Silver" FontAttributes="Bold"/>
-                                        <Label Grid.Column="1" Grid.Row="2" Text="⭐⭐⭐⭐⭐"  FontSize="13" />
-                                        <Image Grid.Column="2" Grid.RowSpan="3" Source="DetailsArrow"/>
+                                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding FoodPrice}" TextColor="Silver" FontAttributes="Bold"/>
+                                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding FoodRating}"  FontSize="13" />
+                                        <Label Grid.Column="2" Grid.Row="2"  Text="⭐⭐⭐"/>
                                     </Grid>
                                 </Frame>
                             </StackLayout>

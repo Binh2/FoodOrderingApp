@@ -24,19 +24,19 @@ go
 --LẤY TẤT CẢ LOẠI HÀNG--
 CREATE proc [Proc_GetAllCategories](@IP nvarchar(max))
 as
-select CategoryID, CategoryName, 'http://'+@IP+'WEBAPI/Images/'+CategoryImage CategoryImage from Categories;
+select CategoryID, CategoryName, 'http://'+@IP+'/WEBAPI/Images/'+CategoryImage CategoryImage from Categories;
 GO
 --LẤY TẤT CẢ LOẠI HÀNG--
 CREATE proc [Proc_GetAllFoods](@IP nvarchar(max))
 as
-select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods;
 GO
 
 -- LIST THỨC ĂN THEO LOẠI--
 CREATE proc [dbo].[Proc_GetFoodsByCategoryID](@IP nvarchar(max), @categoryid int)
 as
-select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID from Foods where CategoryID=@categoryid
 GO
 
@@ -56,7 +56,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [Proc_GetTOP4FoodByRATES](@IP nvarchar(max))
 as
-select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select TOP 4 With Ties FoodRating,FoodID, FoodName,'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice,FoodFavourite, CategoryID, RestaurantID from Foods
 	ORDER BY FoodRating DESC	
 GO
@@ -67,14 +67,14 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[Proc_GetTOP4NAME](@IP nvarchar(max))
 as
-SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
+SELECT TOP 4 FoodName,FoodRating ,FoodDetail,'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages,FoodPrice, FoodFavourite, CategoryID, RestaurantID,FoodID
   FROM Foods
 GO
 
 --Lấy thông tin thức ăn
 CREATE proc [dbo].[Proc_GetFoodByID](@IP nvarchar(max), @foodid int)
 as
-select FoodID, FoodName, 'http://'+@IP+'WEBAPI/Images/'+FoodImages FoodImages, 
+select FoodID, FoodName, 'http://'+@IP+'/WEBAPI/Images/'+FoodImages FoodImages, 
 	FoodDetail, FoodPrice, FoodRating, FoodFavourite, CategoryID, RestaurantID  from Foods where FoodID=@foodid
 GO
 
