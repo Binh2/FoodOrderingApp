@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters" xmlns:views="clr-namespace:FoodOrderingApp.Views"
              x:Class="FoodOrderingApp.ProfilePages.NotificationsPage">
-    
+    <views:CommentView></views:CommentView>
 </ContentPage>

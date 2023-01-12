@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FoodOrderingApp.OrderModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace FoodOrderingApp.Model
@@ -27,5 +29,8 @@ namespace FoodOrderingApp.Model
     {
         static public Consumer consumer { get; set; }
         static public Cart cart;
+
+        static public ObservableCollection<OrderFood> orderFoods;
+        static public ObservableCollection<Foods> foods;
     }
 }

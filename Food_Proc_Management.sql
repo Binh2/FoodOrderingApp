@@ -507,8 +507,13 @@ CREATE proc Proc_SelectAllRestaurants
 as
 select * from Restaurants;
 GO
--- Select a restaurant by RestaurantID
-CREATE proc Proc_SelectRestaurantByID(@RestaurantID int)
+--Select n restaurants
+CREATE proc Proc_SelectNRestaurants(@n int, @queryString nvarchar(max))
+as
+select top(@n) * from Restaurants where RestaurantName like '%'+@queryString+'%' order by RestaurantName;
+GO
+-- Select restaurants by RestaurantID
+CREATE proc Proc_SelectRestaurantsByID(@RestaurantID int)
 as
 select * from Restaurants where RestaurantID = @RestaurantID;
 GO
@@ -663,7 +668,7 @@ as
 select * from Comments join Consumers on Comments.ConsumerID=Consumers.ConsumerID order by CommentDate desc;
 GO
 -- Select a comment by CommentID
-CREATE proc Proc_SelectCommentByFoodID(@FoodID int)
+CREATE proc Proc_SelectCommentsByFoodID(@FoodID int)
 as
 select * from Comments join Consumers on Comments.ConsumerID=Consumers.ConsumerID where @FoodID = @FoodID order by CommentDate desc;
 GO

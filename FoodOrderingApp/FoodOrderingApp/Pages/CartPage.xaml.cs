@@ -1,4 +1,5 @@
 ﻿using FoodOrderingApp.Model;
+using FoodOrderingApp.OrderModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,10 +20,18 @@ namespace FoodOrderingApp.Pages
             InitializeComponent();
             //collectionView.ItemsSource = ConsumerProvider.cart.Foods;
             //priceSumLabel.Text = ConsumerProvider.cart.Foods.Aggregate(0.0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
-            
         }
 
-        
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            ConsumerProvider.foods = new ObservableCollection<Foods>(new ObservableCollection<Foods>(await WebAPI.SelectAllFoods()).Take(4));
+            //foreach (Foods food in ConsumerProvider.foods)
+            //{
+            //    ConsumerProvider.orderFoods.Add(new OrderFood() { FoodID = food.FoodID });
+            //}
+            collectionView.ItemsSource = ConsumerProvider.foods;
+        }
 
         private void RefreshCollectionView()
         {
@@ -41,12 +50,12 @@ namespace FoodOrderingApp.Pages
 
         private void decrementBtn_Clicked(object sender, EventArgs e)
         {
-            //ChangeFoodQuantity(sender, e, -1);
+            ChangeFoodQuantity(sender, e, -1);
         }
 
         private void incrementBtn_Clicked(object sender, EventArgs e)
         {
-            //ChangeFoodQuantity(sender, e, 1);
+            ChangeFoodQuantity(sender, e, 1);
         }
 
         private void collectionView_BindingContextChanged(object sender, EventArgs e)

@@ -280,13 +280,13 @@ go
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
 	('Mark Olson', 'mark@gmail.com', 'mark_olson.png', 'mark', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('Samathan Smith', 'Samathan@gmail.com', 'samathan_smith.png', 'samathan', '123');
+	('Samathan Smith', 'Samathan@gmail.com', 'samantha_smith.png', 'samathan', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('John Smith', 'john@gmail.com', 'mark_olson.png', 'john', '123');
+	('John Smith', 'john@gmail.com', 'john_smith.png', 'john', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
 	('Alex Livingson', 'alex@gmail.com', 'alex_livingson.png', 'alex', '123');
 insert into Consumers(ConsumerName, ConsumerEmail, ConsumerImage, ConsumerUsername, ConsumerPassword) values 
-	('David Spade', 'david@gmail.com', 'david.png', 'david', '123');
+	('David Spade', 'david@gmail.com', 'david_spade.png', 'david', '123');
 select * from Consumers;
 GO
 

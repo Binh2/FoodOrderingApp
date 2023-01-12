@@ -16,6 +16,18 @@ namespace FoodOrderingApp.AccountPages
     {
         public ICommand ForgotPasswordCommand { get; } = new Command<String>(async (_) => await Shell.Current.Navigation.PushAsync(new ForgotPasswordPage()));
         public ICommand SignupCommand { get; } = new Command<String>(async (_) => await Shell.Current.Navigation.PushAsync(new SignupPage()));
+        //public ICommand TapCommand { get; } = new Command<String>(async (_) => {
+        //    new Consumer()
+        //    {
+        //        Consu
+        //    }
+        //    await Shell.Current.Navigation.PushAsync(new SignupPage());
+        //});
+        private string GenerateRandom6DigitString()
+        {
+            Random generator = new Random();
+            return generator.Next(0, 1000000).ToString("D6");
+        }
         public SigninPage()
         {
             InitializeComponent();

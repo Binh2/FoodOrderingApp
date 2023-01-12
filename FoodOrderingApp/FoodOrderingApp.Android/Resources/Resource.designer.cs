@@ -14,7 +14,7 @@ namespace FoodOrderingApp.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.0.0.73")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -11902,37 +11902,40 @@ namespace FoodOrderingApp.Droid
 			public const int shishi = 2131165365;
 			
 			// aapt resource value: 0x7F0700B6
-			public const int Taco = 2131165366;
+			public const int star = 2131165366;
 			
 			// aapt resource value: 0x7F0700B7
-			public const int test_custom_background = 2131165367;
+			public const int Taco = 2131165367;
 			
 			// aapt resource value: 0x7F0700B8
-			public const int Tobokki = 2131165368;
+			public const int test_custom_background = 2131165368;
 			
 			// aapt resource value: 0x7F0700B9
-			public const int tooltip_frame_dark = 2131165369;
+			public const int Tobokki = 2131165369;
 			
 			// aapt resource value: 0x7F0700BA
-			public const int tooltip_frame_light = 2131165370;
+			public const int tooltip_frame_dark = 2131165370;
 			
 			// aapt resource value: 0x7F0700BB
-			public const int track_order = 2131165371;
+			public const int tooltip_frame_light = 2131165371;
 			
 			// aapt resource value: 0x7F0700BC
-			public const int user = 2131165372;
+			public const int track_order = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int view_map = 2131165373;
+			public const int user = 2131165373;
 			
 			// aapt resource value: 0x7F0700BE
-			public const int Water = 2131165374;
+			public const int view_map = 2131165374;
 			
 			// aapt resource value: 0x7F0700BF
-			public const int white = 2131165375;
+			public const int Water = 2131165375;
 			
 			// aapt resource value: 0x7F0700C0
-			public const int wishlist = 2131165376;
+			public const int white = 2131165376;
+			
+			// aapt resource value: 0x7F0700C1
+			public const int wishlist = 2131165377;
 			
 			static Drawable()
 			{
