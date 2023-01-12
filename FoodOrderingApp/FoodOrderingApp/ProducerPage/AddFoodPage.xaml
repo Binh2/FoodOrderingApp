@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodOrderingApp.ProducerPage.AddFoodPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Frame Padding="15">
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Add Food" Style="{StaticResource TitleStyle}"></Label>
+                        <StackLayout Spacing="15" Margin="0,5,0,0">
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Image  " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="foodImage" 
+                                   ReturnType="Next" Text="{Binding FoodImages}"
+                                   IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="FoodName  " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="foodName" 
+                                   ReturnType="Next" Text="{Binding FoodName}"
+                                   IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Category  " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Picker x:Name="pikcategory" Title="Pick a category" FontAttributes="Bold"
+                                        FontSize="20" TitleColor="Blue"
+                                        ItemDisplayBinding="{Binding CategoryName}"
+                                         SelectedIndexChanged="pikcategory_SelectedIndexChanged">
+                                </Picker>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Food Detail " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="fooddetail" 
+                                   ReturnType="Next" Text="{Binding FoodDetail}"
+                                   IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Food Price " Style="{StaticResource EntryLabelStyle}"></Label>
+                                <Entry VerticalOptions="Start" HorizontalOptions="FillAndExpand" x:Name="foodprice" 
+                                   ReturnType="Next" Text="{Binding FoodPrice}"
+                                   IsTextPredictionEnabled="True" IsSpellCheckEnabled="False"></Entry>
+                            </StackLayout>
+
+                        </StackLayout>
+                        <Button Text="Add" x:Name="addBtn" Clicked="addBtn_Clicked" Style="{StaticResource ButtonStyle}"
+                                Margin="7,20"  IsTabStop="False"></Button>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

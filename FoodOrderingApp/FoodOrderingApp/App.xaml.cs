@@ -7,6 +7,8 @@ using FoodOrderingApp.Model;
 using FoodOrderingApp.Views;
 using FoodOrderingApp.ProfilePages;
 using FoodOrderingApp.Pages;
+using FoodOrderingApp.ProducerPage;
+
 namespace FoodOrderingApp
 {
     public partial class App : Application
@@ -15,7 +17,7 @@ namespace FoodOrderingApp
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            MainPage = new AddFoodPage();
 
             //Database.deleteDatabase(); //Uncomment this line to renew database every run
             if (!File.Exists(Database.dbFile))

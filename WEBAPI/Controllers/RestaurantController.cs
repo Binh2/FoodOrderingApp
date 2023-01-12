@@ -26,6 +26,22 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
+
+        [Route("api/RestaurantController/SelectAllRestaurantss")]
+        [HttpGet]
+        public IHttpActionResult SelectAllRestaurantss()
+        {
+            try
+            {
+                //Dictionary<string, object> param = new Dictionary<string, object>();
+                DataTable result = Database.Database.ReadTable("Proc_SelectAllRestaurantss");
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
         [Route("api/RestaurantController/SelectRestaurantsByConsumerID")]
         [HttpGet]
         public IHttpActionResult SelectRestaurantsByConsumerID(int ConsumerID)

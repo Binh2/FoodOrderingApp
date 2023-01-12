@@ -194,6 +194,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\A7up.jpg" />
+    <Content Include="Images\Banhmi.png" />
+    <Content Include="Images\Banhtrangtron.png" />
     <Content Include="Images\Cakes.jpg" />
     <Content Include="Images\chuong.jpg" />
     <Content Include="Images\coca.jpg" />
@@ -203,10 +205,14 @@
     <Content Include="Images\Doannhanh.jpg" />
     <Content Include="Images\Drinks.jpg" />
     <Content Include="Images\favourte.png" />
+    <Content Include="Images\Goicuon.png" />
     <Content Include="Images\Hamburger.jpg" />
     <Content Include="Images\Hatch_Green_Chile_Hamburger.jpg" />
     <Content Include="Images\HotPot.jpg" />
     <Content Include="Images\Hutieu.jpg" />
+    <Content Include="Images\Laubo.png" />
+    <Content Include="Images\Lauca.png" />
+    <Content Include="Images\Lauthai.png" />
     <Content Include="Images\mark_olson.png" />
     <Content Include="Images\master-card1.png" />
     <Content Include="Images\master-card2.png" />
@@ -225,6 +231,10 @@
     <Content Include="Images\shishi.jpg" />
     <Content Include="Images\Taco.jpg" />
     <Content Include="Images\Tobokki.jpg" />
+    <Content Include="Images\TrasuaKoithe.png" />
+    <Content Include="Images\Trasuamaycha.png" />
+    <Content Include="Images\Trasuamoc.png" />
+    <Content Include="Images\Trasuayolo.png" />
     <Content Include="Images\user.png" />
     <Content Include="Images\visa-card1.png" />
     <Content Include="Images\visa-card2.png" />

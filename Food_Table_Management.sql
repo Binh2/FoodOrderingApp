@@ -18,7 +18,7 @@ EXEC sp_MSforeachtable 'DROP TABLE ?'
 GO
 --//---------------- Delete all tables --------------------------//--
 
-
+drop database FOOD_MANAGEMENT
 CREATE DATABASE FOOD_MANAGEMENT
 use FOOD_MANAGEMENT;
 create table Categories(
