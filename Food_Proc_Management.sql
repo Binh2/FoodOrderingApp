@@ -507,6 +507,10 @@ CREATE proc Proc_SelectAllRestaurants
 as
 select * from Restaurants;
 GO
+CREATE proc Proc_SelectAllRestaurantss
+as
+select * from Restaurants;
+GO
 -- Select a restaurant by RestaurantID
 CREATE proc Proc_SelectRestaurantByID(@RestaurantID int)
 as
@@ -726,3 +730,96 @@ begin catch
  set @CurrentID=0
  end catch
 GO
+
+
+-- Insert a food
+CREATE PROC dbo.Proc_InsertFood(
+	@FoodName	NVARCHAR(MAX),
+	@FoodImages NVARCHAR(MAX),
+	@CategoryID	int	,
+	@FoodPrice  int,
+	@FoodDetail	int,
+	@FoodRating int,
+	@RestaurantID int,
+	@FoodFavourite int,
+	@CurrentID int output)
+as
+begin try
+ insert into Foods(FoodName,FoodImages,FoodDetail,FoodPrice,FoodRating,FoodFavourite,CategoryID,RestaurantID) VALUES 
+ (@FoodName,@FoodImages,@FoodDetail,@FoodPrice,0,0,@CategoryID,@RestaurantID);
+ set @CurrentID=@@IDENTITY
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+USE FOOD_MANAGEMENT; 
+go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Select a food by foodid
+CREATE proc [dbo].[Proc_GetIDByCategoryName](@IP nvarchar(max),@CategoryName nvarchar(MAX))
+as
+select CategoryID, CategoryName, 'http://'+@IP+'/WEBAPI/Images/'+CategoryImage CategoryImages from Categories where CategoryName=@CategoryName
+GO
+
+--update food
+CREATE PROC dbo.Proc_UpdateFood(
+	@FoodID     int,
+    @FoodName	NVARCHAR(MAX),
+	@FoodImages NVARCHAR(MAX),
+	@CategoryID	int	,
+	@FoodPrice  int,
+	@FoodDetail	int,
+	@FoodRating int,
+	@RestaurantID int,
+	@FoodFavourite int,
+	@CurrentID int output)	
+as	
+begin try
+ if(exists(select * from Foods where FoodID=@FoodID))
+  begin
+   update Foods set FoodName=@FoodName, FoodImages=@FoodImages, 
+   CategoryID = @CategoryID, FoodPrice = @FoodPrice, FoodDetail = @FoodDetail,FoodRating=FoodRating,RestaurantID=RestaurantID,FoodFavourite=FoodFavourite
+   where FoodID = @FoodID;
+   set @CurrentID=@FoodID
+   return
+  end
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+-- Delete a producer
+create PROC Proc_DeleteFood(@FoodID int, @CurrentID int output)
+as
+begin try
+ if(not exists(select * from Foods where FoodID=@FoodID))
+  begin
+   set @CurrentID=-1
+   return
+  end
+  delete Foods where FoodID=@FoodID;
+  set @CurrentID=@FoodID;
+end try
+begin catch
+ set @CurrentID=0
+ end catch
+GO
+--SelectRestaurantByProducerID
+CREATE PROC Proc_SelectRestaurantByProducerID(@RestaurantID int)
+AS
+SELECT * FROM Restaurants join Producers on Producers.RestaurantID = Restaurants.RestaurantID where Producers.RestaurantID = @RestaurantID;
+GO
+
+--SelectRestaurantByProducerID
+CREATE PROC Proc_SelectFoodByProducerID(@RestaurantID int)
+AS
+SELECT * FROM Restaurants join Producers on Producers.RestaurantID = Restaurants.RestaurantID where Producers.RestaurantID = @RestaurantID;
+GO
+
+
+
+

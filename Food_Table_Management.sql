@@ -88,7 +88,7 @@ create table OrderFoods(
 	FoodPrice			float(53) not null
 );
 go
-create table OrderStates(
+create table OrderStates(	
 	OrderStateID		int identity (1, 1) primary key,
 	OrderID				int not null,
 	OrderStateTypeID	int not null,

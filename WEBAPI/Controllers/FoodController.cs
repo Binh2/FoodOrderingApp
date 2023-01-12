@@ -158,9 +158,6 @@ namespace WEBAPI.Controllers
                 param.Add("FoodImages", food.FoodImages);
                 param.Add("CategoryID", food.CategoryID);
                 param.Add("FoodPrice", food.FoodPrice);
-                param.Add("FoodRating", food.FoodRating);
-                param.Add("RestaurantID", food.RestaurantID);
-                param.Add("FoodFavourite", food.FoodFavourite);
                 var result = Database.Database.Exec_Command("Proc_UpdateFood", param);
                 return Ok(int.Parse(result.ToString()));
             }

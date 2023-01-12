@@ -26,15 +26,8 @@ namespace FoodOrderingApp.Pages
             HttpClient httpClient = new HttpClient();
             var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodsBycategoryID?CategoryId=" + CategoryID.ToString());
             foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
-            lstview.ItemsSource = foodListConverted;
+            lstfood.ItemsSource = foodListConverted;
         }
-
-        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            Foods foods = (Foods)e.SelectedItem;
-            Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
-        }
-
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Frame frame = sender as Frame;
@@ -42,21 +35,15 @@ namespace FoodOrderingApp.Pages
             Foods foods = tapGestureRecognizer.CommandParameter as Foods;
             await Shell.Current.Navigation.PushAsync(new FoodDetailPage(foods));
         }
-
-        private void searchnamehotel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void searchfood_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-        }
-
-        private void searchfood_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
             var searchnamefood = foodListConverted.Where(s => s.FoodName.ToLower().Contains(searchfood.Text.ToLower()));
-            lstview.ItemsSource = searchnamefood;
+            lstfood.ItemsSource = searchnamefood;
+        }
+        private void lstfood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Foods foods = (Foods)e.SelectedItem;
+            Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
         }
     }
 }

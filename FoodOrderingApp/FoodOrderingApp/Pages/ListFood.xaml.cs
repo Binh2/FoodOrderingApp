@@ -27,15 +27,8 @@ namespace FoodOrderingApp.Pages
             HttpClient httpClient = new HttpClient();
             var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllFoods");
             foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
-            listView.ItemsSource = foodListConverted;
+            lstfood.ItemsSource = foodListConverted;
         }
-
-        private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            Foods foods = (Foods)e.SelectedItem;
-            Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
-        }
-
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Frame frame = sender as Frame;
@@ -47,7 +40,13 @@ namespace FoodOrderingApp.Pages
         private void searchfood_TextChanged(object sender, TextChangedEventArgs e)
         {
             var searchnamefood = foodListConverted.Where(s => s.FoodName.ToLower().Contains(searchfood.Text.ToLower()));
-            listView.ItemsSource = searchnamefood;
+            lstfood.ItemsSource = searchnamefood;
+        }
+
+        private void lstfood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Foods foods = (Foods)e.SelectedItem;
+            Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
         }
     }
 }

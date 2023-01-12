@@ -17,7 +17,6 @@ namespace FoodOrderingApp.Pages
     public partial class CategoriesPage : ContentPage
 
     {
-
         public CategoriesPage()
         {
             InitializeComponent();
@@ -28,12 +27,13 @@ namespace FoodOrderingApp.Pages
             HttpClient httpClient = new HttpClient();
             var categoryList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllCategories");
             var categoryListConverted = JsonConvert.DeserializeObject<List<Categories>>(categoryList);
-            Lstcategories.ItemsSource = categoryListConverted;
+            lstcategory.ItemsSource = categoryListConverted;
         }
-        private void Lstcategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void lstcategory_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var current = (e.CurrentSelection.FirstOrDefault() as Categories);
+            var current = (Categories)e.SelectedItem;
             Navigation.PushModalAsync(new NavigationPage(new FoodPage(current)));
-        }       
+        }
     }
 }
