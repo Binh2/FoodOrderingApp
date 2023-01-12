@@ -41,7 +41,7 @@ namespace FoodOrderingApp.Pages
         async void ListViewrcommend()
         {
             HttpClient httpClient = new HttpClient();
-            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/Proc_GetTOP4FoodByRATES");
+            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/Proc_GetTOP4NAME");
             var FoodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
             Recommend.ItemsSource = FoodListConverted;
         }

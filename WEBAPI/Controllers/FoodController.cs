@@ -68,6 +68,58 @@ namespace WEBAPI.Controllers
             }
         }
 
+        [Route("api/FoodController/Proc_GetTOP10FoodByRATES")]
+        [HttpGet]
+        public IHttpActionResult Proc_GetTOP10FoodByRATES()
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
+                DataTable result = Database.Database.ReadTable("Proc_GetTOP10FoodByRATES", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/FoodController/Proc_GetTOP4NAME")]
+        [HttpGet]
+        public IHttpActionResult Proc_GetTOP4NAME()
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
+                DataTable result = Database.Database.ReadTable("Proc_GetTOP4NAME", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+
+        [Route("api/FoodController/Proc_GetTOP10NAME")]
+        [HttpGet]
+        public IHttpActionResult Proc_GetTOP10NAME()
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", Constants.IP);
+                DataTable result = Database.Database.ReadTable("Proc_GetTOP10NAME", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
 
 
         [Route("api/FoodController/GetFoodsBycategoryID")]
