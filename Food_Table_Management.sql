@@ -138,6 +138,7 @@ create table Comments (
 	CommentStar			int not null,
 	CommentDetail		NVARCHAR(MAX),
 	CommentDate			date not null,
+	CommentParent		int not null default(0),
 	FoodID				int not null,
 	ConsumerID			int not null
 ); 
@@ -335,11 +336,43 @@ go
 
 
 insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'delicious','2023-01-11',1,1);
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'amazing!!!!!','2023-01-12',1,2);
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'The flavor is so goood','2023-01-15',1,3);
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'I have never taste anything like this before, loving it','2023-01-19',1,4);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'amazing!!!!!','2023-01-12',2,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'The flavor is so goood','2023-01-15',3,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'I have never taste anything like this before, loving it','2023-01-19',4,4);
 
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'The food is amazing and the delivery is fast','2023-01-21',2,1);
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'tastefull','2023-01-22',2,2);
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Wonderful','2023-01-25',2,3);
-insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (2,'There is a fly in my food','2023-01-27',2,4);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'The food is amazing and the delivery is fast','2023-01-21',5,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'tastefull','2023-01-22',6,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Wonderful','2023-01-25',7,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (2,'There is a fly in my food','2023-01-27',8,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Could use some improvement','2023-01-21',9,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (1,'Terrible','2023-01-22',10,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (3,'Okay food','2023-01-25',11,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Odd but good','2023-01-27',12,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Weird but not bad','2023-01-21',13,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Very good','2023-01-22',14,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Good enough','2022-12-25',15,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (3,'Not too bad','2023-01-27',16,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Flavourfullll','2023-01-21',17,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Salty','2022-11-22',18,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (3,'odd','2022-12-25',19,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'could use some improve on the exterior','2023-01-27',20,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Too much sugar','2023-10-11',21,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Natural','2022-11-22',22,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (4,'Healthy','2022-12-25',23,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Very healthy','2023-01-27',23,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'I eat too much','2023-10-11',24,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Mega decilicious','2022-11-22',25,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Super tasteTY','2022-12-25',26,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'This is too good to be true','2023-12-27',27,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Look at the food make me starving','2023-10-11',28,1);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'This food is from heaven','2022-11-22',29,2);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (3,'Digusting why did I chose to buy this','2022-12-25',30,3);
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'Galactic-level food','2023-12-27',31,4);
+
+insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) values (5,'','2023-10-11',28,1);

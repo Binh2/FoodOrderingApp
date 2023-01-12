@@ -25,27 +25,22 @@ namespace FoodOrderingApp.Pages
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            ConsumerProvider.foods = new ObservableCollection<Foods>(new ObservableCollection<Foods>(await WebAPI.SelectAllFoods()).Take(4));
-            //foreach (Foods food in ConsumerProvider.foods)
-            //{
-            //    ConsumerProvider.orderFoods.Add(new OrderFood() { FoodID = food.FoodID });
-            //}
-            collectionView.ItemsSource = ConsumerProvider.foods;
+            RefreshCollectionView();
         }
 
         private void RefreshCollectionView()
         {
-            //collectionView.ItemsSource = null;
-            //collectionView.ItemsSource = ConsumerProvider.cart.Foods; ;
-            //priceSumLabel.Text= ConsumerProvider.cart.Foods.Aggregate(0.0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
+            collectionView.ItemsSource = null;
+            collectionView.ItemsSource = ConsumerProvider.foods;
+            priceSumLabel.Text = ConsumerProvider.foods.Aggregate(0.0, (sum, food) => sum + food.FoodQuantity * food.FoodPrice).ToString();
         }
 
         private void ChangeFoodQuantity(object sender, EventArgs e, int value)
         {
-            //Button button = sender as Button;
-            //Foods food = button.CommandParameter as Foods;
-            //ConsumerProvider.cart.Foods.Where<Foods>(f => f.FoodID == food.FoodID).First().FoodQuantity += value;
-            //RefreshCollectionView();
+            Button button = sender as Button;
+            Foods food = button.CommandParameter as Foods;
+            ConsumerProvider.foods.Where<Foods>(f => f.FoodID == food.FoodID).First().FoodQuantity += value;
+            RefreshCollectionView();
         }
 
         private void decrementBtn_Clicked(object sender, EventArgs e)
@@ -72,10 +67,10 @@ namespace FoodOrderingApp.Pages
 
         private void deleteSwipe_Invoked(object sender, EventArgs e)
         {
-            //SwipeItem swipeItem = sender as SwipeItem;
-            //Foods removedFood = swipeItem.CommandParameter as Foods;
-            //ConsumerProvider.cart.Foods.Remove(removedFood);
-            //RefreshCollectionView();
+            SwipeItem swipeItem = sender as SwipeItem;
+            Foods removedFood = swipeItem.CommandParameter as Foods;
+            ConsumerProvider.foods.Remove(removedFood);
+            RefreshCollectionView();
         }
 
         private void favouriteSwipe_Invoked(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace FoodOrderingApp.Model
@@ -27,10 +28,53 @@ namespace FoodOrderingApp.Model
     }
     public class ConsumerProvider
     {
-        static public Consumer consumer { get; set; }
+        static public Consumer consumer { get; set; } 
         static public Cart cart;
 
         static public ObservableCollection<OrderFood> orderFoods;
-        static public ObservableCollection<Foods> foods;
+        static public ObservableCollection<Foods> foods = new ObservableCollection<Foods>();
+
+        static public bool AddFood(Foods food)
+        {
+            try
+            {
+                if (foods != null)
+                {
+                    List<Foods> fs = new List<Foods>(from f in foods where food.FoodID == f.FoodID select f);
+                    if (fs == null || fs.Any()) return false;
+                }
+                foods.Add(food);
+                orderFoods.Add(new OrderFood()
+                {
+                    FoodID = food.FoodID,
+                    FoodQuantity = 0,
+                    FoodPrice = food.FoodPrice
+                });
+            } 
+            catch (Exception e) 
+            { return false; }
+            return true;
+        }
+        static public bool DeleteFood(Foods food)
+        {
+            return DeleteFood(food.FoodID);
+        }
+        static public bool DeleteFood(int foodID)
+        {
+            try
+            {
+                Foods food = (from f in foods where f.FoodID == foodID select f).First();
+                OrderFood orderFood = (from o in orderFoods where o.FoodID == foodID select o).First();
+                foods.Remove(food);
+                orderFoods.Remove(orderFood);
+            }
+            catch { return false; }
+            return true;
+        }
+        static public void ClearCart()
+        {
+            foods.Clear();
+            orderFoods.Clear();
+        }
     }
 }

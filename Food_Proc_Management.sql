@@ -670,20 +670,21 @@ GO
 -- Select a comment by CommentID
 CREATE proc Proc_SelectCommentsByFoodID(@FoodID int)
 as
-select * from Comments join Consumers on Comments.ConsumerID=Consumers.ConsumerID where @FoodID = @FoodID order by CommentDate desc;
+select * from Comments join Consumers on Comments.ConsumerID=Consumers.ConsumerID where FoodID = @FoodID order by CommentDate desc;
 GO
 -- Insert a comment
 CREATE PROC dbo.Proc_InsertComment(
 	@CommentStar			int,
 	@CommentDetail		NVARCHAR(MAX),
 	@CommentDate		date,
+	@CommentParent		int,
 	@FoodID				int,
 	@ConsumerID			int,
 	@CurrentID int output)
 as
 begin try
- insert into Comments(CommentStar,CommentDetail,CommentDate,FoodID,ConsumerID) VALUES 
- (@CommentStar,@CommentDetail,@CommentDate,@FoodID,@ConsumerID);
+ insert into Comments(CommentStar,CommentDetail,CommentDate,CommentParent,FoodID,ConsumerID) VALUES 
+ (@CommentStar,@CommentDetail,@CommentDate,@CommentParent,@FoodID,@ConsumerID);
  set @CurrentID=@@IDENTITY
 end try
 begin catch
@@ -697,6 +698,7 @@ CREATE PROC dbo.Proc_UpdateComment(
 	@CommentStar		int,
 	@CommentDetail		NVARCHAR(MAX),
 	@CommentDate		date,
+	@CommentParent		int,
 	@FoodID				int,
 	@ConsumerID			int,
 	@CurrentID int output)
@@ -705,7 +707,7 @@ begin try
  if(exists(select * from Comments where CommentID=@CommentID))
   begin
    update Comments set CommentStar=@CommentStar, CommentDetail=@CommentDetail, 
-    CommentDate=@CommentDate, FoodID=@FoodID, ConsumerID=@ConsumerID
+    CommentDate=@CommentDate, CommentParent=@CommentParent, FoodID=@FoodID, ConsumerID=@ConsumerID
    where CommentID = @CommentID;
    set @CurrentID=@CommentID
    return
