@@ -3,56 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.ProducerPage.ListFoodRestaurantPage">
     <ContentPage.Content>
-        <StackLayout>
-            <CollectionView x:Name="listView"
-                               VerticalOptions="Start"
-                               VerticalScrollBarVisibility="Never"
-                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                <CollectionView.ItemTemplate>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <SearchBar Grid.Row="0" x:Name="searchfood" Placeholder="SeachFood" TextChanged="searchfood_TextChanged" CancelButtonColor="Orange"/>
+            <ListView  x:Name="lstfood" ItemSelected="lstfood_ItemSelected" RowHeight="175" Grid.Row="1" BackgroundColor="Transparent" IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Frame HasShadow="False" BackgroundColor="#fef6f2" HeightRequest="90" CornerRadius="20" Margin="0,10">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Frame Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" CornerRadius="12" Margin="0,0,10,0">
-                                        <Image Source="{Binding FoodImages}" HeightRequest="100" WidthRequest="95" Aspect="AspectFit"/>
-                                    </Frame>
-                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding FoodName}" FontSize="15" FontAttributes="Bold"/>
-                                    <Label Grid.Row="1" Grid.Column="1" Margin="7,2,0,0" Text="$" FontSize="15" TextColor="#a4a7b6"/>
-                                    <Label Grid.Row="1" Grid.Column="1" Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding FoodPrice}" FontAttributes="Bold" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Grid.Row="2" Grid.Column="1" Margin="0,2,0,0" Text="⭐" HorizontalOptions="Start" WidthRequest="20"/>
-                                    <Label Grid.Row="2" Grid.Column="1" Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding FoodRating}" FontAttributes="Bold" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Image Grid.Row="0" Grid.Column="2" Source="{Binding HomeSelected}" HeightRequest="15" />
-                                </Grid>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>
-                            </Frame>
-                        </StackLayout>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Change status" Clicked="change_Clicked" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete" IsDestructive="True" Clicked="delete_Clicked_1" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <Grid Padding="5">
+                                <Frame>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding FoodImages}"  WidthRequest="150"/>
+                                        <StackLayout VerticalOptions="Center">
+                                            <Label Text="{Binding FoodName}" FontSize="18" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold" />
+                                            <Grid>
+                                                <Label Margin="7,2,0,0" Text="$" FontSize="15" TextColor="#a4a7b6"/>
+                                                <Label Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FoodPrice}" FontAttributes="Bold" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            </Grid>
+                                            <Grid>
+                                                <Label Text="⭐" HorizontalOptions="Start" WidthRequest="20"/>
+                                                <Label Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FoodRating}" FontAttributes="Bold" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
