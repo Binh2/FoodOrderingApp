@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodOrderingApp.Pages.ListFood">
+             x:Class="FoodOrderingApp.ProducerPage.ListFoodRestaurantPage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -10,10 +10,14 @@
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <SearchBar Grid.Row="0" x:Name="searchfood" Placeholder="SeachFood" TextChanged="searchfood_TextChanged" CancelButtonColor="Orange"/>
-            <ListView  x:Name="lstfood" ItemSelected="lstfood_ItemSelected" RowHeight="175" Grid.Row="1" BackgroundColor="Transparent">
+            <ListView  x:Name="lstfood" ItemSelected="lstfood_ItemSelected" RowHeight="175" Grid.Row="1" BackgroundColor="Transparent" IsPullToRefreshEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Change status" Clicked="change_Clicked" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete" IsDestructive="True" Clicked="delete_Clicked_1" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
                             <Grid Padding="5">
                                 <Frame>
                                     <StackLayout Orientation="Horizontal">
@@ -23,22 +27,22 @@
                                             <Grid>
                                                 <Label Margin="7,2,0,0" Text="$" FontSize="15" TextColor="#a4a7b6"/>
                                                 <Label Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{Binding FoodPrice}" FontAttributes="Bold" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FoodPrice}" FontAttributes="Bold" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                             </Grid>
                                             <Grid>
                                                 <Label Text="⭐" HorizontalOptions="Start" WidthRequest="20"/>
                                                 <Label Margin="30,0,0,0" FontSize="15" VerticalOptions="Center">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{Binding FoodRating}" FontAttributes="Bold" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FoodRating}" FontAttributes="Bold" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                             </Grid>
                                         </StackLayout>
                                     </StackLayout>

@@ -26,7 +26,7 @@ namespace WEBAPI.Controllers
                 return Ok(e.Message);
             }
         }
-        [Route("api/RestaurantController/SelectNRestaurants")]
+        [Route("api/RestaurantController/SelectRestaurantsByConsumerID")]
         [HttpGet]
         public IHttpActionResult SelectNRestaurants(int n, string queryString)
         {
@@ -52,6 +52,22 @@ namespace WEBAPI.Controllers
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add(nameof(RestaurantID), RestaurantID);
                 DataTable result = Database.Database.ReadTable("Proc_SelectRestaurantsByID", param);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+        [Route("api/RestaurantController/SelectFoodByRestaurantID")]
+        [HttpGet]
+        public IHttpActionResult SelectFoodByRestaurantID(int RestaurantID)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add(nameof(RestaurantID), RestaurantID);
+                DataTable result = Database.Database.ReadTable("Proc_SelectFoodByRestaurantID", param);
                 return Ok(result);
             }
             catch (Exception e)

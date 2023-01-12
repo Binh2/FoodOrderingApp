@@ -105,5 +105,83 @@ namespace WEBAPI.Controllers
                 return NotFound();
             }
         }
+
+        [Route("api/FoodController/InsertFood")]
+        [HttpPost]
+        public IHttpActionResult InsertFood(Food food)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("FoodName", food.FoodName);
+                param.Add("FoodImages", food.FoodImages);
+                param.Add("CategoryID", food.CategoryID);
+                param.Add("FoodPrice", food.FoodPrice);
+                param.Add("FoodRating", food.FoodRating);
+                param.Add("RestaurantID", food.RestaurantID);
+                param.Add("FoodFavourite", food.FoodFavourite);
+                var result = Database.Database.Exec_Command("Proc_InsertFood", param);
+                return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+
+        [Route("api/FoodController/GetIDByCategoryName")]
+        [HttpGet]
+        public IHttpActionResult GetIDByCategoryName(string CategoryName)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("CategoryName", CategoryName);
+                param.Add("IP", Constants.IP);
+                DataTable result = Database.Database.ReadTable("Proc_GetIDByCategoryName", param);
+                return Ok(result);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+        [Route("api/OrderController/UpdateFood")]
+        [HttpPost]
+        public IHttpActionResult UpdateFood(Food food)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("FoodID", food.FoodID);
+                param.Add("FoodName", food.FoodName);
+                param.Add("FoodImages", food.FoodImages);
+                param.Add("CategoryID", food.CategoryID);
+                param.Add("FoodPrice", food.FoodPrice);
+                var result = Database.Database.Exec_Command("Proc_UpdateFood", param);
+                return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+        [Route("api/FoodController/DeleteFood")]
+        [HttpPost]
+        public IHttpActionResult DeleteFood(int FoodID)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("FoodID", FoodID);
+                var result = Database.Database.Exec_Command("Proc_DeleteFood", param);
+                return Ok(int.Parse(result.ToString()));
+            }
+            catch (Exception e)
+            {
+                return Ok(e.Message);
+            }
+        }
+
     }
 }

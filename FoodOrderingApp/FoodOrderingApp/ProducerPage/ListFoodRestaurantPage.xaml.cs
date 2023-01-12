@@ -10,40 +10,58 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace FoodOrderingApp.Pages
+namespace FoodOrderingApp.ProducerPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FoodPage : ContentPage
+    public partial class ListFoodRestaurantPage : ContentPage
     {
         List<Foods> foodListConverted;
-        public FoodPage(Categories categories)
+        public ListFoodRestaurantPage()
         {
             InitializeComponent();
-            GetFoodsByCateID(categories.CategoryID);
+            GetAllFood();
         }
-        async void GetFoodsByCateID(int CategoryID)
+
+        async void GetAllFood()
         {
             HttpClient httpClient = new HttpClient();
-            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodsBycategoryID?CategoryId=" + CategoryID.ToString());
+            var FoodList = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetAllFoods");
             foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(FoodList);
             lstfood.ItemsSource = foodListConverted;
         }
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Frame frame = sender as Frame;
-            TapGestureRecognizer tapGestureRecognizer = frame.GestureRecognizers[0] as TapGestureRecognizer;
-            Foods foods = tapGestureRecognizer.CommandParameter as Foods;
-            await Shell.Current.Navigation.PushAsync(new FoodDetailPage(foods));
+
         }
+
         private void searchfood_TextChanged(object sender, TextChangedEventArgs e)
         {
             var searchnamefood = foodListConverted.Where(s => s.FoodName.ToLower().Contains(searchfood.Text.ToLower()));
             lstfood.ItemsSource = searchnamefood;
         }
+
         private void lstfood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Foods foods = (Foods)e.SelectedItem;
-            Navigation.PushModalAsync(new NavigationPage(new FoodDetailPage(foods)));
+
+        }
+
+        private void change_Clicked(object sender, EventArgs e)
+        {
+            var menuitem = ((MenuItem)sender);
+            Foods food = menuitem.CommandParameter as Foods;
+
+
+
+        }
+
+        private void delete_Clicked_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
