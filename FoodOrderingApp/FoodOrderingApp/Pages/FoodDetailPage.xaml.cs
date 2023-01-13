@@ -15,10 +15,12 @@ namespace FoodOrderingApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodDetailPage : ContentPage
     {
-
+        int foodID;
+        public List<Comment> comments;
         public FoodDetailPage(Foods food)
         {
             InitializeComponent();
+            foodID = food.FoodID;
             GetFood(food.FoodID);
         }
 
@@ -26,51 +28,21 @@ namespace FoodOrderingApp.Pages
         {
             HttpClient httpClient = new HttpClient();
 
-            var Food = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodByID?foodid=" + foodID.ToString()); 
+            var Food = await httpClient.GetStringAsync("http://" + Constants.IP + "/WEBAPI/api/FoodController/GetFoodByID?foodid=" + foodID.ToString());
             var foodListConverted = JsonConvert.DeserializeObject<List<Foods>>(Food);
-            food.ItemsSource = foodListConverted;
+            Foods food = (new List<Foods>(foodListConverted)).First();
+            Title = food.FoodName;
+            foodListView.ItemsSource = foodListConverted;
         }
 
-        private void LstFood_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void addToCart_Clicked(object sender, EventArgs e)
         {
-
-        }
-
-        private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
-        {
-
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-            ImageButton bt = (ImageButton)sender;
-            Foods hc = (Foods)bt.BindingContext;
-            bool dachon = false;
-            foreach (Foods h in ConsumerProvider.cart.Foods)
-            {
-                if (hc.FoodID == h.FoodID)
-                {
-                    h.FoodCount++;
-                    dachon = true;
-                    break;
-                }
-            }
-            if (dachon == false)
-            {
-                hc.FoodCount = 1;
-                ConsumerProvider.cart.Foods.Add(hc);
-            }
-            DisplayAlert("Thông báo", "Mua hàng thành công", "OK");
+            Button button = (Button)sender;
+            Foods food = (Foods)button.CommandParameter;
+            bool isAdded = ConsumerProvider.AddFood(food);
+            if (isAdded)
+                DisplayAlert("Added food to cart successfully", "", "Close");
+            else DisplayAlert("The food is already added to cart", "", "Close");
         }
     }   
 }

@@ -24,7 +24,7 @@ namespace FoodOrderingApp.OrderModels
         public string ConsumerPassword { get; set; }
 
         // not completely nessesary
-        public int OrderPrice { get; set; }
+        public double OrderPrice { get; set; }
         public string FoodImages { get; set; }
         public int OrderStateTypeID { get; set; }
         public DateTime OrderDate { get; set; }

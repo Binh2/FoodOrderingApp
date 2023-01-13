@@ -39,7 +39,7 @@ namespace FoodOrderingApp.ProfilePages
                     OrderStateID = i * 2 + 5,
                     OrderDate = DateTime.Now,
                     OrderLocation = "",
-                    OrderStateTypeIsDone = false
+                    OrderStateTypeIsDone = 0
                 });
             collectionView.ItemsSource = orderHistory;
         }

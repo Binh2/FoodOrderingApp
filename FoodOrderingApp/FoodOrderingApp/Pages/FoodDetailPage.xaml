@@ -1,46 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:FoodOrderingApp.Views" 
+             xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
              x:Class="FoodOrderingApp.Pages.FoodDetailPage"
              BackgroundColor="White">
+    <ContentPage.Resources>
+        <converters:WebAPIImagesToStringConverter x:Key="WebAPIImagesToStringConverter"></converters:WebAPIImagesToStringConverter>
+        <converters:NumberToStarConverter x:Key="NumberToStarConverter"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
-            <ListView x:Name="food" 
+        <StackLayout>
+            <Grid>
+                <ListView x:Name="foodListView" 
                       SeparatorVisibility="None"
                       HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid RowDefinitions="300,Auto,Auto,Auto,200,Auto" Padding="20">
-                                <Frame Grid.Row="0" CornerRadius="20" HasShadow="True">
-                                    <Image Margin="-20" Source="{Binding FoodImages}" Aspect="Fill"></Image>
-                                </Frame>
-                                <StackLayout Grid.Row="1" Orientation="Horizontal">
-                                    <Label Text="{Binding FoodName}" FontAttributes="Bold" TextColor="#202020" FontSize="20"></Label>
-                                    <Label x:Name="lblStar" TextColor="#202020" 
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid RowDefinitions="300,Auto,Auto,Auto,200,Auto" Padding="20">
+                                    <Frame Grid.Row="0" CornerRadius="20" HasShadow="True">
+                                        <Image Margin="-20" Source="{Binding FoodImages}" Aspect="Fill"></Image>
+                                    </Frame>
+                                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                        <Label Text="{Binding FoodName}" FontAttributes="Bold" TextColor="#202020" FontSize="20"></Label>
+                                        <Label x:Name="lblStar" TextColor="#202020" 
                                                FontSize="20"></Label>
-                                </StackLayout>
-                                <Label Grid.Row="2" Text="Details" FontSize="15" Margin="0,20,0,0" TextColor="#202020" FontAttributes="Bold"></Label>
-                                <Label Grid.Row="3" Text="{Binding FoodDetail}" TextColor="#202020"></Label>
-                                <Label Text="Comment"
+                                    </StackLayout>
+                                    <Label Grid.Row="2" Text="Details" FontSize="15" Margin="0,20,0,0" TextColor="#202020" FontAttributes="Bold"></Label>
+                                    <Label Grid.Row="3" Text="{Binding FoodDetail}" TextColor="#202020"></Label>
+                                    <Label Text="Comment"
                                           Grid.Row="4" TextColor="Gray"></Label>
-                                <StackLayout Grid.Row="5" VerticalOptions="EndAndExpand" HeightRequest="60" Orientation="Horizontal" BackgroundColor="White" Margin="-20" Padding="20,10">
-                                    <Grid>
-                                        <Label Text="$" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
-                                        <Label Margin="20,0,0,0" Text="{Binding FoodPrice}" TextColor="#202020" FontSize="20" VerticalOptions="Center"></Label>
-                                    </Grid>
-                                    <Button Text="Add to cart" CornerRadius="20" HorizontalOptions="EndAndExpand" WidthRequest="180" BackgroundColor="Green" TextColor="White">
-                                        <Button.GestureRecognizers>
-                                            <TapGestureRecognizer  CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped_1"/>
-                                        </Button.GestureRecognizers>
-                                    </Button>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+                                    <StackLayout Grid.Row="5" VerticalOptions="EndAndExpand" HeightRequest="60" Orientation="Horizontal" BackgroundColor="White" Margin="-20" Padding="20,10">
+                                        <Frame VerticalOptions="CenterAndExpand" Padding="10,0">
+                                            <views:PriceView Price="{Binding FoodPrice}"></views:PriceView>
+                                        </Frame>
+                                        <Button Text="Add to cart" CornerRadius="20" HorizontalOptions="EndAndExpand" WidthRequest="180" 
+                                            x:Name="addToCart" Clicked="addToCart_Clicked" CommandParameter="{Binding .}" 
+                                            BackgroundColor="{StaticResource GreenColor}" TextColor="White">
+                                        </Button>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
+
+            <!--Comment section-->
+            <!--<CollectionView ItemsLayout="VerticalList" x:Name="collectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="0,0,0,10">
+                            <Frame CornerRadius="500" Padding="0" Margin="10">
+                                <Image Source="{Binding ConsumerImage, Converter={StaticResource WebAPIImagesToStringConverter}}"
+                                   x:Name="consumerImage" WidthRequest="80" HeightRequest="80"
+                                   Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                            </Frame>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ConsumerName}" FontAttributes="Bold" FontSize="20"
+                                       WidthRequest="900" 
+                                       TextColor="Black" HorizontalOptions="FillAndExpand"></Label>
+                                    <CollectionView ItemsSource="{Binding CommentStar, Converter={StaticResource NumberToListConverter},
+                                    ConverterParameter='star.png'}" ItemsLayout="HorizontalList"
+                                                HeightRequest="20" HorizontalOptions="End" Margin="0">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding .}" WidthRequest="20" HorizontalOptions="End"
+                                                   ></Image>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                                <Label Text="{Binding CommentDetail}" FontSize="16" TextColor="Black"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

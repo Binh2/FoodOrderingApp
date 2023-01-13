@@ -23,7 +23,7 @@ namespace WEBAPI.Models
         public int ConsumerID { get; set; }
 
         public int OrderStateTypeID { get; set; }
-        public int OrderStateTypeName { get; set; }
+        public string OrderStateTypeName { get; set; }
         public int OrderStateTypeIsDone { get; set; }
     }
 }

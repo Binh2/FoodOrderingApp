@@ -58,7 +58,7 @@
                     <TapGestureRecognizer x:Name="wishlistBtn" Tapped="wishlistBtn_Tapped"></TapGestureRecognizer>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame Padding="10,0">
+            <!--<Frame Padding="10,0">
                 <StackLayout Orientation="Horizontal">
                     <Image Source="order_history.png"></Image>
                     <Label Text="Order HIstory" VerticalOptions="Center"></Label>
@@ -68,7 +68,7 @@
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="orderHistoryBtn" Tapped="orderHistoryBtn_Tapped"></TapGestureRecognizer>
                 </Frame.GestureRecognizers>
-            </Frame>
+            </Frame>-->
             <Frame Padding="10,0">
                 <StackLayout Orientation="Horizontal">
                     <Image Source="track_order.png"></Image>

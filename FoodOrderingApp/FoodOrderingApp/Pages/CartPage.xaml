@@ -15,11 +15,9 @@
                                 <SwipeView.RightItems>
                                     <SwipeItem Text="Delete" BackgroundColor="#ff4200" x:Name="deleteSwipe" Invoked="deleteSwipe_Invoked"
                                                CommandParameter="{Binding .}"></SwipeItem>
-                                </SwipeView.RightItems>
-                                <SwipeView.LeftItems>
                                     <SwipeItem Text="Favourite" BackgroundColor="#fec107" x:Name="favouriteSwipe" Invoked="favouriteSwipe_Invoked"
                                                CommandParameter="{Binding .}"></SwipeItem>
-                                </SwipeView.LeftItems>
+                                </SwipeView.RightItems>
                                 <StackLayout Orientation="Horizontal" Spacing="15">
                                     <Image Source="{Binding FoodImages}" WidthRequest="200"
                                            ></Image>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodOrderingApp.Pages.Homepage">
+             x:Class="FoodOrderingApp.Pages.Homepage" Shell.NavBarIsVisible="False">
     <ContentPage.Content >
         <ScrollView>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
@@ -11,7 +11,8 @@
                     <!--Profile picture-->
                   
                     <!--Welcome & Name-->
-                    <Label Grid.Column="1" Grid.Row="0" Text="Welcome to Food Ordering Food" TextColor="#00c569" FontAttributes="Bold" Margin="20,0,0,0" HorizontalTextAlignment="Center"/>
+                    <!--<Label Grid.Column="1" Grid.Row="0" Text="Welcome" Style="{StaticResource TitleStyle}"
+                           FontAttributes="Bold" Margin="20,0,0,0" HorizontalTextAlignment="Center"/>-->
                 </Grid>
 
                 <!--Search & Action Button-->

@@ -16,13 +16,13 @@ namespace FoodOrderingApp.OrderModels
     {
         public int OrderStateID { get; set; }
         public DateTime OrderDate { get; set; }
-        public string OrderLocation { get; set; }
+        public string OrderLocation { get; set; } = "Ho Chi Minh city";
 
         public int OrderID { get; set; }
         public int ConsumerID { get; set; }
 
         public int OrderStateTypeID { get; set; }
         public string OrderStateTypeName { get; set; }
-        public bool OrderStateTypeIsDone { get; set; }
+        public int OrderStateTypeIsDone { get; set; }
     }
 }

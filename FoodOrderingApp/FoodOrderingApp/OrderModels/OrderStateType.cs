@@ -8,12 +8,12 @@ namespace FoodOrderingApp.OrderModels
     {
         int OrderStateTypeID { get; set; }
         string OrderStateTypeName { get; set; }
-        bool OrderStateTypeIsDone { get; set; }
+        int OrderStateTypeIsDone { get; set; }
     }
     public class OrderStateType : IOrderStateType
     {
         public int OrderStateTypeID { get; set; }
         public string OrderStateTypeName { get; set; }
-        public bool OrderStateTypeIsDone { get; set; }
+        public int OrderStateTypeIsDone { get; set; }
     }
 }

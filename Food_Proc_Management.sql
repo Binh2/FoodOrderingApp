@@ -285,7 +285,8 @@ select * from
 		join OrderFoods on Orders.OrderID=OrderFoods.OrderID
 		join Foods on OrderFoods.FoodID = Foods.FoodID
 		group by Orders.OrderID, Orders.ConsumerID) OrdersOrderFoods
-	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID;
+	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID 
+	order by OrdersOrderStates.OrderDate desc;
 GO
 
 -- Select orders by ConsumerID
@@ -304,7 +305,8 @@ select * from
 		join Foods on OrderFoods.FoodID = Foods.FoodID
 		where ConsumerID=@ConsumerID
 		group by Orders.OrderID, Orders.ConsumerID) OrdersOrderFoods
-	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID;
+	on OrdersOrderStates.OrderID = OrdersOrderFoods.OrderID and OrdersOrderStates.ConsumerID = OrdersOrderFoods.ConsumerID
+	order by OrdersOrderStates.OrderDate desc;
 GO
 
 -- Insert a order
@@ -445,7 +447,6 @@ select * from OrderFoods
 GO
 -- Insert a orderFood
 CREATE PROC Proc_InsertOrderFood(
-	@OrderFoodID int,
 	@OrderID	int,
 	@FoodID	int,
 	@FoodQuantity int,
@@ -453,8 +454,8 @@ CREATE PROC Proc_InsertOrderFood(
 	@CurrentID int output)
 as
 begin try
- insert into OrderFoods(OrderFoodID,OrderID,FoodID,FoodQuantity,FoodPrice) VALUES 
-  (@OrderFoodID,@OrderID,@FoodID,@FoodQuantity,@FoodPrice);
+ insert into OrderFoods(OrderID,FoodID,FoodQuantity,FoodPrice) VALUES 
+  (@OrderID,@FoodID,@FoodQuantity,@FoodPrice);
  set @CurrentID=@@IDENTITY
 end try
 begin catch
@@ -819,7 +820,3 @@ CREATE PROC Proc_SelectFoodByProducerID(@RestaurantID int)
 AS
 SELECT * FROM Restaurants join Producers on Producers.RestaurantID = Restaurants.RestaurantID where Producers.RestaurantID = @RestaurantID;
 GO
-
-
-
-
