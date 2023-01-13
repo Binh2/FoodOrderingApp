@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.props" Condition="Exists('packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -194,39 +195,65 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\A7up.jpg" />
+    <Content Include="Images\alex_livingson.png" />
     <Content Include="Images\Banhmi.png" />
     <Content Include="Images\Banhtrangtron.png" />
     <Content Include="Images\Cakes.jpg" />
+    <Content Include="Images\cardinal_drive_in_restaurant.png" />
     <Content Include="Images\chuong.jpg" />
     <Content Include="Images\coca.jpg" />
     <Content Include="Images\Cocacola.jpg" />
     <Content Include="Images\comtam.jpg" />
     <Content Include="Images\Cookies.jpg" />
+    <Content Include="Images\david_brown.png" />
+    <Content Include="Images\david_smith.png" />
+    <Content Include="Images\david_spade.png" />
     <Content Include="Images\Doannhanh.jpg" />
     <Content Include="Images\Drinks.jpg" />
+    <Content Include="Images\elizabeth_brown.png" />
+    <Content Include="Images\elizabeth_smith.png" />
+    <Content Include="Images\el_as_de_oros_restaurant.png" />
     <Content Include="Images\favourte.png" />
     <Content Include="Images\Goicuon.png" />
     <Content Include="Images\Hamburger.jpg" />
     <Content Include="Images\Hatch_Green_Chile_Hamburger.jpg" />
     <Content Include="Images\HotPot.jpg" />
     <Content Include="Images\Hutieu.jpg" />
+    <Content Include="Images\james_brown.png" />
+    <Content Include="Images\james_smith.png" />
+    <Content Include="Images\jennifer_brown.png" />
+    <Content Include="Images\jennifer_smith.png" />
+    <Content Include="Images\jiffy_burger_restaurant.png" />
+    <Content Include="Images\john_brown.png" />
+    <Content Include="Images\john_smith.png" />
+    <Content Include="Images\linda_brown.png" />
+    <Content Include="Images\linda_smith.png" />
     <Content Include="Images\Laubo.png" />
     <Content Include="Images\Lauca.png" />
     <Content Include="Images\Lauthai.png" />
     <Content Include="Images\mark_olson.png" />
+    <Content Include="Images\mary_brown.png" />
+    <Content Include="Images\mary_smith.png" />
     <Content Include="Images\master-card1.png" />
     <Content Include="Images\master-card2.png" />
     <Content Include="Images\master_logo.png" />
     <Content Include="Images\Mi.jpg" />
+    <Content Include="Images\michael_brown.png" />
+    <Content Include="Images\michael_smith.png" />
     <Content Include="Images\milktea.jpg" />
     <Content Include="Images\Mirinda.jpg" />
     <Content Include="Images\Mixao.jpg" />
     <Content Include="Images\noodle.jpg" />
     <Content Include="Images\Noodles.jpg" />
     <Content Include="Images\Other.jpg" />
+    <Content Include="Images\patricia_brown.png" />
+    <Content Include="Images\patricia_smith.png" />
     <Content Include="Images\Pepsi.jpg" />
     <Content Include="Images\Pho.jpg" />
     <Content Include="Images\rice.jpg" />
+    <Content Include="Images\robert_brown.png" />
+    <Content Include="Images\robert_smith.png" />
+    <Content Include="Images\samantha_smith.png" />
     <Content Include="Images\Sandwich.jpg" />
     <Content Include="Images\shishi.jpg" />
     <Content Include="Images\Taco.jpg" />
@@ -350,7 +377,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.targets'))" />
   </Target>
+  <Import Project="packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.5.0.0.2545\build\Xamarin.Forms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

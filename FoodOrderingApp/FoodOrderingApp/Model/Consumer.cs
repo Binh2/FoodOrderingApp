@@ -28,7 +28,7 @@ namespace FoodOrderingApp.Model
     }
     public class ConsumerProvider
     {
-        static public Consumer consumer { get; set; }
+        static public Consumer consumer { get; set; } 
         static public Cart cart;
 
         static public ObservableCollection<OrderFood> orderFoods = new ObservableCollection<OrderFood>();
@@ -63,8 +63,7 @@ namespace FoodOrderingApp.Model
                     FoodPrice = food.FoodPrice
                 });
             }
-            catch (Exception e)
-            { return false; }
+            catch (Exception e) { return false; }
             return true;
         }
         static public bool DeleteFood(Foods food)

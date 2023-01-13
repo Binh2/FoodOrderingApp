@@ -1,5 +1,6 @@
 ﻿using FoodOrderingApp.Converters;
 using FoodOrderingApp.Model;
+using FoodOrderingApp.Pages;
 using FoodOrderingApp.ProfilePages;
 using System;
 using System.Collections.Generic;
@@ -63,11 +64,15 @@ namespace FoodOrderingApp.ProfilePages
 
         private async void notificationsBtn_Tapped(object sender, EventArgs e)
         {
-            await Shell.Current.Navigation.PushAsync(new NotificationsPage());
+            //await Shell.Current.Navigation.PushAsync(new NotificationsPage());
+            await Shell.Current.Navigation.PushAsync(new CommentsPage());
         }
 
         private async void signoutBtn_Tapped(object sender, EventArgs e)
         {
+            ConsumerProvider.consumer = null;
+            ConsumerProvider.orderFoods = null;
+            ConsumerProvider.foods = null;
             await Shell.Current.GoToAsync("//signinPage");
         }
 
@@ -77,8 +82,9 @@ namespace FoodOrderingApp.ProfilePages
             if (answer)
             {
                 await Shell.Current.GoToAsync("//signinPage");
-                //Database.deleteUser(UserProvider.user);
                 await WebAPI.DeleteConsumer(ConsumerProvider.consumer.ConsumerID);
+                ConsumerProvider.consumer = null;
+                ConsumerProvider.foods = null;
             }
         }
     }

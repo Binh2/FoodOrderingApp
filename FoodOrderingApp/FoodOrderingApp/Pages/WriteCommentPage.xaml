@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
+             x:Class="FoodOrderingApp.Pages.WriteCommentPage">
+    <ContentPage.Resources>
+        <converters:WebAPIImagesToStringConverter x:Key="WebAPIImagesToStringConverter"></converters:WebAPIImagesToStringConverter>
+        <converters:NumberToStarConverter x:Key="NumberToStarConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding FoodName}"></Label>
+            <ListView ItemsSource="{Binding CommentStar, Converter={StaticResource NumberToStarConverter}}" ItemTapped="starView_ItemTapped" 
+                      x:Name="starView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Image Source="{Binding .}" WidthRequest="20" HorizontalOptions="End"
+                               ></Image>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Editor Placeholder="Tell us your experience" x:Name="editor"></Editor>
+            <Button Style="{StaticResource ButtonStyle}" Margin="7,20"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

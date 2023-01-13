@@ -18,12 +18,17 @@ namespace FoodOrderingApp.Views
         {
 
             InitializeComponent();
-            comments = new List<Comment>()
-            {
-                new Comment() { CommenterName = "David Spade", CommenterImage = "david_spade.png", CommentComment = "Dripping saliva!!!"},
-                new Comment() { CommenterName = "David Spade", CommenterImage = "david_spade.png", CommentComment = "Look so delicious!!!"}
-            };
-            collectionView.ItemsSource = comments;
+            //comments = new List<Comment>()
+            //{
+            //    new Comment() { CommenterName = "David Spade", CommenterImage = "david_spade.png", CommentComment = "Dripping saliva!!!"},
+            //    new Comment() { CommenterName = "David Spade", CommenterImage = "david_spade.png", CommentComment = "Look so delicious!!!"}
+            //};
+            BindingContext = this;
+        }
+        protected async override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            comments = await WebAPI.SelectAllComments();
         }
     }
 }

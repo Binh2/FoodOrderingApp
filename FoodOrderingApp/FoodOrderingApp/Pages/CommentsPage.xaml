@@ -1,19 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converters="clr-namespace:FoodOrderingApp.Converters"
              x:Class="FoodOrderingApp.Pages.CommentsPage">
+    <ContentPage.Resources>
+        <converters:WebAPIImagesToStringConverter x:Key="WebAPIImagesToStringConverter"></converters:WebAPIImagesToStringConverter>
+        <converters:NumberToListConverter x:Key="NumberToListConverter"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
+        <!--<ScrollView>-->
         <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Image Source="{Binding ConsumerImage}"></Image>
-                <StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding ConsumerName}"></Label>
-                        <CollectionView ></CollectionView>
-                    </StackLayout>
-                    <Label Text="{Binding CommentDetail}"></Label>
-                </StackLayout>
+            <StackLayout>
+                
             </StackLayout>
+            
+            <CollectionView ItemsLayout="VerticalList" x:Name="collectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="0,0,0,10">
+                            <Frame CornerRadius="500" Padding="0" Margin="10">
+                                <Image Source="{Binding ConsumerImage, Converter={StaticResource WebAPIImagesToStringConverter}}"
+                                   x:Name="consumerImage" WidthRequest="80" HeightRequest="80"
+                                   Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                            </Frame>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ConsumerName}" FontAttributes="Bold" FontSize="20"
+                                       WidthRequest="900" 
+                                       TextColor="Black" HorizontalOptions="FillAndExpand"></Label>
+                                    <CollectionView ItemsSource="{Binding CommentStar, Converter={StaticResource NumberToListConverter},
+                                    ConverterParameter='star.png'}" ItemsLayout="HorizontalList"
+                                                HeightRequest="20" HorizontalOptions="End" Margin="0">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding .}" WidthRequest="20" HorizontalOptions="End"
+                                                   ></Image>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                                <Label Text="{Binding CommentDetail}" FontSize="16" TextColor="Black"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--</ScrollView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

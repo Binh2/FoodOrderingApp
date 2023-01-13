@@ -53,8 +53,10 @@
                     <StackLayout>
                         <Label Text="-OR-" TextColor="Black" FontSize="20" HorizontalOptions="Center"
                            ></Label>
-                        <views:LabelImageView ImageSource="facebook_icon.png" Text="Sign in with Facebook"></views:LabelImageView>
-                        <views:LabelImageView ImageSource="google_icon.png" Text="Sign in with Google"></views:LabelImageView>
+                        <views:LabelImageView ImageSource="facebook_icon.png" Text="Sign in with Facebook"
+                                              TapCommand="{Binding TapCommand}"></views:LabelImageView>
+                        <views:LabelImageView ImageSource="google_icon.png" Text="Sign in with Google"
+                                              TapCommand="{Binding TapCommand}"></views:LabelImageView>
                     </StackLayout>
                 </StackLayout>
             </Frame>

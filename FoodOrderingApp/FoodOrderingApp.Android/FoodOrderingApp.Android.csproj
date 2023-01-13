@@ -250,6 +250,9 @@
     <AndroidResource Include="Resources\drawable\view_map.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\star.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Banhmi.png" />
   </ItemGroup>
   <ItemGroup>

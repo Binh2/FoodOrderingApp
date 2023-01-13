@@ -3,27 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodOrderingApp.Views.CommentView">
     <ContentView.Content>
-        <StackLayout>
-            <CollectionView x:Name="collectionView">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"></LinearItemsLayout>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Frame CornerRadius="500">
-                                    <Image Source="{Binding CommenterImage}"></Image>
-                                </Frame>
-                                <StackLayout>
-                                    <Label Text="{Binding CommenterName}" FontSize="20" FontAttributes="Bold" TextColor="Black"></Label>
-                                    <Label Text="{Binding CommentComment}" FontSize="18" TextColor="Black"></Label>
-                                </StackLayout>
+        <ListView ItemsSource="{Binding comments}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Frame CornerRadius="500">
+                                <Image Source="{Binding CommenterImage}"></Image>
+                            </Frame>
+                            <StackLayout>
+                                <Label Text="{Binding CommenterName}" FontSize="20" FontAttributes="Bold" TextColor="Black"></Label>
+                                <Label Text="{Binding CommentComment}" FontSize="18" TextColor="Black"></Label>
                             </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentView.Content>
 </ContentView>
