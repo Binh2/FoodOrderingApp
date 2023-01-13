@@ -36,7 +36,7 @@ Users should be able to:
 - Solution URL: [My code](https://github.com/Binh2/FoodOrderingApp)
 - Demo: 
 
-demo.mp4
+https://github.com/Binh2/FoodOrderingApp/blob/main/demo.mp4
 
 If the video is not rendered then [check out this video](https://youtu.be/WaRPJN_cQ7w)
 
