@@ -24,11 +24,11 @@
                       Title="Home" ContentTemplate="{DataTemplate pages:Homepage}"/>
         <ShellContent Icon="search_button.png" Route="foodPage"
                       Title="Food" ContentTemplate="{DataTemplate pages:CategoriesPage}"/>
-        <!--<ShellContent Icon="search_button.png" Route="foodDetailPage"
-                      Title="Food details" ContentTemplate="{DataTemplate pages:FoodDetailPage}"/>-->
-        <ShellContent Icon="search_button.png" Route="cartPage"
+        <ShellContent Icon="search_button.png" Route="foodDetailPage"
+                      Title="Food details" ContentTemplate="{DataTemplate pages:ListFood}"/>
+        <ShellContent Route="cartPage"
                       Title="Cart" ContentTemplate="{DataTemplate pages:CartPage}"/>
-        <ShellContent Icon="search_button.png" Route="profilePage"
+        <ShellContent Route="profilePage"
                       Title="Profile" ContentTemplate="{DataTemplate profilePages:ProfilePage}"/>
         <!--<ShellContent Icon="search_button.png" Route="resourcesPage"
                       Title="Resources" ContentTemplate="{DataTemplate pages:ResourcesPage}"/>-->
