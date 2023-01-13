@@ -8,9 +8,11 @@ This is a Xamarin project from school
   - [The assignment](#the-assignment)
   - [Screenshot](#screenshot)
   - [Links](#links)
+  - [How to run FoodOrderingApp locally](#how-to-run-foodorderingapp-locally)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Continued development](#continued-development)
+  - [Self assessment](#self-assessment)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -83,6 +85,14 @@ Here are some improvements that could work:
 - Visual: Make all pages have the same style/feel.
 - Security: implement UAC
 - Security: Don't store password in plain text.
+- Error: JsonConvert doesn't convert bool correctly (bool is serialize to 'true' instead of 1 and 'false' instead of 0)
+
+### Self assessment
+
+- Take a lot of time to fix WebAPI error.
+- Didn't git push a lot.
+- Waste too much time trying out to constructing a 'all table' controller.
+- Self score: 9/10
 
 ## Author
 
