@@ -29,7 +29,12 @@ Users should be able to:
 
 ### Screenshot
 
+![](./images/SigninPage.png)
+![](./images/SignupPage.png)
 ![](./images/HomePage.png)
+![](./images/FoodDetailPage.png)
+![](./images/CartPage.png)
+![](./images/TrackOrderPage.png)
 
 ### Links
 
